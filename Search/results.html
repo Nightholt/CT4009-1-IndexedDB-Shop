@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en-gb">
+<head>
+    <meta name="description"  content="catalogue and shopping website"> <!--helps search engines define what the purpose of the site is-->
+    <meta name="keywords" content="shopping, search, catalogue">
+    <meta charset="utf-8"> <!--defines correct character set-->
+    <meta name="viewport" content="width=device-width, initial-scale=1"> <!--ensures site will render correctly on all platforms, primarily mobile-->
+
+    <!--links to the Boostrap CDN and css file-->
+    <link rel="stylesheet" href="../css/styles.css"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+    <title>Catalogue Website</title> <!--title of site-->
+    
+</head>
+
+<body>
+  <nav class="navbar navbar-expand-sm bg-dark navbar-dark"> <!--makes navbar dark and controls spacing of items-->
+    <a class="navbar-brand" href="../home/home.html">Logo</a> <!--defines type of navbar-->
+    
+    <div><ul class="nav-item"><!--link to home page-->
+      <a class="nav-link" href="../home/home.html">Home</a>
+    </ul></div>  
+    <ul class="nav-item dropdown"> <!--creates dropdown-->
+        <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">Categories</a> <!--name and type of dropdown-->
+        <div id="dropdown" class="dropdown-menu"><!--items within dropdown-->
+          <li><a class="dropdown-item" href="#">Home</a></li> 
+          <li><a class="dropdown-item" href="#">Technology</a></li>
+          <li><a class="dropdown-item" href="#">Recreation</a></li>
+        </div>
+      </ul>
+      
+      <div><ul class="nav-item"><!--link to hot deals page-->
+        <a class="nav-link" href="#">Hot Deals</a>
+      </ul></div>
+      <div><ul class="nav-item"><!--link to store locator page-->
+        <a class="nav-link" href="../Store Locator/stores.html">Store Locator</a> 
+      </ul></div>
+      <div><ul class="nav-item"><!--link to contact page-->
+        <a class="nav-link" href="#">Contact</a>
+      </ul></div>
+    </ul>
+    
+    <!--creates search bar form-->
+    <div id="search" class="div_block_right"><form class="form-inline" action="../Search/results.html">
+    <input class="form-control mr-sm-2" type="text" placeholder="Search">
+    <button class="btn btn-success" type="submit">Search</button>
+    </form></div>
+
+    <!--creates login form in navbar-->
+    <div id="login" class="container">
+      <form action="../Login/login.html">
+        <div class="form-group">
+          <label for="email">Email:</label>
+          <input type="email" class="form-control" id="email" placeholder="Enter email" name="email" required> <!--defines type of input, id, placeholder and requires user to make input-->
+        </div>
+        <div class="form-group">
+          <label for="pwd">Password:</label>
+          <input type="password" class="form-control" id="pwd" placeholder="Enter password" name="pswd" required> <!--defines type of input, id, placeholder and requires user to make input-->
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button><!--submit button-->
+      </form>
+    </div>
+    </nav>
+    
+<h1>Under Construction</h1>
+</body>
+</html>

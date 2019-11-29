@@ -1,0 +1,66 @@
+.div_block_right{ 
+    float: right; 
+    clear: both;
+    margin: 10px;
+    top: 100px; 
+    z-index: 1000;
+}
+
+#search.div_block_right{
+    size: 200px;
+    float: right;
+}
+
+.carousel-inner img {
+    width: 1100px;
+    height: 500px;
+  }
+
+.form {
+    float: right;
+    margin-right: 20px;
+}
+
+#form-inline {
+    width: 200px;
+}
+
+.container {
+    padding: 40px;
+    border: 2px;
+}
+
+#login.container {
+    top: 56px;
+    left: 50%;
+    position: absolute;
+    z-index: 9999;
+    height: 220px;
+    width: 400px;
+    clear:both;
+    float:left;    
+    background-color: black;
+    opacity: 0.7;
+    color: white
+}
+
+.btn-primary {
+    float: right;
+}
+
+label.pwd {
+    text-align: left;
+}
+
+#map {
+    left: 400px;
+    top: 100px;
+}
+
+li .indent {
+    padding-left: 3em;
+}
+
+a:hover {
+    background-color: hotpink;
+  }
