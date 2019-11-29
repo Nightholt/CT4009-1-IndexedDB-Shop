@@ -40,7 +40,8 @@ function showAllItems() {
             //$("#UpdateFunc").toggle();
             var itemID = parseInt($(this).parent().attr('id'));
             window.open("../Update/Update.html?itemID="+itemID,"_self");
-            
+            // var opened = window.open("");
+            // opened.document.write("<html><head><title>MyTitle</title></head><body>test</body></html>");
             
             return false;
         });

@@ -1,6 +1,8 @@
 //var dbName = "";
 //Global variables
 
+// hello nat !
+
 $(document).ready(function () {
     // once the document has finished loading run this lot
     // initialise the UI
@@ -84,7 +86,6 @@ function initDB() {
     });
 
 }
-
 
 function listItems(callBack) {
     // new call from the page so need to get a connection to the DB
