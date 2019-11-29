@@ -1,0 +1,19 @@
+do git comnands list for nat 
+
+$ git config --global user.email ohbitbrain@gmail.com
+$ git config --global user.name gototheant
+
+
+$ cd d:
+$ cd /Repos/CourseWork2019
+$ pwd (show you wwhat flder you are currently in)
+ls -al - list all the files 
+
+$ git clone https://github.com/Nootalie-Nooter/CT4009-2019-20-001-s1906563-13-Jan-2020.git
+
+$git add * (adds all the files from the folder you are in that are not already in the repo)
+$ git commit -m "some useful message here that will help me remember what this commit was about"
+$ git push
+
+$ git pull
+$ git fetch
