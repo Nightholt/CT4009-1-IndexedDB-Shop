@@ -101,8 +101,9 @@ $(document).ready(function () {
     $("#btnSubmitLogin").click(function (event) {
         //event.preventDefault();
         currObjectStoreName = "users";
-        startDB(SelectUser,DisplayError);
-        //SelectUser();
+        
+        SelectUser();
+
         //console.log(formKey);
         return false;
     });
@@ -338,50 +339,6 @@ function listDepartments(callBack) {
     };
 }
 
-// function listCategoriesRecurse(parent) {
-//     // new call from the page so need to get a connection to the DB
-//     var request = window.indexedDB.open("natTestDB", 4);
-//     request.onerror = function (event) {
-//         alert("Unable to retrieve data from the database at this time, please try later.");
-//     };
-
-//     // connection was successful
-//     request.onsuccess = function (event) {
-//         let db = event.target.result;
-
-//         let storeName = "categories";
-//         console.log("listCategories: " + parent);
-//         let tx = db.transaction(storeName).objectStore(storeName);
-
-//         tx.openCursor().onsuccess = function (event) {
-//             var cursor = event.target.result;
-
-//             if (cursor) {
-//                 var parentCategory = parseInt(cursor.value.parentcategory);
-
-//                 console.log("cursor parentCategory: " + parentCategory);
-
-//                 if (parentCategory === 0) {
-//                     console.log(storeName + ":key id: " + cursor.key + " Parent category name:" + cursor.value.name + ", parentcategory:" + parentCategory);
-//                 }
-//                 // subcategory
-//                 if (parentCategory > 0) {
-//                     if (parentCategory === parent) {
-//                         console.log(storeName + ":key id: " + cursor.key + " Subcategory name:" + cursor.value.name + ", parentcategory:" + parentCategory);
-//                     }
-//                     else {
-//                         // check for any more subcategories with this parent
-//                         listCategories(parentCategory);
-//                     }
-//                 }
-//                 cursor.continue();
-//             } else {
-//                 // console.log("No more entries!");
-//             }
-//         };
-//     };
-// }
-
 function DisplayCategories(id, name, parentcategory) {
     var css = "";
     if (parentcategory > 0) {
@@ -522,6 +479,7 @@ function setCurrObjectStoreName(objStoreName) {
 
 //selectAll retrieves all data from the current object store
 function selectAll(successCallback) {
+    startDB("",DisplayError);
     var transaction = db.transaction([currObjectStoreName], IDBTransaction.READ_ONLY || 'readonly'),
         objectStore, request, results = [];
 
@@ -547,6 +505,7 @@ function selectAll(successCallback) {
 //insertOne inserts data into the current object store
 //This function also creates unique id for each data
 function insertOne(data, successCallback) {
+    startDB("",DisplayError);
     var transaction = db.transaction([currObjectStoreName], IDBTransaction.READ_WRITE || 'readwrite'),
         objectStore, request, lastID;
 
@@ -569,6 +528,8 @@ function insertOne(data, successCallback) {
 
 //deleteOne inserts data into the current object store
 function deleteOne(id, successCallback) {
+    startDB("",DisplayError);
+
     var transaction = db.transaction([currObjectStoreName], IDBTransaction.READ_WRITE || 'readwrite'),
         objectStore, request;
 
@@ -589,6 +550,8 @@ function deleteOne(id, successCallback) {
 
 //updateOne updates a specific data in the current object store
 function updateOne(data, successCallback) {
+    startDB("",DisplayError);
+
     var transaction = db.transaction([currObjectStoreName], IDBTransaction.READ_WRITE || 'readwrite'),
         objectStore, request, lastID;
 
@@ -643,6 +606,8 @@ function selectOne(id, successCallback) {
 
 function SelectUser() {
     
+    startDB("",DisplayError);
+
     // get form data
     let formUsername = $("#email").val();
     let formKey = $("#key").val();
@@ -659,8 +624,7 @@ function SelectUser() {
         objectStore, request;
 
     transaction.onerror = indexedDBError;
-    objectStore = transaction.objectStore(currObjectStoreName);
-    //request = objectStore.get(2);
+    objectStore = transaction.objectStore(currObjectStoreName);    
     let index = objectStore.index("idxUsername");
     let result = index.get(formUsername);// query the index using get
     
@@ -670,10 +634,9 @@ function SelectUser() {
         // event.target means request
 
         var record = result.result;
-        console.log("669 record.username:" + currObjectStoreName)
+        
         if (record) {
-            console.log("671 record.username:")
-
+        
             ValidateSelectedUser(formUsername, formKey, record);
 
             return;
