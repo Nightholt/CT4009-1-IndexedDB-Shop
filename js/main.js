@@ -652,23 +652,25 @@ function SelectUser() {
         return;
     }
 
+
+
     var transaction = db.transaction([currObjectStoreName], IDBTransaction.READ_ONLY || 'readonly'),
         objectStore, request;
 
     transaction.onerror = indexedDBError;
     objectStore = transaction.objectStore(currObjectStoreName);
-    request = objectStore.get(parseInt(formUsername));
+    request = objectStore.get(2);
 
     request.onerror = indexedDBError;
     request.onsuccess = function (event) {
         // event.target means request
 
         var record = request.result;
-
+        console.log("669 record.username:" + currObjectStoreName)
         if (record) {
+            console.log("671 record.username:")
 
-
-            ValidateSelectedUser(record);
+            ValidateSelectedUser(formUsername, formKey, record);
 
             return;
         }
@@ -676,7 +678,7 @@ function SelectUser() {
 }
 
 
-function ValidateSelectedUser(match) {
+function ValidateSelectedUser(formUsername, formKey, match) {
 
     if (match) {
         let username = match.username;
