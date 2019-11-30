@@ -37,15 +37,17 @@ const categories = [
     },
     {
         name: "Technology",
-        parentcategory: "0"
-    },
-    {
-        name: "Laptops",
-        parentcategory: "4"
-    },
-    {
-        name: "Hard Drives",
-        parentcategory: "4"
+        parentcategory: "0",
+        subcategory: [
+            {
+                name: "Hard Drives",
+                parentcategory: "4",
+            },
+            {
+                name: "Laptops",
+                parentcategory: "4",
+            }
+        ]
     },
     {
         name: "Recreation",
@@ -69,7 +71,7 @@ $(document).ready(function () {
     // initialise the UI
     init();
 
-    listCategories(DisplayCategories);
+    listCategories(DisplayCategories, "dropdown");
     listDepartments(DisplayDepartments);
 
 
@@ -80,7 +82,7 @@ $(document).ready(function () {
     $("#btnSubmitLogin").click(function (event) {
         //event.preventDefault();
         currObjectStoreName = "users";
-        
+
         SelectUser();
 
         //console.log(formKey);
@@ -112,9 +114,42 @@ $(document).ready(function () {
         // $("#btnListItems").show();
         // $("#btnListUsers").show();
     }
+
+    //functions for catalogue page
+    listCategories(DisplayCategories,"categoryPageCategoriesList");
+
+    $(".liCat").click(function (e) {
+        e.preventDefault();
+        var txt = $(this).text();
+        console.log("click event: " + txt);
+
+        // logic 
+        // go off to the db with a category id eg 1
+        // query the db
+        // return the categiry object 
+        // push the info of the category object name, image and desc into the div
+
+        DisplayCategoryInDiv($(this).id);
+    });
+
+
 });
 
-function DisplayError(){
+
+function DisplayCategoryInDiv(catId) {
+
+    setDatabaseName('dbCat', ['users', 'items', 'categories']);
+    setCurrObjectStoreName('categories');
+    var data;
+    startDB(function () {
+        selectOne(catId, function (result) {            
+            data = result;            
+            $("#categoryDiv").html("category: " + data.name);
+        })
+    })
+}
+
+function DisplayError() {
     console.error("There was an error");
 }
 
@@ -191,7 +226,7 @@ function initDB() {
             objStoreItems.add(item);
         });
 
-            
+
         db.onerror = function (event) {
             // Generic error handler for all errors targeted at this database's
             // requests!
@@ -202,27 +237,6 @@ function initDB() {
 
 }
 
-
-function NEWinitDB() {
-    startDB("", function () {
-
-    });
-    users.forEach(function (user) {
-        console.log(user);
-        insertOne(user, "users")
-    });
-
-    categories.forEach(function (category) {
-        console.log(category);
-        insertOne(user, "categories")
-    });
-
-    items.forEach(function (item) {
-        console.log(item);
-        insertOne(user, "items")
-    });
-
-}
 
 function listItems(callBack) {
     // new call from the page so need to get a connection to the DB
@@ -254,7 +268,7 @@ function listItems(callBack) {
 }
 
 
-function listCategories(callBack) {
+function listCategories(callBack, targetElementId) {
     // new call from the page so need to get a connection to the DB
     var request = window.indexedDB.open("dbCat", 2);
     request.onerror = function (event) {
@@ -276,7 +290,7 @@ function listCategories(callBack) {
             if (cursor) {
                 //console.log(storeName + ":key id: " + cursor.key + " Parent category name:" + cursor.value.name + ", parentcategory:" + cursor.value.parentcategory);
 
-                callBack(cursor.key, cursor.value.name, cursor.value.parentcategory);
+                callBack(targetElementId,cursor.key, cursor.value.name, cursor.value.parentcategory);
 
                 cursor.continue();
             } else {
@@ -318,13 +332,13 @@ function listDepartments(callBack) {
     };
 }
 
-function DisplayCategories(id, name, parentcategory) {
+function DisplayCategories(targetId, id, name, parentcategory) {
     var css = "";
     if (parentcategory > 0) {
         css = "indent";
     }
-    var link = "<li><a class='dropdown-item " + css + "' href='../Categories/" + name + ".html'>" + name + "</a></li>";
-    $("#dropdown").append(link);
+    var link = "<li class='liCat'><a class='dropdown-item " + css + "' href='../Categories/" + name + ".html'>" + name + "</a></li>";
+    $("#"+ targetId).append(link);
 }
 
 function DisplayDepartments(id, name, parentcategory) {
@@ -458,7 +472,7 @@ function setCurrObjectStoreName(objStoreName) {
 
 //selectAll retrieves all data from the current object store
 function selectAll(successCallback) {
-    
+
     var transaction = db.transaction([currObjectStoreName], IDBTransaction.READ_ONLY || 'readonly'),
         objectStore, request, results = [];
 
@@ -484,7 +498,7 @@ function selectAll(successCallback) {
 //insertOne inserts data into the current object store
 //This function also creates unique id for each data
 function insertOne(data, successCallback) {
-    
+
     var transaction = db.transaction([currObjectStoreName], IDBTransaction.READ_WRITE || 'readwrite'),
         objectStore, request, lastID;
 
@@ -509,17 +523,17 @@ function insertOne(data, successCallback) {
 function deleteOne(id, successCallback) {
     var transaction = db.transaction([currObjectStoreName], IDBTransaction.READ_WRITE || 'readwrite'),
         objectStore, request;
-        
+
     objectStore = transaction.objectStore(currObjectStoreName);
     request = objectStore.delete(id);
     request.onerror = indexedDBError;
-    request.onsuccess = function(event) {
+    request.onsuccess = function (event) {
         var result = event.target.result;
     };
     transaction.onerror = indexedDBError;
-    transaction.oncomplete = function() {
+    transaction.oncomplete = function () {
         console.log('Data with ' + id + ' was deleted successfully');
-        if(successCallback) {
+        if (successCallback) {
             successCallback();
         }
     };
@@ -555,7 +569,7 @@ function selectOne(id, successCallback) {
 
     transaction.onerror = indexedDBError;
     objectStore = transaction.objectStore(currObjectStoreName);
-    
+
     //let index = objectStore.index("idxUsername");
     //let result = index.get(formUsername);// query the index using get
     request = objectStore.get(parseInt(id));
@@ -581,8 +595,8 @@ function selectOne(id, successCallback) {
 
 
 function SelectUser() {
-    
-    startDB("",DisplayError);
+
+    startDB("", DisplayError);
 
     // get form data
     let formUsername = $("#email").val();
@@ -600,19 +614,19 @@ function SelectUser() {
         objectStore, request;
 
     transaction.onerror = indexedDBError;
-    objectStore = transaction.objectStore(currObjectStoreName);    
+    objectStore = transaction.objectStore(currObjectStoreName);
     let index = objectStore.index("idxUsername");
     let result = index.get(formUsername);// query the index using get
-    
+
 
     result.onerror = indexedDBError;
     result.onsuccess = function (event) {
         // event.target means request
 
         var record = result.result;
-        
+
         if (record) {
-        
+
             ValidateSelectedUser(formUsername, formKey, record);
 
             return;

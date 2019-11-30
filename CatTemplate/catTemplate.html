@@ -16,12 +16,22 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
   <!-- <script src="../js/data.js"></script> -->
   <script src="../js/main.js"></script>
 
 
   <title>Catalogue Website</title>
   <!--title of site-->
+
+  <style>
+    .categoryDisplayText{
+      border: 1px solid silver;
+      height: 300px;
+      min-width: 500px;
+
+    }
+  </style>
 
 </head>
 
@@ -96,7 +106,7 @@
     </form>
   </div>
 
-  <button class="accordion">Category 1</button>
+  <!-- <button class="accordion">Category 1</button>
   <div class="panel" id="acc">
     <p>Cat 1</p>
   </div>
@@ -104,24 +114,45 @@
   <div class="panel" id="acc2">
     <p>Cat 2</p>
   </div>
-  
-  <script>
-    var acc = document.getElementsByClassName("accordion");
-    var i;
+   -->
+  <div class="container">
+    <div class="row">
+      <div class="col-sm">
+        <ul class="list-unstyled" id="categoryPageCategoriesList">          
+        </ul>
+      </div>
+      <div class="col-sm categoryDisplayText" id="categoryDiv">
+      </div>
+    </div>
+  </div>
 
-    for (i = 0; i < acc.length; i++) {
-      acc[i].addEventListener("click", function () {
-        this.classList.toggle("active1");
-        var panel = this.nextElementSibling;
-        if (panel.style.maxHeight) {
-          panel.style.maxHeight = null;
-        } else {
-          panel.style.maxHeight = panel.scrollHeight + "px";
-        }
-      });
-    }
+
+
+  <script>
+
+    $(document).ready(function () {
+
+      // var acc = $(".accordion");//document.getElementsByClassName("accordion").;
+      // var i;
+
+      // for (i = 0; i < acc.length; i++) {
+      //   acc[i].addEventListener("click", function () {
+      //     this.classList.toggle("active1");
+      //     var panel = this.nextElementSibling;
+      //     if (panel.style.maxHeight) {
+      //       panel.style.maxHeight = null;
+      //     } else {
+      //       panel.style.maxHeight = panel.scrollHeight + "px";
+      //     }
+      //   });
+      // }
+
+    });
+
+
+
   </script>
-  
+
 
   <!--defines footer-->
   <div id="footer">
