@@ -3,28 +3,7 @@
 
 const items = [
     {
-        name: "item1",
-        desc: "",
-        price: "44",
-        title: "",
-        image: "imagetest.png",
-        category: ""
-    },
-    {
-        name: "item2",
-        desc: "",
-        price: "22",
-        title: "",
-        image: "imagetest.png",
-        category: ""
-    },
-    {
-        name: "item3",
-        desc: "",
-        price: "23",
-        title: "",
-        image: "imagetest.png",
-        category: ""
+
     }
 ];
 
@@ -528,21 +507,19 @@ function insertOne(data, successCallback) {
 
 //deleteOne inserts data into the current object store
 function deleteOne(id, successCallback) {
-    
-
     var transaction = db.transaction([currObjectStoreName], IDBTransaction.READ_WRITE || 'readwrite'),
         objectStore, request;
-
+        
     objectStore = transaction.objectStore(currObjectStoreName);
     request = objectStore.delete(id);
     request.onerror = indexedDBError;
-    request.onsuccess = function (event) {
+    request.onsuccess = function(event) {
         var result = event.target.result;
     };
     transaction.onerror = indexedDBError;
-    transaction.oncomplete = function () {
+    transaction.oncomplete = function() {
         console.log('Data with ' + id + ' was deleted successfully');
-        if (successCallback) {
+        if(successCallback) {
             successCallback();
         }
     };

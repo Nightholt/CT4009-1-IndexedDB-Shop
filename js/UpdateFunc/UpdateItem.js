@@ -2,8 +2,8 @@ var urlParams = new URLSearchParams(window.location.search);
 var itemID = urlParams.get('itemID');
 $('#itemID').html("Item ID: " + itemID);
 
-setDatabaseName('dbCat', ['UsersObjectStore', 'ItemsObjectStore', 'CatObjectStore']);
-setCurrObjectStoreName('ItemsObjectStore');
+setDatabaseName('dbCat', ['users', 'items', 'categories']);
+setCurrObjectStoreName('items');
 var data;
 startDB(function () {
     selectOne(itemID, function(result) {

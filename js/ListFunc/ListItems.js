@@ -1,5 +1,5 @@
-setDatabaseName('dbCat', ['UsersObjectStore', 'ItemsObjectStore', 'CatObjectStore']);
-setCurrObjectStoreName('ItemsObjectStore');
+setDatabaseName('dbCat', ['users', 'items', 'categories']);
+setCurrObjectStoreName('items');
 startDB(function() {
     showAllItems();
 });
