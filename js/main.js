@@ -479,7 +479,7 @@ function setCurrObjectStoreName(objStoreName) {
 
 //selectAll retrieves all data from the current object store
 function selectAll(successCallback) {
-    startDB("",DisplayError);
+    
     var transaction = db.transaction([currObjectStoreName], IDBTransaction.READ_ONLY || 'readonly'),
         objectStore, request, results = [];
 
@@ -550,7 +550,6 @@ function deleteOne(id, successCallback) {
 
 //updateOne updates a specific data in the current object store
 function updateOne(data, successCallback) {
-    
 
     var transaction = db.transaction([currObjectStoreName], IDBTransaction.READ_WRITE || 'readwrite'),
         objectStore, request, lastID;
@@ -579,10 +578,10 @@ function selectOne(id, successCallback) {
 
     transaction.onerror = indexedDBError;
     objectStore = transaction.objectStore(currObjectStoreName);
-    // use the index created on the "table" to get the users usernames 
-    let index = objectStore.index("idxUsername");
-    let result = index.get(formUsername);// query the index using get
-    //request = objectStore.get(parseInt(id));
+    
+    //let index = objectStore.index("idxUsername");
+    //let result = index.get(formUsername);// query the index using get
+    request = objectStore.get(parseInt(id));
 
     result.onerror = indexedDBError;
     result.onsuccess = function (event) {
