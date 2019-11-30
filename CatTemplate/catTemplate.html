@@ -16,7 +16,7 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-  <script src="../js/data.js"></script>
+  <!-- <script src="../js/data.js"></script> -->
   <script src="../js/main.js"></script>
 
 
@@ -27,7 +27,7 @@
 
 <body>
 
- 
+
   <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
     <!--makes navbar dark and controls spacing of items-->
     <a class="navbar-brand" href="../home/home.html">Logo</a>
@@ -70,7 +70,7 @@
           <a class="nav-link" href="../Contact/contact.html">Contact</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link"  id="loginToggle">Login</a>
+          <a class="nav-link" id="loginToggle">Login</a>
         </li>
       </ul>
     </div>
@@ -87,18 +87,46 @@
     </div>
     <div class="form-group">
       <label for="key">Password:</label>
-      <input type="password" class="form-control" id="key" placeholder="Enter password" name="key" encrypt="bcrypt" salt="abc..." rounds="4" required>
+      <input type="password" class="form-control" id="key" placeholder="Enter password" name="key" encrypt="bcrypt"
+        salt="abc..." rounds="4" required>
       <!--defines type of input, id, placeholder and requires user to make input-->
     </div>
     <button type="submit" id="btnSubmitLogin" class="btn btn-primary">Submit</button>
     <!--submit button-->
     </form>
   </div>
+
+  <button class="accordion">Category 1</button>
+  <div class="panel" id="acc">
+    <p>Cat 1</p>
+  </div>
+  <button class="accordion">Category 2</button>
+  <div class="panel" id="acc2">
+    <p>Cat 2</p>
+  </div>
+  
+  <script>
+    var acc = document.getElementsByClassName("accordion");
+    var i;
+
+    for (i = 0; i < acc.length; i++) {
+      acc[i].addEventListener("click", function () {
+        this.classList.toggle("active1");
+        var panel = this.nextElementSibling;
+        if (panel.style.maxHeight) {
+          panel.style.maxHeight = null;
+        } else {
+          panel.style.maxHeight = panel.scrollHeight + "px";
+        }
+      });
+    }
+  </script>
+  
+
   <!--defines footer-->
   <div id="footer">
     <footer>This is the footer</footer>
   </div>
-
 </body>
 
 </html>

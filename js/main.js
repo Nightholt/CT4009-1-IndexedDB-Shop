@@ -258,8 +258,8 @@ function listCategories(callBack) {
     // new call from the page so need to get a connection to the DB
     var request = window.indexedDB.open("dbCat", 2);
     request.onerror = function (event) {
-        alert("Unable to retrieve data from the database at this time, please try later. 239");
-        console.log("error 240")
+        alert("Unable to retrieve data from the database at this time, please try later. 261");
+        console.log("error 262")
     };
 
     // connection was successful
@@ -290,8 +290,8 @@ function listDepartments(callBack) {
     // new call from the page so need to get a connection to the DB
     var request = window.indexedDB.open("dbCat", 2);
     request.onerror = function (event) {
-        alert("Unable to retrieve data from the database at this time, please try later. 271");
-        console.log("error 272")
+        alert("Unable to retrieve data from the database at this time, please try later. 293");
+        console.log("error 294")
     };
 
     // connection was successful
