@@ -85,8 +85,6 @@ const categories = [
 
 var db, indexedDB, IDBTransaction, currObjectStoreName, databaseName, objectStores;
 
-// hello nat !
-
 $(document).ready(function () {
     // once the document has finished loading run this lot
     // initialise the UI
@@ -105,7 +103,7 @@ $(document).ready(function () {
         currObjectStoreName = "users";
         startDB(SelectUser,DisplayError);
         //SelectUser();
-        console.log(formKey);
+        //console.log(formKey);
         return false;
     });
 
@@ -151,8 +149,6 @@ function init() {
     // $("#btnLogin").val("Log In");
 
     $("#login").hide();
-
-
 
 }
 
@@ -483,17 +479,17 @@ function startDB(successCallback, failureCallback) {
         return;
     }
 
-    var request = indexedDB.open(databaseName, 1);
+    var request = indexedDB.open(databaseName, 2);
 
     //The onupgradeneeded property is triggered when a database 
     //of a bigger version number than the existing stored database is loaded.
-    request.onupgradeneeded = function (event) {
-        console.log('onupgradeneeded method is invoked');
-        db = event.target.result;
-        for (i = 0; i < objectStores.length; i++) {
-            db.createObjectStore(objectStores[i], { keyPath: 'id', autoIncrement: true });
-        }
-    };
+    // request.onupgradeneeded = function (event) {
+    //     console.log('onupgradeneeded method is invoked');
+    //     db = event.target.result;
+    //     for (i = 0; i < objectStores.length; i++) {
+    //         db.createObjectStore(objectStores[i], { keyPath: 'id', autoIncrement: true });
+    //     }
+    // };
 
     request.onsuccess = function (event) {
         db = event.target.result;
