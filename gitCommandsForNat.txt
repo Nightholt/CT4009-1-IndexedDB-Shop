@@ -1,4 +1,4 @@
-do git comnands list for nat 
+do git commands list for nat 
 
 git works likes this:
 
