@@ -505,7 +505,7 @@ function selectAll(successCallback) {
 //insertOne inserts data into the current object store
 //This function also creates unique id for each data
 function insertOne(data, successCallback) {
-    startDB("",DisplayError);
+    
     var transaction = db.transaction([currObjectStoreName], IDBTransaction.READ_WRITE || 'readwrite'),
         objectStore, request, lastID;
 
@@ -528,7 +528,7 @@ function insertOne(data, successCallback) {
 
 //deleteOne inserts data into the current object store
 function deleteOne(id, successCallback) {
-    startDB("",DisplayError);
+    
 
     var transaction = db.transaction([currObjectStoreName], IDBTransaction.READ_WRITE || 'readwrite'),
         objectStore, request;
@@ -550,7 +550,7 @@ function deleteOne(id, successCallback) {
 
 //updateOne updates a specific data in the current object store
 function updateOne(data, successCallback) {
-    startDB("",DisplayError);
+    
 
     var transaction = db.transaction([currObjectStoreName], IDBTransaction.READ_WRITE || 'readwrite'),
         objectStore, request, lastID;
