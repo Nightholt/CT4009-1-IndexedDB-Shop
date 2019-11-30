@@ -1,6 +1,90 @@
 //var dbName = "";
 //Global variables
 
+const items = [
+    {
+        name: "item1",
+        desc: "",
+        price: "44",
+        title: "",
+        image: "imagetest.png",
+        category: ""
+    },
+    {
+        name: "item2",
+        desc: "",
+        price: "22",
+        title: "",
+        image: "imagetest.png",
+        category: ""
+    },
+    {
+        name: "item3",
+        desc: "",
+        price: "23",
+        title: "",
+        image: "imagetest.png",
+        category: ""
+    }
+];
+
+const users = [
+    {
+        username: "public@test.com",
+        key: "321password",
+        role: "public",
+        isLoggedIn: false
+    },
+    {
+        username: "admin@test.com",
+        key: "password123",
+        role: "administrator",
+        isLoggedIn: false
+    }
+];
+
+const categories = [
+    {
+        name: "Home",
+        parentcategory: "0"
+    },
+    {
+        name: "Kitchen",
+        parentcategory: "1"
+    },
+    {
+        name: "Bathroom",
+        parentcategory: "1"
+    },
+    {
+        name: "Technology",
+        parentcategory: "0"
+    },
+    {
+        name: "Laptops",
+        parentcategory: "4"
+    },
+    {
+        name: "Hard Drives",
+        parentcategory: "4"
+    },
+    {
+        name: "Recreation",
+        parentcategory: "0"
+    },
+    {
+        name: "Games",
+        parentcategory: "7"
+    },
+    {
+        name: "Consoles",
+        parentcategory: "7"
+    },
+
+];
+
+var db, indexedDB, IDBTransaction, currObjectStoreName, databaseName, objectStores;
+
 // hello nat !
 
 $(document).ready(function () {
@@ -66,23 +150,94 @@ function init() {
 
 }
 
+
 function initDB() {
+
+    setDatabaseName('dbCat', ['users', 'items', 'categories']);
+    // Let us open our database
+    // checks user's browser for indexeddb support
+    window.indexedDB = window.indexedDB || window.mozIndexedDB || window.webkitIndexedDB || window.msIndexedDB;
+    // DON'T use "var indexedDB = ..." if you're not in a function.
+    // Moreover, you may need references to some window.IDB* objects:
+    window.IDBTransaction = window.IDBTransaction || window.webkitIDBTransaction || window.msIDBTransaction || { READ_WRITE: "readwrite" }; // This line should only be needed if it is needed to support the object's constants for older browsers
+    window.IDBKeyRange = window.IDBKeyRange || window.webkitIDBKeyRange || window.msIDBKeyRange;
+    // if browser has no support message will display in console
+    if (!window.indexedDB) {
+        console.log("Your browser doesn't support a stable version of IndexedDB. Such and such feature will not be available.");
+    }
+    //connect to the db
+    //let db1;
+    let request = window.indexedDB.open(databaseName, 2);
+
+    // handle any connection error
+    request.onerror = function (event) {
+        console.log("request error: unknown 84");
+    };
+
+    //handle connection success
+    request.onsuccess = function (event) {
+        db = event.target.result;
+        console.log("success: " + db);
+        console.log('Database : ', databaseName);
+    };
+
+    // this only happens once to create the db is a new version update is required or the db is deleted manually
+    request.onupgradeneeded = function (event) {
+        db = event.target.result;
+        console.log("onupgradeneeded: " + db);
+
+        let objStoreUsers = db.createObjectStore("users", { autoIncrement: true });
+        objStoreUsers.createIndex("idxUsername", "username", { unique: true })
+
+        let objStoreCategories = db.createObjectStore("categories", { autoIncrement: true });
+        objStoreCategories.createIndex("idxCategories", "name", { unique: true })
+
+        let objStoreItems = db.createObjectStore("items", { autoIncrement: true });
+        objStoreItems.createIndex("idxItems", "name", { unique: true })
+
+        // Because the "names" object store has the key generator, the key for the name value is generated automatically.
+
+        users.forEach(function (user) {
+            objStoreUsers.add(user);
+        });
+
+        categories.forEach(function (category) {
+            objStoreCategories.add(category);
+        });
+
+        items.forEach(function (item) {
+            objStoreItems.add(item);
+        });
+
+            
+        db.onerror = function (event) {
+            // Generic error handler for all errors targeted at this database's
+            // requests!
+            console.error("Database error: " + event.target.error + ", " + event.target.errorCode);
+        };
+
+    };
+
+}
+
+
+function NEWinitDB() {
     startDB("", function () {
 
     });
     users.forEach(function (user) {
         console.log(user);
-        insertOne(user, "UsersObjectStore")
+        insertOne(user, "users")
     });
 
     categories.forEach(function (category) {
         console.log(category);
-        insertOne(user, "CatObjectStore")
+        insertOne(user, "categories")
     });
 
     items.forEach(function (item) {
         console.log(item);
-        insertOne(user, "ItemsObjectStore")
+        insertOne(user, "items")
     });
 
 }
@@ -302,7 +457,6 @@ DONE update existing item ?
 
 //This is an indexeddb wrapper javascript library
 
-var db, indexedDB, IDBTransaction, currObjectStoreName, databaseName, objectStores;
 
 
 //startDB creates connection with the databaseName
