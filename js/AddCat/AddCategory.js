@@ -1,8 +1,8 @@
 $('#formAddCat').submit(function(event)  {
     event.preventDefault();
 
-    setDatabaseName('dbCat', ['UsersObjectStore', 'ItemsObjectStore', 'CatObjectStore']);
-    setCurrObjectStoreName('CatObjectStore');
+    setDatabaseName('dbCat', ['users', 'items', 'categories']);
+    setCurrObjectStoreName('categories');
     
     
     startDB(function () {
