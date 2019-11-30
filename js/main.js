@@ -105,7 +105,7 @@ $(document).ready(function () {
         currObjectStoreName = "users";
         startDB(SelectUser,DisplayError);
         //SelectUser();
-        console.log(formKey);
+        //console.log(formKey);
         return false;
     });
 
