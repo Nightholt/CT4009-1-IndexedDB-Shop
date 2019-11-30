@@ -655,20 +655,21 @@ function SelectUser() {
         return;
     }
 
-
-
     var transaction = db.transaction([currObjectStoreName], IDBTransaction.READ_ONLY || 'readonly'),
         objectStore, request;
 
     transaction.onerror = indexedDBError;
     objectStore = transaction.objectStore(currObjectStoreName);
-    request = objectStore.get(2);
+    //request = objectStore.get(2);
+    let index = objectStore.index("idxUsername");
+    let result = index.get(formUsername);// query the index using get
+    
 
-    request.onerror = indexedDBError;
-    request.onsuccess = function (event) {
+    result.onerror = indexedDBError;
+    result.onsuccess = function (event) {
         // event.target means request
 
-        var record = request.result;
+        var record = result.result;
         console.log("669 record.username:" + currObjectStoreName)
         if (record) {
             console.log("671 record.username:")
