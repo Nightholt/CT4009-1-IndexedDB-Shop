@@ -616,13 +616,16 @@ function selectOne(id, successCallback) {
 
     transaction.onerror = indexedDBError;
     objectStore = transaction.objectStore(currObjectStoreName);
-    request = objectStore.get(parseInt(id));
+    // use the index created on the "table" to get the users usernames 
+    let index = objectStore.index("idxUsername");
+    let result = index.get(formUsername);// query the index using get
+    //request = objectStore.get(parseInt(id));
 
-    request.onerror = indexedDBError;
-    request.onsuccess = function (event) {
+    result.onerror = indexedDBError;
+    result.onsuccess = function (event) {
         // event.target means request
 
-        var record = request.result;
+        var record = result.result;
 
         if (record) {
 
