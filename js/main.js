@@ -102,7 +102,9 @@ $(document).ready(function () {
 
     $("#btnSubmitLogin").click(function (event) {
         //event.preventDefault();
-        SelectUser();
+        currObjectStoreName = "users";
+        startDB(SelectUser,DisplayError);
+        //SelectUser();
         console.log(formKey);
         return false;
     });
@@ -133,6 +135,10 @@ $(document).ready(function () {
         // $("#btnListUsers").show();
     }
 });
+
+function DisplayError(){
+    console.error("There was an error");
+}
 
 function init() {
 
@@ -637,7 +643,7 @@ function selectOne(id, successCallback) {
 
 
 function SelectUser() {
-
+    
     // get form data
     let formUsername = $("#email").val();
     let formKey = $("#key").val();
