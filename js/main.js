@@ -69,11 +69,26 @@ const categories = [
 var db, indexedDB, IDBTransaction, currObjectStoreName, databaseName, objectStores;
 
 $(document).ready(function () {
+
     // once the document has finished loading run this lot
     // initialise the UI
     init();
 
-    listCategories(DisplayCategories, "dropdown");
+    // what page are we on?
+    var url = window.location.href;
+    console.log("youare on the " + url + "page");
+
+    listCategories(DisplayCategoriesMenu);
+
+    // if (url.indexOf("home") !== -1) {
+    //     handleHomePageDisplay();
+    // }
+    if (url.indexOf("catTemplate") !== -1) {
+        console.log("**********url: "+ url);
+        listCategories(DisplayCategories);   
+    }
+
+
     listDepartments(DisplayDepartments);
 
 
@@ -117,10 +132,7 @@ $(document).ready(function () {
         // $("#btnListUsers").show();
     }
 
-    //functions for catalogue page
-    listCategories(DisplayCategories,"categoryPageCategoriesList");
-
-    $(".liCat").click(function (e) {
+    $(".liCat a").click(function (e) {
         e.preventDefault();
         var txt = $(this).text();
         console.log("click event: " + txt);
@@ -138,14 +150,15 @@ $(document).ready(function () {
 });
 
 
+
 function DisplayCategoryInDiv(catId) {
 
     setDatabaseName('dbCat', ['users', 'items', 'categories']);
     setCurrObjectStoreName('categories');
     var data;
     startDB(function () {
-        selectOne(catId, function (result) {            
-            data = result;            
+        selectOne(catId, function (result) {
+            data = result;
             $("#categoryDiv").html("category: " + data.name);
         })
     })
@@ -270,7 +283,7 @@ function listItems(callBack) {
 }
 
 
-function listCategories(callBack, targetElementId) {
+function listCategories(callBack) {
     // new call from the page so need to get a connection to the DB
     var request = window.indexedDB.open("dbCat", 2);
     request.onerror = function (event) {
@@ -292,7 +305,7 @@ function listCategories(callBack, targetElementId) {
             if (cursor) {
                 //console.log(storeName + ":key id: " + cursor.key + " Parent category name:" + cursor.value.name + ", parentcategory:" + cursor.value.parentcategory);
 
-                callBack(targetElementId,cursor.key, cursor.value.name, cursor.value.parentcategory);
+                callBack(cursor.key, cursor.value.name, cursor.value.parentcategory);
 
                 cursor.continue();
             } else {
@@ -334,13 +347,27 @@ function listDepartments(callBack) {
     };
 }
 
-function DisplayCategories(targetId, id, name, parentcategory) {
+function DisplayCategoriesMenu(id, name, parentcategory) {
     var css = "";
     if (parentcategory > 0) {
         css = "indent";
     }
-    var link = "<li class='liCat'><a class='dropdown-item " + css + "' href='../Categories/" + name + ".html'>" + name + "</a></li>";
-    $("#"+ targetId).append(link);
+    var ahref = "<a class='dropdown-item " + css + "' href='../Categories/" + name + ".html'>" + name + "</a>";
+
+    var link = "<li>" + ahref + "</li>";
+    $("#dropdown").append(link);
+}
+
+function DisplayCategories(id, name, parentcategory) {
+    var css = "";
+    if (parentcategory > 0) {
+        css = "indent";
+    }
+    var ahref = "<a class='liCat dropdown-item " + css + "' href='#'>" + name + "</a>";
+
+    var link = "<li>" + ahref + "</li>";  
+
+    $("#categoryPageCategoriesList").append(link);
 }
 
 function DisplayDepartments(id, name, parentcategory) {
