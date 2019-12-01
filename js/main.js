@@ -7,6 +7,7 @@ const items = [
         itemDesc: "computing hardware",
         itemPrice: "£500",
         ///itemImage: "<img src='../images/laptop.jpeg'></img>"
+        category: "laptops"
     }
 ];
 

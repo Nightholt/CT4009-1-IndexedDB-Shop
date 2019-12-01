@@ -1,7 +1,7 @@
 $('#formAddCat').submit(function(event)  {
     event.preventDefault();
     console.log("formAddCat submit:");
-    
+
     setDatabaseName('dbCat', ['users', 'items', 'categories']);
     setCurrObjectStoreName('categories');
     
@@ -54,4 +54,7 @@ function createNewCategoryPage(data,lastID){
     //save new category page
     var opened = window.open(data.name + ".html")
     opened.document.write(template);
+
+    
+    
 }

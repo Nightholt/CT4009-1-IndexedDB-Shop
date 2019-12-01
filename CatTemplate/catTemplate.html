@@ -25,7 +25,7 @@
   <!--title of site-->
 
   <style>
-    .categoryDisplayText{
+    .categoryDisplayText {
       border: 1px solid silver;
       height: 300px;
       min-width: 500px;
@@ -115,13 +115,17 @@
     <p>Cat 2</p>
   </div>
    -->
-  <div id="categoryName" >    
-      categoryName
+  <input type="hidden" id="categoryHiddenField" value="categoryName" />
+
+  <div id="categoryInformation">
+
   </div>
-   
 
+  <div id="itemList">
 
-  <div class="container" style="display:none;" >
+    </div>
+
+  <!-- <div class="container" style="display:none;" >
     <div class="row">
       <div class="col-sm">
         <ul class="list-unstyled" id="categoryPageCategoriesList">     
@@ -130,36 +134,36 @@
       <div class="col-sm categoryDisplayText" id="categoryDiv">
       </div>
     </div>
-  </div>
+  </div> -->
 
 
 
   <script>
 
     $(document).ready(function () {
-/*
-  load this page with the category 
-  
-*/
+      /*
+        load this page with the category 
+      
+        go to the db
+        query the db with the $("#categoryHiddenField").val() value of categoryHiddenField
+        eg "Phones"
+        db returns all the info for that category
+      and displays it in, say, $("#categoryInformation").val("info from the db")
+        
+        data = SelectOne($("#categoryHiddenField").val())
+        $("#categoryInformation").val(data);
+      
+      */
+      var categoryName = $("#categoryHiddenField").val();// eg Phones
+      var data =startDB(SelectOne(categoryName)); // this does not work atm - nat to fix !!!
+      var image = "<img src='" + data.image + "' />'";
+      var desc = data.desc;
 
+      $("#categoryInformation").val(data.name + "<br/>" + image + "<br/>" + desc);
 
-      // var acc = $(".accordion");//document.getElementsByClassName("accordion").;
-      // var i;
-
-      // for (i = 0; i < acc.length; i++) {
-      //   acc[i].addEventListener("click", function () {
-      //     this.classList.toggle("active1");
-      //     var panel = this.nextElementSibling;
-      //     if (panel.style.maxHeight) {
-      //       panel.style.maxHeight = null;
-      //     } else {
-      //       panel.style.maxHeight = panel.scrollHeight + "px";
-      //     }
-      //   });
-      // }
-
+      // get items db query for "Phones"
+      // selectList(...) div into itemList
     });
-
 
 
   </script>
