@@ -14,11 +14,11 @@ $('#formAddCat').submit(function(event)  {
 var newCategoryID = 0;
 
 function saveCatData() {
-    var catName = $('#txtCatName').val();
+    var name = $('#txtCatName').val();
     var catDesc = $('#txtCatDesc').val();
 
     var data = {
-        'catName': catName,
+        'name': name,
         'catDesc': catDesc,
         'id':""
         
@@ -28,7 +28,7 @@ function saveCatData() {
     insertOne(data, function(lastID) {
         event.preventDefault();
         
-        createNewCategoryPage(data)
+        //createNewCategoryPage(data)
         
         return false;
     });
