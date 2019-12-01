@@ -5,7 +5,8 @@ const items = [
     {
         itemName: "laptop",
         itemDesc: "computing hardware",
-        itemPrice: "£500"
+        itemPrice: "£500",
+        //itemImage: "<img src='../images/laptop.jpeg'></img>"
     }
 ];
 
