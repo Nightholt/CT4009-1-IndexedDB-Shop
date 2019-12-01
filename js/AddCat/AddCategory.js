@@ -1,6 +1,7 @@
 $('#formAddCat').submit(function(event)  {
     event.preventDefault();
-
+    console.log("formAddCat submit:");
+    
     setDatabaseName('dbCat', ['users', 'items', 'categories']);
     setCurrObjectStoreName('categories');
     
@@ -27,23 +28,30 @@ function saveCatData() {
     //create new category in db
     insertOne(data, function(lastID) {
         event.preventDefault();
-        
-        //createNewCategoryPage(data)
+
+        console.log("saveCatData lastID:" + lastID);
+
+        createNewCategoryPage(data, lastID)
         
         return false;
     });
 }
 
-function createNewCategoryPage(data){
+function createNewCategoryPage(data,lastID){
     //open category template
     var template = window.open("../CatTemplate/catTemplate.html");
 
     //replace template page newid and description and name placeholders with data values
-    template.replace("newid", newCategoryID);
-    template.replace("categoryName", data.catName);
-    template.replace("categoryDescription", data.catDesc);
+    //template.replace("newid", lastID);
+    template.replace("categoryName", data.name);
+    //template.replace("categoryDescription", data.catDesc);
+
+    // $('#mySelect').append($('<option>', {
+    //     value: 1,
+    //     text: 'My option'
+    // }));
 
     //save new category page
-    var opened = window.open("category" + newCategoryID + ".html")
+    var opened = window.open(data.name + ".html")
     opened.document.write(template);
 }
