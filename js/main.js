@@ -306,7 +306,7 @@ function listDepartments(callBack) {
     // new call from the page so need to get a connection to the DB
     var request = window.indexedDB.open("dbCat", 2);
     request.onerror = function (event) {
-        alert("Unable to retrieve data from the database at this time, please try later. 293");
+        alert("Unable to retrieve data from the database at this time, please try later. 309");
         console.log("error 294")
     };
 

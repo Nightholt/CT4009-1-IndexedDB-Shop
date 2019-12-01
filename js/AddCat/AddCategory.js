@@ -27,8 +27,8 @@ function saveCatData() {
     //create new category in db
     insertOne(data, function(lastID) {
         event.preventDefault();
-
-        //createNewCategoryPage(data)
+        
+        createNewCategoryPage(data)
         
         return false;
     });
