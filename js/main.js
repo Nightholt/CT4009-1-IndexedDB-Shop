@@ -3,9 +3,9 @@
 
 const items = [
     {
-        name: "laptop",
-        description: "computing hardware",
-        price: "£500"
+        itemName: "laptop",
+        itemDesc: "computing hardware",
+        itemPrice: "£500"
     }
 ];
 
