@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Login</title>
+	<link rel="stylesheet" type="text/css" href="login.css">
+</head>
+<body>
+<ul class="navigation">
+		<li>
+			<a>The Warehouse</a>
+		</li>
+	</ul>
+
+
+<form name="login">
+	<div class="margin">
+	<fieldset>
+		<legend>Login</legend>
+	
+	Enter your username:<br>
+	<input type="text" name="id">
+	</br>
+<br>
+
+Enter your password:<br>
+	<input type="password" name="pass">
+	</br>
+  <input type="button" value="Login" onClick="pasuser(this.form)">Login</button>
+  </fieldset>
+</div>
+</form>
+
+<script language="javascript">
+<!--//
+/*This Script allows people to enter by using a form that asks for a
+UserID and Password*/
+function pasuser(form) {
+if (form.id.value=="yeet") { 
+if (form.pass.value=="ya") {              
+location="controlPanel.html" 
+} else {
+alert("Invalid Password")
+}
+} else {  alert("Invalid UserID")
+}
+}
+//-->
+</script>
+</body>
+</html>

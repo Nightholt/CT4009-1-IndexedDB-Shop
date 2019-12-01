@@ -1,0 +1,80 @@
+<html>
+
+<head>
+<link rel="stylesheet" type="text/css" href="../NavigateItem/NavigateItem.css">
+<link rel="stylesheet" type="text/css" href="Watchlist.css">
+
+<script  src="https://code.jquery.com/jquery-3.4.1.js"  integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="  crossorigin="anonymous"></script>
+<script src="../lib/indexeddb.js"></script>
+<title>Watchlist</title>
+</head>
+	
+<body onunload="watchlistDUMMY(-99)">
+	
+<nav>
+    
+	<ul class="navigation">
+		<li>
+			<a href = ..\NavigateItem\NavigateItem.html> Home</a>
+		</li>
+		<li>
+            <div class="dropdown">			
+            	<a href= "..\NavigateItem\Clothes.html">Clothes</a>
+            	<div class="subCatergories">
+            	<a href="..\NavigateItem\Clothes.html#tshirts">T Shirts</a>
+            	<a href="..\NavigateItem\Clothes.html#jeans">Jeans</a>
+            	<a href="..\NavigateItem\Clothes.html#trainers">Trainers</a>
+            </div>
+            </div>
+		</li>
+		<li>
+			<div class="dropdown">
+			<a href= "..\NavigateItem\Accessories.html">Accessories</a>
+				<div class="subCatergories">
+            	<a href="..\NavigateItem\Accessories.html#watches">Watches</a>
+            	<a href="..\NavigateItem\Accessories.html#bags">Bags</a>
+            	<a href="..\NavigateItem\Accessories.html#glasses">Glasses</a>
+            </div>
+            </div>
+
+		</li>
+		<li>
+            <div class="dropdown">			
+			<a href= "..\NavigateItem\Technology.html">Technology</a>
+				<div class="subCatergories">
+            	<a href="..\NavigateItem\Technology.html#laptops">Laptops</a>
+            	<a href="..\NavigateItem\Technology.html#desktops">Desktops</a>
+            	<a href="..\NavigateItem\Technology.html#printers">3D Printers</a>
+            </div>
+            </div>
+		</li>
+		<li>
+
+			<a href= "..\WatchList\Watchlist.html">Watchlist</a>
+		</li>
+		<li>
+			<a href= "..\StoreLocation\StoreLocation.html">Find a Store</a>
+		</li>
+	</ul>
+</nav>
+<div align="center">
+<table border="1" id="tableAllItems">
+        <tr class="aligncenter" style="font-weight: bold;">
+            <th>Item no</th>
+            <th style="max-width: 200px; max-height: 200px;">Image</th>
+            <th>Item Name</th>
+            <th>Item Desc</th>
+            <th>Price</th>
+            <th>Action1</th>
+            
+        </tr>
+    </table>
+    <div align="center"><br><br><button onclick="deleteAll();">Reset</button>
+    </div>
+    </div>
+    <script src="ListItems.js"></script>
+    <script src="ListItemsDAO.js"></script>
+<footer>&copy; 2019 Joe Cox</footer>
+
+</body>
+</html>

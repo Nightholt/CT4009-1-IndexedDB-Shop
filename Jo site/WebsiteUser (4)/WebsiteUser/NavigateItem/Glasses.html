@@ -1,0 +1,102 @@
+<html>
+
+<head>
+<link rel="stylesheet" type="text/css" href="../NavigateItem/NavigateItem.css">
+<link rel="stylesheet" type="text/css" href="Clothes.css">
+<script  src="https://code.jquery.com/jquery-3.4.1.js"  integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="  crossorigin="anonymous"></script>
+<script src="../lib/indexeddb.js"></script>
+<title>Accessories</title>
+</head>
+	
+<body background="..\Images\Background3.jpg">	
+<nav>
+	<ul class="navigation">
+		<li>
+			<a href = NavigateItem.html> Home</a>
+		</li>
+		<li>
+            <div class="dropdown">			
+            	<a href= "..\NavigateItem\Clothes.html">Clothes</a>
+            	<div class="subCatergories">
+            	<a href="..\NavigateItem\Tshirts.html">T Shirts</a>
+            	<a href="..\NavigateItem\Jeans.html">Jeans</a>
+            	<a href="..\NavigateItem\Trainers.html">Trainers</a>
+            </div>
+            </div>
+		</li>
+		<li>
+			<div class="dropdown">
+			<a href= "..\NavigateItem\Accessories.html">Accessories</a>
+				<div class="subCatergories">
+            	<a href="..\NavigateItem\Watches.html">Watches</a>
+            	<a href="..\NavigateItem\Bags.html">Bags</a>
+            	<a href="..\NavigateItem\Glasses.html">Glasses</a>
+            </div>
+            </div>
+
+		</li>
+		<li>
+            <div class="dropdown">			
+			<a href= "..\NavigateItem\Technology.html">Technology</a>
+				<div class="subCatergories">
+            	<a href="..\NavigateItem\Laptops.html">Laptops</a>
+            	<a href="..\NavigateItem\Desktops.html">Desktops</a>
+            	<a href="..\NavigateItem\3DPrint.html">3D Printers</a>
+            </div>
+            </div>
+		</li>
+		<li>
+
+			<a href= "..\WatchList\Watchlist.html">Watchlist</a>
+		</li>
+		<li>
+			<a href= "..\StoreLocation\StoreLocation.html">Find a Store</a>
+		</li>
+	</ul>
+</nav>
+
+
+
+<div class="margin">
+	<div class="row">
+		<h1>Glasses</h1>
+		<div class="product">
+			<img id="glasses" src="..\Images\GlassImages\Glass1.jpg" alt="">
+			<p><b>Mountain Biking Glasses Price: £25</b><br></br><br></p>
+	 		<p><button onclick="watchlist('..\\Images\\GlassImages\\Glass1.jpg','Biking glasses','great to think your in tour de france','Accessories',  '£25')">Add to Watchlist</button></p>
+		</div>
+
+
+		<div class="product">
+			<img src="..\Images\GlassImages\Glass2.jpg" alt="">
+			 <p><b>Reading Glasses<br>Price: Was <s>£100</s><br>NOW: £99</b></br></br></p>			 	
+	 		<p><button onclick="watchlist('..\\Images\\GlassImages\\Glass2.jpg','Reading glasses','glasses to help properly','Accessories',  '£99')">Add to Watchlist</button></p>
+		</div>
+
+
+
+		<div class="product">
+			<img src="..\Images\GlassImages\Glass3.jpg" alt="">
+			<p><b>Beach Sunglasses<br>Price: £30</br></br><br></p>			 	 
+	 		<p><button onclick="watchlist('..\\Images\\GlassImages\\Glass3.jpg','Beach Sunglasses','Great on the sunny beaches','Accessories',  '£30')">Add to Watchlist</button></p>
+		</div>
+
+		<div class="product" >
+			<a href="..\ItemDetails\GlassesDetails.html">
+			<img src="..\Images\GlassImages\Glass4.jpg" alt="">
+			</a>
+			<p><b>Stupid Pig disguise<br>Price: Was <s>£600</s><br>NOW: £500</b></br></br></p>
+	 		<p><button onclick="watchlist('..\\Images\\GlassImages\\Glass4.jpg','Pig disguise','most stupid product ever','Accessories',  '£500')">Add to Watchlist</button>
+			<br></br>	
+			<button id="modalCompareGlasses">Compare Item</button></p>
+		</div>
+	</div>	
+</div>
+<footer>&copy; 2019 Joe Cox</footer>
+
+
+<script type="text/javascript" src="Clothes.js"></script>
+<script>Glasses()</script>
+
+</body>
+</html>

@@ -1,0 +1,40 @@
+<html>
+<head>
+<title>Add item to an IndexedDB Database</title>   
+    
+<script  src="https://code.jquery.com/jquery-3.4.1.js"  integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="  crossorigin="anonymous"></script>
+    
+<script src="../lib/indexeddb.js"></script>
+<!--<link rel="stylesheet" type="text/css" href="controlPanel.css">
+	<link rel="stylesheet" type="text/css" href="login.css">-->
+<link rel="stylesheet" type="text/css" href="category.css">
+</head>
+<body>
+
+	<ul class="navigation">
+		<li>
+			<a>The Warehouse</a>
+		</li>
+	</ul>
+
+<h2>Add item to the database</h2>
+    
+<form id="formSellItem">
+<label>Category name</label><br>
+<input type="text" id="txtCategoryName" name="itemName" required="required"><br> <br>
+
+
+
+    
+<input type="submit" id="btnSaveItem" value="Save">    
+</form>
+
+<input type="button" onclick="location.href='ListCategories.html';" value="View categories" />
+
+    <script src="AddCategory.js"></script>
+    <script src="AddCategoryDAO.js"></script>
+</body>
+
+
+
+</html>

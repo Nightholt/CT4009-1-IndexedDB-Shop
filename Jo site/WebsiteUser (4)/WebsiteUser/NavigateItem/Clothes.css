@@ -1,0 +1,142 @@
+
+/*sizes of the image*/
+img {
+	width: 200px;
+    height: 200px;
+    border: 1px solid black;
+
+}
+
+/*styling of the product, specifieng the height, spacing and font size  */
+
+.product {
+ 
+  border: 1px solid black;
+  max-width: 202px;
+  height: 400px;
+  margin: 24px;
+  text-align: center;
+  font-family: verdana;
+  font-size: 15px;
+  float:  left;
+  display: inline-block;
+  background-color: white;
+  border-radius: 0px 0px 0px 0px;
+
+}
+
+/*centers the product on the web pages*/
+
+.margin {
+  display: flex;
+  justify-content: center;
+  margin:auto 0;
+}
+
+
+/*makes the modal the shape, height, width and poistioning*/
+.modal {
+  display: none; 
+  position: fixed; 
+  z-index: 1; 
+  padding-top: 50px; 
+  left: 0;
+  top: 0;
+  width: 100%; 
+  height: 100%; 
+  overflow: auto; 
+  margin: auto 0;
+  justify-content: center;
+
+}
+
+/* Modal Content- where the products will appear along with the animation*/
+.modal-content {
+  position: relative;
+  background-color: white;
+  margin: auto;
+  padding: 0;
+  border: 1px solid black;
+  width: 45%;
+  -webkit-animation-name: slideleft;
+  -webkit-animation-duration: 0.4s;
+  animation-name: slideleft;
+  animation-duration: 0.4s
+}
+
+/* Add Animation */
+@-webkit-keyframes slideleft {
+  from {left:-300px; opacity:0} 
+  to {top:0; opacity:1}
+}
+
+@keyframes slideleft {
+  from {left:-300px; opacity:0}
+  to {top:0; opacity:1}
+}
+
+/* The Close Button */
+.close {
+  color: black;
+  float: right;
+  font-size: 40px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.modal-header {
+  padding: 1px 8px;
+  background-color: red;
+  color: white;
+  font-family: fantasy;
+}
+
+.modal-body {padding: 2px 16px;
+
+height: 400px;
+overflow: auto;
+}
+
+
+s{color: red;
+}
+
+button {
+  font-family: verdana;
+  border: none;
+  outline: 0;
+  display: inline-block;
+  padding: 8px;
+  color: white;
+  background-color: #000;
+  text-align: center;
+  cursor: pointer;
+  width: 100%;
+  margin: auto 0;
+  height: 9.5%;
+  font-size: 18px;
+  
+  border-radius: 0px 0px 0px 0px;
+}
+
+/* Clearfix (clear floats) */
+.row::after {
+  content: "";
+  clear: both;
+  
+display: flex;
+justify-content: center;
+}
+
+
+
+
+
+
+

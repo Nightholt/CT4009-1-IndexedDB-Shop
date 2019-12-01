@@ -1,0 +1,98 @@
+
+.background{
+  position: fixed;
+}
+/*The style for the blocked black navigation bar*/
+ul.navigation {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: black;
+
+  width: 100%;
+
+}
+
+/*The style for the spaceing between the different button on the bars*/
+ul.navigation li {float: left;
+border-right: 2px solid red;}
+
+/*Aligning the text and its style in the bar */
+ul.navigation li a {
+  display: block;
+  color: white;
+  text-align: center;
+  font-family: fantasy;
+  font-size: 20px;
+  padding: 14px 20px;
+  text-decoration: none;
+}
+
+/*style for the cursor when the user moves over the navbar */
+ul.navigation li a:hover:not(.active) {background-color: red;}
+
+ul.navigation li a.active {background-color: white;}
+
+ul.navigation li.right {float: left;}
+
+/*When the screen is smaller so is the content*/
+@media screen and (max-width: 600px) {
+  ul.navigation li.right, 
+  ul.navigation li {float: none;}
+}
+
+body{margin: 0px;}
+
+
+}
+
+/*styleling for the dropdown categories*/
+.dropdown {
+  position: relative;
+  display: inline-block;
+  float: right;
+}
+
+/*styling like the navbar for the dropdown*/
+.subCatergories {
+  display: none;
+  position: absolute;
+  background-color: black;
+  z-index: 1;
+}
+
+/*styles the hovering and appearance on the bar*/
+.dropdown:hover .subCatergories {
+  display: block;
+}
+
+
+h1 {
+  text-align: center;
+  font-family: fantasy;
+  font-size: 40px;
+}
+
+footer{
+  list-style-type: none;
+  
+  padding: 0;
+  overflow: hidden;
+  background-color: black;
+  
+  width: 100%;
+  color: white;
+  text-align: center;
+  font-family: fantasy;
+
+ position: absolute;
+ bottom: 0;
+
+ position: fixed;
+}
+
+
+
+
+

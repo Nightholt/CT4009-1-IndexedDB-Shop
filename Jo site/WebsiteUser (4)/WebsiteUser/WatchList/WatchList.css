@@ -1,0 +1,24 @@
+button {
+  font-family: verdana;
+  border: none;
+  outline: 0;
+  display: inline-block;
+  padding: 8px;
+  color: white;
+  background-color: #000;
+  text-align: center;
+  cursor: pointer;
+  width: 20%;
+  margin: auto 0;
+  
+  font-size: 20px;
+  border-radius: 5px 5px 5px 5px;
+}
+
+ th, td {
+  border: 1px solid black;
+  font-size: 25px;
+  padding-bottom: 10px;
+  padding-top: 10px;
+  
+}

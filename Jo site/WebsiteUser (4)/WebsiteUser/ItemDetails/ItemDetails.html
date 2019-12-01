@@ -1,0 +1,102 @@
+<html>
+
+
+<head>
+<link rel="stylesheet" type="text/css" href="../NavigateItem/NavigateItem.css">
+<link rel="stylesheet" type="text/css" href="ItemDetails.css">
+<script src="Clothes.js"></script>
+<script  src="https://code.jquery.com/jquery-3.4.1.js"  integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="  crossorigin="anonymous"></script>
+<script src="../lib/indexeddb.js"></script>
+<title>Detail</title>
+</head>
+	
+<body background="..\Images\Background3.jpg">
+	
+<nav>
+	<ul class="navigation">
+		<li>
+			<a href = "..\NavigateItem\NavigateItem.html"> Home</a>
+		</li>
+		<li>
+            <div class="dropdown">			
+            	<a href= "..\NavigateItem\Clothes.html">Clothes</a>
+            	<div class="subCatergories">
+            	<a href="..\NavigateItem\Tshirts.html">T Shirts</a>
+            	<a href="..\NavigateItem\Jeans.html">Jeans</a>
+            	<a href="..\NavigateItem\Trainers.html">Trainers</a>
+            </div>
+            </div>
+		</li>
+		<li>
+			<div class="dropdown">
+			<a href= "..\NavigateItem\Accessories.html">Accessories</a>
+				<div class="subCatergories">
+            	<a href="..\NavigateItem\Watches.html">Watches</a>
+            	<a href="..\NavigateItem\Bags.html">Bags</a>
+            	<a href="..\NavigateItem\Glasses.html">Glasses</a>
+            </div>
+            </div>
+
+		</li>
+		<li>
+            <div class="dropdown">			
+			<a href= "..\NavigateItem\Technology.html">Technology</a>
+				<div class="subCatergories">
+            	<a href="..\NavigateItem\Laptops.html">Laptops</a>
+            	<a href="..\NavigateItem\Desktops.html">Desktops</a>
+            	<a href="..\NavigateItem\3DPrint.html">3D Printers</a>
+            </div>
+            </div>
+		</li>
+		<li>
+
+			<a href= "..\WatchList\Watchlist.html">Watchlist</a>
+		</li>
+		<li>
+			<a href= "..\StoreLocation\StoreLocation.html">Find a Store</a>
+		</li>
+	</ul>
+</nav>
+
+<div class="central">
+	<!--the image of the product the user clicked on but now is ,much bigger to give a better look-->
+	<div class="product ">
+    		<a href="..\ItemDetails\ItemDetails.html">
+			<img id="tshirts" src="..\Images\T_shirt_Images\OffWhiteTshirt.jpg" alt="">
+			</a>
+			<p ><b>OFF WHITE T Shirt Price: £275</b><br></br><br></p>
+			<p><button onclick="watchlist('..\\Images\\T_shirt_Images\\OffWhiteTshirt.jpg','Oversized black and white t shirt', '£275')">Add to Watchlist</button>
+			<br></br>	
+			
+		</div>
+
+	<!--small detail about the product-->
+		<h1>Off WHITE Oversized T Shirt</h1>
+		<p>Cotton T shirt designed for lounging<br> about and to style for the streets.</br>Nicknamed the "head turner" the rough<br> unfinished look follows the trend<br> that off white has been following for years.</p>
+
+
+	<!--aligning the text to the right of the image-->
+	<div class="align1">
+			<p><b>Materials:</b><br>Cotton (50%)</br>Polyester (50%)</p>
+		</div>	
+
+		<div class="align2">
+			<p><b>Price:</b><br>£275</br></p>
+		</div>
+	
+		<div class="align3">
+			<p><b>Style Code:</b><br>1122334</br></p>
+		</div>	
+
+		<div class="align4">
+			<p><b>Size:</b><br>One size fits all </br></p>
+		</div>	
+</div>
+<footer>&copy; 2019 Joe Cox</footer>
+<script src="../NavigateItem/Clothes.js"></script>
+
+</body>
+</html>
+
+
+

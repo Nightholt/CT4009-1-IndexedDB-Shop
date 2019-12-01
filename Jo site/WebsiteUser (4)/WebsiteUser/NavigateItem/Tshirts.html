@@ -1,0 +1,130 @@
+<html>
+
+<head>
+<link rel="stylesheet" type="text/css" href="../NavigateItem/NavigateItem.css">
+<link rel="stylesheet" type="text/css" href="Clothes.css">
+<script  src="https://code.jquery.com/jquery-3.4.1.js"  integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="  crossorigin="anonymous"></script>
+<script src="../lib/indexeddb.js"></script>
+<title>Products</title>
+</head>
+	
+<body background="..\Images\Background3.jpg">	
+<script src="Clothes.js"></script>
+<nav>
+	<ul class="navigation">
+		<li>
+			<a href = NavigateItem.html> Home</a>
+		</li>
+		<li>
+            <div class="dropdown">			
+            	<a href= "..\NavigateItem\Clothes.html">Clothes</a>
+            	<div class="subCatergories">
+            	<a href="..\NavigateItem\Tshirts.html">T Shirts</a>
+            	<a href="..\NavigateItem\Jeans.html">Jeans</a>
+            	<a href="..\NavigateItem\Trainers.html">Trainers</a>
+            </div>
+            </div>
+		</li>
+		<li>
+			<div class="dropdown">
+			<a href= "..\NavigateItem\Accessories.html">Accessories</a>
+				<div class="subCatergories">
+            	<a href="..\NavigateItem\Watches.html">Watches</a>
+            	<a href="..\NavigateItem\Bags.html">Bags</a>
+            	<a href="..\NavigateItem\Glasses.html">Glasses</a>
+            </div>
+            </div>
+
+		</li>
+		<li>
+            <div class="dropdown">			
+			<a href= "..\NavigateItem\Technology.html">Technology</a>
+				<div class="subCatergories">
+            	<a href="..\NavigateItem\Laptops.html">Laptops</a>
+            	<a href="..\NavigateItem\Desktops.html">Desktops</a>
+            	<a href="..\NavigateItem\3DPrint.html">3D Printers</a>
+            </div>
+            </div>
+		</li>
+		<li>
+
+			<a href= "..\WatchList\Watchlist.html">Watchlist</a>
+		</li>
+		<li>
+			<a href= "..\StoreLocation\StoreLocation.html">Find a Store</a>
+		</li>
+	</ul>
+</nav>
+
+<!--*BLOCK* all of the images with the different products that is the same across all of the categoreis and the sub-categories-->
+<div class="margin">
+	<div class="row">
+	<h1>T shirts</h1>
+	<!--Product that will have the css propeties that it makes it look like a card, this is also consiten with the rest of the items.-->
+		<div class="product ">
+    		<a href="..\ItemDetails\ItemDetails.html">
+			<img id="tshirts" src="..\Images\T_shirt_Images\OffWhiteTshirt.jpg" alt="">
+			</a>
+			<p ><b>OFF WHITE T Shirt Price: £275</b><br></br><br></p>
+			<p><button onclick="watchlist('..\\Images\\T_shirt_Images\\OffWhiteTshirt.jpg','Oversized black and white t shirt','The first of many','Clothing', '£275')">Add to Watchlist</button>
+			<br></br>	
+			<button id="modalCompareTShirt">Compare Item</button></p>
+		</div>
+  
+
+  
+  		<!--Product that will have the css propeties that it makes it look like a card, this is also consiten with the rest of the items.-->
+		<div class="product">
+	 		<img src="..\Images\T_shirt_Images\supremeTshirt.jpg" alt="">
+	 		<p><b>Supreme CDG T shirt Price: £200</b><br></br><br></p>
+	 		<p><button onclick="watchlist('..\\Images\\T_shirt_Images\\supremeTshirt.jpg','Supreme CDG T shirt','One of Supremes collabs','Clothing', '£200')">Add to Watchlist</button></p>
+		</div>
+
+		
+			
+		
+		
+    	<!--Product that will have the css propeties that it makes it look like a card, this is also consiten with the rest of the items.-->
+		<div class="product">
+	 		<img src="..\Images\T_shirt_Images\Floss.jpg" alt="">
+	 		<p><b>Floss like a boss T shirt Price: £20</b><br></br><br></p>
+	 		<p><button  onclick="watchlist('..\\Images\\T_shirt_Images\\Floss.jpg','Floss T Shirt','Floss like a boss t shirt','Clothing', '£20')">Add to Watchlist</button></p>
+		</div>
+		<!--Product that will have the css propeties that it makes it look like a card, this is also consiten with the rest of the items.-->
+		<div class="product">
+	 		<img src="..\Images\T_shirt_Images\FuckIt.jpg" alt="">
+	 		<p><b>F*ck you printed T shirt Price: £200,000</b><br></br><br></p>
+	 		<p><button  onclick="watchlist('..\\Images\\T_shirt_Images\\FuckIt.jpg','Fuck it T shirt','T shirt that shouldnt real exist','Clothing', '£200,000')">Add to Watchlist</button></p>
+		</div>
+		<!--Product that will have the css propeties that it makes it look like a card, this is also consiten with the rest of the items.-->
+		<div class="product">
+			 <img src="..\Images\T_shirt_Images\GucciTshirt.jpg" alt="">
+	 		<p><b>Gucci T shirt<br>Price: Was <s>£350</s><br> Now: £100</br></br></p>
+			 <p><button onclick="watchlist('..\\Images\\T_shirt_Images\\GucciTshirt.jpg','Gucci T shirt','High end fashion T shirt','Clothing', '£100')">Add to Watchlist</button></p>
+		</div>
+	
+		<!--Product that will have the css propeties that it makes it look like a card, this is also consiten with the rest of the items.-->
+		<div class="product">
+	 		<img src="..\Images\T_shirt_Images\LVshirt.jpg" alt="">
+			 <p><b>Louis Vuitton T shirt<br>Price: Was <s>£350</s> <br>Now: £250</b></br><br></p>
+	 		<p><button onclick="watchlist('..\\Images\\T_shirt_Images\\LVshirt.jpg','LV T shirt','Monographic huge logo print','Clothing', '£250')">Add to Watchlist</button></p>
+		</div>
+	</div>
+</div>
+
+<!--*BLOCK*-->
+
+
+<footer>&copy; 2019 Joe Cox</footer>
+
+<script type="text/javascript" src="Clothes.js"></script>
+<script>Clothes()</script>
+
+
+
+
+
+
+</body>
+</html>
+

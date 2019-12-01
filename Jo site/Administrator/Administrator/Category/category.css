@@ -1,0 +1,88 @@
+ul.navigation {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: black;
+  
+  width: 100%;
+
+}
+
+/*The style for the spaceing between the different button on the bars*/
+ul.navigation li {float: left;
+}
+
+/*Aligning the text and its style in the bar */
+ul.navigation li a {
+  display: block;
+  color: white;
+  text-align: center;
+  font-family: fantasy;
+  font-size: 50px;
+  padding: 14px 20px;
+  text-decoration: none;
+}
+
+body{margin: 0px;}
+
+.box {
+   
+  color: white;
+  border-radius: 5px;
+  padding: 20px;
+  font-size: 150%;
+  box-shadow: 0px 0px 5px;
+  font-family: fantasy;
+  text-align: center;
+  font-size: 30px;
+  text-decoration: none;
+
+}
+
+.gridLayout {  
+    display: grid;  
+    grid-gap: 5px;  
+    grid-template-columns: repeat(auto, minmax(100px, 1fr));
+    grid-template-rows: repeat(2, 100px);  
+    margin: 0 auto;
+    width: 60%;
+    padding-bottom: 5%;
+    padding-top: 5%;
+    text-decoration: none;
+
+}
+.item5{
+  background-color: #ff1a1a;
+  grid-column-start: 1;
+    grid-column-end: 4;
+    grid-row-start: 8;
+    grid-row-end:  9;
+
+}
+
+.item6 {
+    background-color: #ff1a1a;
+    grid-column-start: 1;
+    grid-column-end: 2;
+    grid-row-start: 1;
+    grid-row-end: 3;
+
+}
+.item7 {
+    background-color: #ff1a1a;
+    grid-column-start: 2;
+    grid-column-end: 3;
+    grid-row-start: 1;
+    grid-row-end: 3;
+
+}
+
+.item8 {
+    background-color: #ff1a1a;
+    grid-column-start: 3;
+    grid-column-end: 4;
+    grid-row-start: 1;
+    grid-row-end: 3;
+
+}

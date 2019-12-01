@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <!--links that will allow the external css to style the html with the use of classes-->
+  <link rel="stylesheet" type="text/css" href="NavigateItem.css">
+  <link rel="stylesheet" type="text/css" href="Homepage.css">
+  <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=yes" />
+  <meta charset="utf-8">
+  <script src="https://code.jquery.com/jquery-3.4.1.js" integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
+    crossorigin="anonymous"></script>
+
+  <script src="../../../Administrator/Administrator/lib/indexeddb.js"></script>
+  <title>Homepage</title>
+
+
+
+</head>
+
+
+
+<!--backgorund image that appears consistently through all of the web pages-->
+
+<body background="..\Images\Background3.jpg">
+  <div class="container">
+    <div class="row">
+      <div class="col-sm">
+        <ul class="list-unstyled" id="categoryPageCategoriesList">
+        </ul>
+      </div>
+      <div class="col-sm categoryDisplayText" id="categoryDiv">
+      </div>
+    </div>
+  </div>
+
+  <nav>
+    <ul class="navigation">
+      <li>
+        <a href=NavigateItem.html> Home</a>
+      </li>
+      <li>
+        <!--the link to the main category and using the css dropdown, when hovered over ity will dispaly all of the sub categories of that page-->
+        <!--consistent wil all of the other caetgoreis and sub categories-->
+        <div class="dropdown">
+          <a href="..\NavigateItem\Clothes.html">Clothes</a>
+          <div class="subCatergories">
+            <a href="..\NavigateItem\Tshirts.html">T Shirts</a>
+            <a href="..\NavigateItem\Jeans.html">Jeans</a>
+            <a href="..\NavigateItem\Trainers.html">Trainers</a>
+          </div>
+        </div>
+      </li>
+      <li>
+
+        <div class="dropdown">
+          <a href="..\NavigateItem\Accessories.html">Accessories</a>
+          <div class="subCatergories">
+            <a href="..\NavigateItem\Watches.html">Watches</a>
+            <a href="..\NavigateItem\Bags.html">Bags</a>
+            <a href="..\NavigateItem\Glasses.html">Glasses</a>
+          </div>
+        </div>
+
+      </li>
+      <li>
+        <div class="dropdown">
+          <a href="..\NavigateItem\Technology.html">Technology</a>
+          <div class="subCatergories">
+            <a href="..\NavigateItem\Laptops.html">Laptops</a>
+            <a href="..\NavigateItem\Desktops.html">Desktops</a>
+            <a href="..\NavigateItem\3DPrint.html">3D Printers</a>
+          </div>
+        </div>
+      </li>
+      <li>
+
+        <a href="..\WatchList\Watchlist.html">Watchlist</a>
+      </li>
+      <li>
+        <a href="..\StoreLocation\StoreLocation.html">Find a Store</a>
+      </li>
+    </ul>
+  </nav>
+
+  <h1><em>Welcome to the warehouse</em></h1>
+
+
+
+
+  <br>
+
+
+  <!--slideshow positioned in the center and will trnasition between the two images-->
+  <div class="slider">
+    <div class="slide-viewer">
+      <div class="slide-group">
+        <div class="slide slide-1"><img src="..\Images\SlideImage1.jpg"></div>
+        <div class="slide slide-2"><img src="..\Images\SlideImage2.jpg"></div>
+        <div class="slide slide-3"><img src="..\Images\SlideImage1.jpg"></div>
+        <div class="slide slide-4"><img src="..\Images\SlideImage2.jpg"></div>
+      </div>
+    </div>
+  </div>
+
+
+
+
+
+  <!--the layout of the gird that will appear underneath the slidshow. Some of them have links toi other pages on the website-->
+  <div class="gridLayout">
+
+
+    <div class="box item1">About</div>
+    <div class="box item2">
+      <a href="..\NavigateItem\Trainers.html">Whats New</a>
+    </div>
+
+
+    <div class="box item3">
+      <a href="..\NavigateItem\Technology.html">Most Popular</a>
+    </div>
+    <!--Different box items that will be diferent sizes based on the css classes-->
+    <div class="box item5">Sale</div>
+    <div class="box item6">News</div>
+    <div class="box item7">Contact</div>
+    <div class="box item8">Coming soon </div>
+    <div class="box item9">Find a store</div>
+
+  </div>
+
+  <footer>&copy; 2019 Joe Cox</footer>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+  <script src="Homepage.js"></script>
+</body>
+
+</html>

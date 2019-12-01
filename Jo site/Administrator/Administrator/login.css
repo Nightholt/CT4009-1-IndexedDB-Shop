@@ -1,0 +1,84 @@
+fieldset{
+	width: 350px;
+	height: 370px;
+	border:1px solid black;
+	border-radius: 10px;
+	padding: 20px;
+	text-align: left;
+	font-family: verdana;
+	font-weight: bold;
+	font-size: 20px;
+	float: left;
+	background-color: white;
+	text-align: center;
+
+}
+
+legend{
+	background-color: white;
+	border-radius: 10px;
+	border:1px solid black;
+	padding: 10px 20px;
+	text-align: left;
+	text-transform: uppercase;
+}
+
+select{
+  padding: 15px;
+  font-size: 18px;
+}
+input{
+	padding: 15px;
+    font-size: 15px;
+}
+
+.margin {
+  display: flex;
+  justify-content: center;
+  margin:auto 0;
+}
+
+ul.navigation {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: black;
+  
+  width: 100%;
+
+}
+
+/*The style for the spaceing between the different button on the bars*/
+ul.navigation li {float: left;
+}
+
+/*Aligning the text and its style in the bar */
+ul.navigation li a {
+  display: block;
+  color: white;
+  text-align: center;
+  font-family: fantasy;
+  font-size: 50px;
+  padding: 14px 20px;
+  text-decoration: none;
+}
+
+body{margin: 0px;}
+
+button {
+  font-family: verdana;
+  border: none;
+  outline: 0;
+  display: inline-block;
+  padding: 8px;
+  color: white;
+  background-color: #000;
+  text-align: center;
+  cursor: pointer;
+  width: 100%;
+  margin: auto 0;
+  margin-top: 15px;
+  font-size: 18px;
+  border-radius: 0px 0px 5px 5px;
+}

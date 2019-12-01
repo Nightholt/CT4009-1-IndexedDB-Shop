@@ -1,0 +1,33 @@
+<html>
+<body>
+<head>
+
+	<link rel="stylesheet" type="text/css" href="../NavigateItem/NavigateItem.css">
+<link rel="stylesheet" type="text/css" href="../NavigateItem/Clothes.css">
+</head>
+
+<br/><br/>
+
+<div class="product" #pro  style="visibility:hidden">
+            <img src="..\Images\T shirt Images\supremeTshirt.jpg" alt="">
+            <p><b>Supreme CDG T shirt Price: £200</b><br></br><br></p>
+            <p><button>Add to Watchlist</button></p>
+        </div>
+
+<select id="dlist" onChange="swapImage()">
+<option id = "pro" >Brain Dump</option>
+<option value="blue.png">ASP</option>
+<option value="images/c.gif">ASP.NET</option>
+</select>
+
+<img id="imageToSwap"/>
+
+<script type="text/javascript">
+function swapImage(){
+	var image = document.getElementById("imageToSwap");
+	var dropd = document.getElementById("dlist");
+	image.src = dropd.value;	
+};
+</script>
+</body>
+</html>

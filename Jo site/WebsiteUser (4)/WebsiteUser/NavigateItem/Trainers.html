@@ -1,0 +1,133 @@
+<html>
+
+<head>
+<link rel="stylesheet" type="text/css" href="../NavigateItem/NavigateItem.css">
+<link rel="stylesheet" type="text/css" href="Clothes.css">
+<script src="Clothes.js"></script>
+<script  src="https://code.jquery.com/jquery-3.4.1.js"  integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="  crossorigin="anonymous"></script>
+<script src="../lib/indexeddb.js"></script>
+<title>Products</title>
+</head>
+	
+<body background="..\Images\Background3.jpg">	
+<script src="Clothes.js"></script>
+<nav>
+	<ul class="navigation" >
+		<li>
+			<a href = NavigateItem.html> Home</a>
+		</li>
+		<li>
+            <div class="dropdown">			
+            	<a href= "..\NavigateItem\Clothes.html">Clothes</a>
+            	<div class="subCatergories">
+            	<a href="..\NavigateItem\Tshirts.html">T Shirts</a>
+            	<a href="..\NavigateItem\Jeans.html">Jeans</a>
+            	<a href="..\NavigateItem\Trainers.html">Trainers</a>
+            </div>
+            </div>
+		</li>
+		<li>
+			<div class="dropdown">
+			<a href= "..\NavigateItem\Accessories.html">Accessories</a>
+				<div class="subCatergories">
+            	<a href="..\NavigateItem\Watches.html">Watches</a>
+            	<a href="..\NavigateItem\Bags.html">Bags</a>
+            	<a href="..\NavigateItem\Glasses.html">Glasses</a>
+            </div>
+            </div>
+
+		</li>
+		<li>
+            <div class="dropdown">			
+			<a href= "..\NavigateItem\Technology.html">Technology</a>
+				<div class="subCatergories">
+            	<a href="..\NavigateItem\Laptops.html">Laptops</a>
+            	<a href="..\NavigateItem\Desktops.html">Desktops</a>
+            	<a href="..\NavigateItem\3DPrint.html">3D Printers</a>
+            </div>
+            </div>
+		</li>
+		<li>
+
+			<a href= "..\WatchList\Watchlist.html">Watchlist</a>
+		</li>
+		<li>
+			<a href= "..\StoreLocation\StoreLocation.html">Find a Store</a>
+		</li>
+	</ul>
+</nav>
+
+
+
+
+<!-- the margin and row classes from the css that will group the products together when the screen size has been minimalized.-->
+<div class="margin">
+	<div class="row">
+<h1>Trainers</h1>
+		<div class="product">
+			<img id="trainers"src="..\Images\TrainersImages\Jordan1.jpg" alt="">
+			<p><b>Air Jordan 1 low Price: £75</b><br></br><br></p>
+	 		<p><button onclick="watchlist('..\\Images\\TrainersImages\\Jordan1.jpg','Air Jordan1','Black toe and low','Clothing', '£75')">Add to Watchlist</button></p>
+		</div>
+	
+
+		<div class="product">
+			<img src="..\Images\TrainersImages\React55.jpg" alt="">
+			<p><b>Nike React Elements Price: £115</b><br></br><br></p>
+	 		<p><button onclick="watchlist('..\\Images\\TrainersImages\\React55.jpg','React elment 55','Nikes softest memeory foam','Clothing', '£115')">Add to Watchlist</button></p>
+		</div>
+	
+
+
+			<div class="product">
+				<img src="..\Images\TrainersImages\Vans.jpg" alt="">
+				<p><b>Vans Old Skool Team Price: £60</b><br></br><br></p>
+	 			<p><button onclick="watchlist('..\\Images\\TrainersImages\\Vans.jpg','Vans Old Skool','The essestional shoe for all','Clothing', '£60')">Add to Watchlist</button></p>
+			</div>
+	
+
+
+		<div class="product">
+				<img src="..\Images\TrainersImages\Y3Pure.jpg" alt="">
+				<p><b>Y3PureBoost All black Price: £250</b><br></br><br></p>
+	 		<p><button onclick="watchlist('..\\Images\\TrainersImages\\Y3Pure.jpg','Y3 PureBoost','Triple black performance trainer','Clothing', '£250')">Add to Watchlist</button></p>
+		</div>
+
+
+
+
+		<div class="product">
+				<img src="..\Images\TrainersImages\crocs.jpg" alt="">
+				<p><b>Crocs "The greatest ever" Price: £1</b><br></br><br></p>
+	 		<p><button onclick="watchlist('..\\Images\\TrainersImages\\crocs.jpg','Crocs','no words needed', '£1')">Add to Watchlist</button></p>
+		</div>
+
+		<div class="product">
+				<img src="..\Images\TrainersImages\sss.jpg" alt="">
+				<p><b>Balenciaga Triple s Price: £650</b><br></br><br></p>
+	 		<p><button onclick="watchlist('..\\Images\\TrainersImages\\sss.jpg','Balenciaga shoe','three soles stuck together','Clothing', '£650')">Add to Watchlist</button></p>
+		</div>
+
+
+		<div class="product">
+				<img src="..\Images\TrainersImages\Shoe6.jpg" alt="">
+				<p><b>Nike Air force 1 NBA  Price: £140</b><br></br><br></p>
+	 		<p><button onclick="watchlist('..\\Images\\TrainersImages\\Shoe6.jpg','Nike Air force 1','Built to rival in the NBA','Clothing', '£140')">Add to Watchlist</button></p>
+		</div>
+
+		<div class="product">
+				<img src="..\Images\TrainersImages\Shoe5.jpg" alt="">
+				<p><b>Nike Air force Proto  Price: £140</b><br></br><br></p>
+	 		<p><button onclick="watchlist('..\\Images\\TrainersImages\\Shoe5.jpg','Nike Air force proto','protoype and exclusive','Clothing', '£140')">Add to Watchlist</button></p>
+		</div>
+	</div>
+</div>
+
+<footer>&copy; 2019 Joe Cox</footer>
+
+
+<script src="Clothes.js"></script>
+
+</body>
+</html>
+
