@@ -15,7 +15,7 @@ var newCategoryID = 0;
 
 function saveCatData() {
     var catName = $('#txtCatName').val();
-    var catName = $('#txtCatDesc').val();
+    var catDesc = $('#txtCatDesc').val();
 
     var data = {
         'catName': catName,
