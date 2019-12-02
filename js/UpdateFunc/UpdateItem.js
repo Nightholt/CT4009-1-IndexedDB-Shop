@@ -2,7 +2,7 @@ var urlParams = new URLSearchParams(window.location.search);
 var itemID = urlParams.get('itemID');
 $('#itemID').html("Item ID: " + itemID);
 
-setDatabaseName('dbCat1', ['users', 'items', 'categories', 'events']);
+setDatabaseName('dbCat', ['users', 'items', 'categories', 'events']);
 setCurrObjectStoreName('items');
 var data;
 startDB(function () {

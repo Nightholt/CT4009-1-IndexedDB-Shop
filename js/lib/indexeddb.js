@@ -21,7 +21,7 @@
 			return;
 		}
 
-		var request = indexedDB.open(databaseName, 1);
+		var request = indexedDB.open(databaseName, 2);
 			
 		//The onupgradeneeded property is triggered when a database 
 		//of a bigger version number than the existing stored database is loaded.

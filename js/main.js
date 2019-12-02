@@ -459,7 +459,7 @@ DONE update existing item ?
 
 //startDB creates connection with the databaseName
 //and create database and object stores
-function startDB(successCallback, failureCallback) {
+/*function startDB(successCallback, failureCallback) {
     try {
         indexedDB = window.indexedDB || window.webkitIndexedDB || window.mozIndexedDB || window.msIndexedDB;
         IDBTransaction = window.IDBTransaction || window.webkitIDBTransaction || window.msIDBTransaction;
@@ -637,7 +637,7 @@ function selectOne(id, successCallback) {
     };
 }
 
-
+*/
 
 
 function SelectUser() {

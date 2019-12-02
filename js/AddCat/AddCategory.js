@@ -1,11 +1,13 @@
-$('#formAddCat').submit(function(event)  {
+
+
+$('#formAddCat').submit(function (event) {
     event.preventDefault();
     console.log("formAddCat submit:");
 
-    setDatabaseName('dbCat1', ['users', 'items', 'categories']);
+    setDatabaseName('dbCat', ['users', 'items', 'categories']);
     setCurrObjectStoreName('categories');
-    
-    
+
+
     startDB(function () {
         saveCatData();
         alert("Item has been saved successfully!");
@@ -20,24 +22,24 @@ function saveCatData() {
 
     var data = {
         'name': name,
-        'catDesc': catDesc,
-        'id':""
-        
+        'catDesc': catDesc
+        // 'id':""
+
     };
 
     //create new category in db
-    insertOne(data, function(lastID) {
+    insertOne(data, function (lastID) {
         event.preventDefault();
 
         console.log("saveCatData lastID:" + lastID);
 
         createNewCategoryPage(data, lastID)
-        
+
         return false;
     });
 }
 
-function createNewCategoryPage(data,lastID){
+function createNewCategoryPage(data, lastID) {
     //open category template
     var template = window.open("../CatTemplate/catTemplate.html");
 
@@ -51,10 +53,22 @@ function createNewCategoryPage(data,lastID){
     //     text: 'My option'
     // }));
 
+
+
     //save new category page
     var opened = window.open(data.name + ".html")
     opened.document.write(template);
+    download(template, "../Categories/" + data.name + ".html");
 
     //take category functions from main.js here to avoid DRY and conflicts
-    
+
+}
+
+
+function download(data, filename) {
+    // var FileSaver = require('file-saver');
+    // var blob = new Blob([data], {type: "text/plain;charset=utf-8"});
+    // FileSaver.saveAs(blob, filename);
+    var file = new File(["Hello, world!"], "hello world.txt", { type: "text/plain;charset=utf-8" });
+    FileSaver.saveAs(file);
 }
