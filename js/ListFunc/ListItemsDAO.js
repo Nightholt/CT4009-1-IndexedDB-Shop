@@ -9,6 +9,7 @@ function showAllItems() {
             var img_id = "image-" + item_id;
             html = html + '<h5>' + results[i].itemPrice + '</h5>';
             html = html + '<h5>' + results[i].itemDesc + '</h5>';
+            alert(img_id);
             html = html + '<img id=' + img_id + ' height="100" width="100"/><br>';
             html = html + '<a href="#" class="actionDelete">Delete</a><br>';
             html = html + '<a href="#" class="actionUpdate">Update</a>';
@@ -23,6 +24,7 @@ function showAllItems() {
             var obj_url = window.URL.createObjectURL(results[i].itemImage);
             var item_id = results[i].id;
             var img_id = "image-" + item_id;
+            alert(img_id);
             $('#' + img_id).attr('src', obj_url);
         }
 

@@ -1,5 +1,13 @@
+
 //var dbName = "";
 //Global variables
+const events = [
+    {
+        eventDate : 'eventDate',
+        eventLat : 'eventLat',
+        eventLng : 'eventLng'
+    }
+];
 
 const items = [
     {
@@ -70,7 +78,7 @@ const categories = [
 
 var db, indexedDB, IDBTransaction, currObjectStoreName, databaseName, objectStores;
 
-$(document).ready(function () {
+/*$(document).ready(function () {
 
     // once the document has finished loading run this lot
     // initialise the UI
@@ -149,7 +157,7 @@ $(document).ready(function () {
     });
 
 
-});
+});*/
 
 
 
@@ -187,7 +195,7 @@ function init() {
 
 function initDB() {
 
-    setDatabaseName('dbCat', ['users', 'items', 'categories']);
+    setDatabaseName('dbCat', ['users', 'items', 'categories', 'events']);
     // Let us open our database
     // checks user's browser for indexeddb support
     window.indexedDB = window.indexedDB || window.mozIndexedDB || window.webkitIndexedDB || window.msIndexedDB;
@@ -228,6 +236,9 @@ function initDB() {
 
         let objStoreItems = db.createObjectStore("items", { autoIncrement: true });
         objStoreItems.createIndex("idxItems", "name", { unique: true })
+
+        let objStoreEvents = db.createObjectStore("events", { autoIncrement: true });
+        objStoreEvents.createIndex("idxEvents", "name", { unique: true })
 
         // Because the "names" object store has the key generator, the key for the name value is generated automatically.
 
