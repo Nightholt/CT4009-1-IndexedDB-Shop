@@ -78,7 +78,7 @@ const categories = [
 
 var db, indexedDB, IDBTransaction, currObjectStoreName, databaseName, objectStores;
 
-/*$(document).ready(function () {
+$(document).ready(function () {
 
     // once the document has finished loading run this lot
     // initialise the UI
@@ -157,7 +157,7 @@ var db, indexedDB, IDBTransaction, currObjectStoreName, databaseName, objectStor
     });
 
 
-});*/
+});
 
 
 
