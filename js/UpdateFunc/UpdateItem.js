@@ -2,13 +2,16 @@ var urlParams = new URLSearchParams(window.location.search);
 var itemID = urlParams.get('itemID');
 $('#itemID').html("Item ID: " + itemID);
 
-setDatabaseName('dbCat', ['users', 'items', 'categories', 'events']);
+setDatabaseName('dbCat1', ['users', 'items', 'categories', 'events']);
 setCurrObjectStoreName('items');
 var data;
 startDB(function () {
     selectOne(itemID, function(result) {
         $('#txtItemName').val(result.itemName);
+        $('#txtDesc').val(result.itemDesc);
+        $('#intPrice').val(result.itemPrice);
         data = result;
+
     })
 })
 
@@ -36,7 +39,7 @@ function previewFile(){
 $('#formUpdateItem').submit(function(event)  {
     event.preventDefault();
 
-    setDatabaseName('dbCat', ['users', 'items', 'categories', 'events']);
+    setDatabaseName('dbCat1', ['users', 'items', 'categories', 'events']);
     setCurrObjectStoreName('items');
     
     startDB(function () {

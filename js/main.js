@@ -11,11 +11,11 @@ const events = [
 
 const items = [
     {
-        itemName: "laptop",
-        itemDesc: "computing hardware",
-        itemPrice: "£500",
-        ///itemImage: "<img src='../images/laptop.jpeg'></img>"
-        category: "laptops"
+        // itemName: "laptop",
+        // itemDesc: "computing hardware",
+        // itemPrice: "£500",
+        // ///itemImage: "<img src='../images/laptop.jpeg'></img>"
+        // category: "laptops"
     }
 ];
 
@@ -252,6 +252,10 @@ function initDB() {
 
         items.forEach(function (item) {
             objStoreItems.add(item);
+        });
+
+        events.forEach(function (event) {
+            objStoreEvents.add(event);
         });
 
 
