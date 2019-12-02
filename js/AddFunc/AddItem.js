@@ -21,11 +21,11 @@ function previewFile(){
 $('#formSellItem').submit(function(event)  {
     event.preventDefault();
 
-    setDatabaseName('dbCat', ['users', 'items', 'categories']);
+    setDatabaseName('dbCat', ['users', 'items', 'categories', 'events']);
     setCurrObjectStoreName('items');
     
     startDB(function () {
         saveItemData();
-        alert("Item has been saved successfully!");
+        alert("Item has been saved successfully");
     });
 });

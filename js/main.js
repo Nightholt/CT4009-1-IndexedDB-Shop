@@ -155,7 +155,7 @@ $(document).ready(function () {
 
 function DisplayCategoryInDiv(catId) {
 
-    setDatabaseName('dbCat', ['users', 'items', 'categories']);
+    setDatabaseName('dbCat', ['users', 'items', 'categories', 'events']);
     setCurrObjectStoreName('categories');
     var data;
     startDB(function () {
