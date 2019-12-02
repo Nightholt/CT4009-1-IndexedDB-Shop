@@ -2,37 +2,50 @@
 <html lang="en-gb">
 
 <head>
-  <meta name="description" content="catalogue and shopping website">
-  <!--helps search engines define what the purpose of the site is-->
-  <meta name="keywords" content="shopping, search, catalogue">
-  <meta charset="utf-8">
-  <!--defines correct character set-->
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <!--ensures site will render correctly on all platforms, primarily mobile-->
+    <meta name="description" content="catalogue and shopping website">
+    <!--helps search engines define what the purpose of the site is-->
+    <meta name="keywords" content="shopping, search, catalogue">
+    <meta charset="utf-8">
+    <!--defines correct character set-->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!--ensures site will render correctly on all platforms, primarily mobile-->
 
-  <!--links to the Boostrap CDN-->
-  <link rel="stylesheet" href="../css/styles.css" />
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-  <!-- <script src="../js/data.js"></script> -->
-  <script src="../js/main.js"></script>
-  <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script>
-  <script src="https://code.jquery.com/jquery-3.2.1.js"
-    integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE="
-    crossorigin="anonymous">
-  </script>
+    <!--links to the Boostrap CDN-->
+    <link rel="stylesheet" href="../css/styles.css" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <!-- <script src="../js/data.js"></script> -->
+    <script src="../js/main.js"></script>
+    <!-- <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=true"></script> -->
+    <!-- <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script> -->
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB6QCGqF325m9QTLFst-qHTbE1lUaePKHY"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.js"
+        integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE=" crossorigin="anonymous">
+        </script>
+    <style>
+        #mapInput {
+            width: auto;
+            height: 450px;
+            border-bottom-left-radius: 5px;
+            border-bottom-right-radius: 5px;
+            border-top-left-radius: 5px;
+            border-top-right-radius: 5px;
+            margin: auto;
+            border: 10px solid;
+            border-color: rgb(0, 0, 0);
+        }
+    </style>
 
-
-  <title>Catalogue Website - Insert Map Event</title>
-  <!--title of site-->
+    <title>Catalogue Website - Insert Map Event</title>
+    <!--title of site-->
 
 </head>
 
 <body>
 
-  <!--
+    <!--
 references 
 https://stackoverflow.com/questions/42635126/bootstrap-4-navbar-with-2-rows
 
@@ -45,70 +58,70 @@ https://stackoverflow.com/questions/42635126/bootstrap-4-navbar-with-2-rows
 
 
     -->
-  <!--creates search bar form-->
+    <!--creates search bar form-->
 
-  <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
-    <!--makes navbar dark and controls spacing of items-->
-    <a class="navbar-brand" href="../home/home.html">Logo</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
-      aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarNavDropdown">
-      <ul class="navbar-nav">
-        <!--defines type of navbar-->
-        <li class="nav-item active">
-          <div id="search" class="">
-            <form class="form-inline" action="../Search/results.html">
-              <input class="form-control mr-sm-2" type="text" placeholder="Search">
-              <button class="btn btn-success" type="submit">Search</button>
-            </form>
-          </div>
-        </li>
-        <li class="nav-item">
-          <!--link to home page (null and void on this page but better than an empty button)-->
-          <a class="nav-link" href="../home/HomePage.html">Home</a>
-        </li>
-        <li class="nav-item dropdown">
-          <!--creates dropdown-->
-          <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">Categories</a>
-          <!--name and type of dropdown-->
-          <div id="dropdown" class="dropdown-menu"></div>
-        </li>
-        <li class="nav-item">
-          <!--link to hot deals page-->
-          <a class="nav-link" href="../Hot Deals/deals.html">Hot Deals</a>
-        </li>
-        <li class="nav-item">
-          <!--link to store locator page-->
-          <a class="nav-link" href="../Store Locator/stores.html">Store Locator</a>
-        </li>
-        <li class="nav-item">
-          <!--link to contact page-->
-          <a class="nav-link" href="../Contact/contact.html">Contact</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" id="loginToggle">Login</a>
-        </li>
-      </ul>
-    </div>
-  </nav>
+    <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+        <!--makes navbar dark and controls spacing of items-->
+        <a class="navbar-brand" href="../home/home.html">Logo</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
+            aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavDropdown">
+            <ul class="navbar-nav">
+                <!--defines type of navbar-->
+                <li class="nav-item active">
+                    <div id="search" class="">
+                        <form class="form-inline" action="../Search/results.html">
+                            <input class="form-control mr-sm-2" type="text" placeholder="Search">
+                            <button class="btn btn-success" type="submit">Search</button>
+                        </form>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <!--link to home page (null and void on this page but better than an empty button)-->
+                    <a class="nav-link" href="../home/HomePage.html">Home</a>
+                </li>
+                <li class="nav-item dropdown">
+                    <!--creates dropdown-->
+                    <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">Categories</a>
+                    <!--name and type of dropdown-->
+                    <div id="dropdown" class="dropdown-menu"></div>
+                </li>
+                <li class="nav-item">
+                    <!--link to hot deals page-->
+                    <a class="nav-link" href="../Hot Deals/deals.html">Hot Deals</a>
+                </li>
+                <li class="nav-item">
+                    <!--link to store locator page-->
+                    <a class="nav-link" href="../Store Locator/stores.html">Store Locator</a>
+                </li>
+                <li class="nav-item">
+                    <!--link to contact page-->
+                    <a class="nav-link" href="../Contact/contact.html">Contact</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" id="loginToggle">Login</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
 
-  <h1>Create Events</h1>
-  <form id="formInsertEvent">
-      Event Date:
-      <input type="date" id="dateEvent"> </br></br>
-      Select event location in Map:</br>
+    <h1>Create Events</h1>
+    <form id="formInsertEvent">
+        Event Date:
+        <input type="date" id="dateEvent"> </br></br>
+        Select event location in Map:</br>
 
-      <!--placeholder for Google Map, javascript loads map-->
-      <div id="mapInput" style="width: 650px; height: 300px;"></div> </br>
+        <!--placeholder for Google Map, javascript loads map-->
+        <div id="mapInput" style="width: 650px; height: 300px;"></div> </br>
 
-      <input type="submit" id="btnSubmit">
+        <input type="submit" id="btnSubmit">
 
-      <script src="InsertEvent.js"></script>
-      <script src="InsertEventDAO.js"></script>
+        <script src="InsertEvent.js"></script>
+        <script src="InsertEventDAO.js"></script>
 
-  </form>
+    </form>
 
 </body>
 
