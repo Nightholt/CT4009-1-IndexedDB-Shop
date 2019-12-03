@@ -44,23 +44,19 @@ function createNewCategoryPage(data, lastID) {
     var template = window.open("../CatTemplate/catTemplate.html");
 
     //replace template page newid and description and name placeholders with data values
-    //template.replace("newid", lastID);
+    template.replace("newid", lastID);
     template.replace("categoryName", data.name);
-    //template.replace("categoryDescription", data.catDesc);
+    template.replace("categoryDescription", data.catDesc);
 
     // $('#mySelect').append($('<option>', {
     //     value: 1,
     //     text: 'My option'
     // }));
 
-
-
     //save new category page
     var opened = window.open(data.name + ".html")
     opened.document.write(template);
     download(template, "../Categories/" + data.name + ".html");
-
-    //take category functions from main.js here to avoid DRY and conflicts
 
 }
 
@@ -69,6 +65,6 @@ function download(data, filename) {
     // var FileSaver = require('file-saver');
     // var blob = new Blob([data], {type: "text/plain;charset=utf-8"});
     // FileSaver.saveAs(blob, filename);
-    var file = new File(["Hello, world!"], "hello world.txt", { type: "text/plain;charset=utf-8" });
+    var file = new File([data], { type: "text/plain;charset=utf-8" });
     FileSaver.saveAs(file);
 }
