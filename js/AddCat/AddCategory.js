@@ -58,13 +58,20 @@ function createNewCategoryPage(data, lastID) {
     opened.document.write(template);
     download(template, "../Categories/" + data.name + ".html");
 
+    function download(data, filename) {
+        // var FileSaver = require('file-saver');
+        // var blob = new Blob([data], {type: "text/plain;charset=utf-8"});
+        // FileSaver.saveAs(blob, filename);
+        var file = new File([data], { type: "text/plain;charset=utf-8" });
+        FileSaver.saveAs(file);
+    }
 }
 
 
-function download(data, filename) {
-    // var FileSaver = require('file-saver');
-    // var blob = new Blob([data], {type: "text/plain;charset=utf-8"});
-    // FileSaver.saveAs(blob, filename);
-    var file = new File([data], { type: "text/plain;charset=utf-8" });
-    FileSaver.saveAs(file);
-}
+// function download(data, filename) {
+//     // var FileSaver = require('file-saver');
+//     // var blob = new Blob([data], {type: "text/plain;charset=utf-8"});
+//     // FileSaver.saveAs(blob, filename);
+//     var file = new File([data], { type: "text/plain;charset=utf-8" });
+//     FileSaver.saveAs(file);
+// }
