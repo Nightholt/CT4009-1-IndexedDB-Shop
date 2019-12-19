@@ -3,7 +3,7 @@ var mapCenter = new google.maps.LatLng(51.8979988098144, -2.0838599205017);
 //geocoder converts coords to readable address
 var geocoder = new google.maps.Geocoder();
 //InfoWindow displays content in a popup above map
-var InfoWindow = google.maps.InfoWindow();
+var InfoWindow = new google.maps.InfoWindow();
 
 function initialise() {
     //initial map properties
@@ -13,7 +13,7 @@ function initialise() {
     };
 
     //creates map in div placeholder
-    myMap = new google.maps.Map($("#mapInput"), mapOptions);
+    myMap = new google.maps.Map(document.getElementById("mapInput"), mapOptions);
 
 
     //retrieve saved event list from indexeddb dbCat

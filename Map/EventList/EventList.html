@@ -11,19 +11,18 @@
   <!--ensures site will render correctly on all platforms, primarily mobile-->
 
   <!--links to the Boostrap CDN-->
-  <link rel="stylesheet" href="../css/styles.css" />
+  <link rel="stylesheet" href="../../css/styles.css" />
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
   <!-- <script src="../js/data.js"></script> -->
-  <script src="../js/main.js"></script>
-  <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script>
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB6QCGqF325m9QTLFst-qHTbE1lUaePKHY"></script>
   <script src="https://code.jquery.com/jquery-3.2.1.js"
-    integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE="
-    crossorigin="anonymous">
+    integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE=" crossorigin="anonymous">
   </script>
-
+  <script src="../../js/main.js"></script>
+  <script src="../../js/lib/indexeddb.js"></script>
 
   <title>Catalogue Website - Insert Map Event</title>
   <!--title of site-->
@@ -81,7 +80,7 @@ https://stackoverflow.com/questions/42635126/bootstrap-4-navbar-with-2-rows
         </li>
         <li class="nav-item">
           <!--link to store locator page-->
-          <a class="nav-link" href="../Store Locator/stores.html">Store Locator</a>
+          <a class="nav-link" href="../Map/EventList/EventList.html">Store Locator</a>
         </li>
         <li class="nav-item">
           <!--link to contact page-->
@@ -99,8 +98,8 @@ https://stackoverflow.com/questions/42635126/bootstrap-4-navbar-with-2-rows
       <!--placeholder for Google Map, javascript loads map-->
       <div id="mapInput" style="width: 650px; height: 300px;"></div>
 
-      <script src="EventList.js"></script>
-      <script src="EventListDAO.js"></script>
+      <script src="./EventList.js"></script>
+      <script src="./EventListDAO.js"></script>
 
   </form>
 

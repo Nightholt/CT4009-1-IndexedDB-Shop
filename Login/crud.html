@@ -17,6 +17,10 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
   <!-- <script src="../js/data.js"></script> -->
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB6QCGqF325m9QTLFst-qHTbE1lUaePKHY"></script>
+  <script src="https://code.jquery.com/jquery-3.2.1.js"
+      integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE=" crossorigin="anonymous">
+  </script>
   <script src="../js/main.js"></script>
   <script src="../js/lib/indexeddb.js"></script>
   <!-- <script src="https://code.jquery.com/jquery-3.4.1.js"
@@ -25,14 +29,52 @@
 
   <title>Catalogue Website</title>
   <!--title of site-->
+  
+  <style>
+  .accordion {
+  background-color: #eee;
+  color: #444;
+  cursor: pointer;
+  padding: 18px;
+  width: 100%;
+  border: none;
+  text-align: left;
+  outline: none;
+  font-size: 15px;
+  transition: 0.4s;
+}
+
+.active, .accordion:hover {
+  background-color: #ccc; 
+}
+
+.panel {
+  padding: 0 18px;
+  display: none;
+  background-color: white;
+  overflow: hidden;
+}
+
+#mapInput {
+  width: auto;
+  height: 450px;
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  margin: auto;
+  border: 10px solid;
+  border-color: rgb(0, 0, 0);
+  }
+</style>
 
 </head>
 
 <body>
 
   <!--
-references 
-https://stackoverflow.com/questions/42635126/bootstrap-4-navbar-with-2-rows
+  references 
+  https://stackoverflow.com/questions/42635126/bootstrap-4-navbar-with-2-rows
 
     https://getbootstrap.com/docs/4.0/components/navbar/
 
@@ -78,7 +120,7 @@ https://stackoverflow.com/questions/42635126/bootstrap-4-navbar-with-2-rows
         </li>
         <li class="nav-item">
           <!--link to store locator page-->
-          <a class="nav-link" href="../Store Locator/stores.html">Store Locator</a>
+          <a class="nav-link" href="../Map/EventList/EventList.html">Store Locator</a>
         </li>
         <li class="nav-item">
           <!--link to contact page-->
@@ -112,54 +154,83 @@ https://stackoverflow.com/questions/42635126/bootstrap-4-navbar-with-2-rows
     </form>
   </div>
 
+  <h2>Admin Functions</h2>
 
 
-  <div id='FuncAdd' class="container">
-    <h2> Add item </h2>
-    <form id="formSellItem">
-      <label> Item Name: </label> <br>
-      <input type="text" id="txtItemName" name="itemName" required="required"> <br> <br>
 
-      <label> Description: </label> <br>
-      <input type="text" id="txtDesc" name="Desc" required="required"> <br> <br>
+  <button class="accordion">Add New Item</button>
+  <div class="panel">
+    <div id='FuncAdd' class="container">
+      <h2> Add item </h2>
+      <form id="formSellItem">
+        <label> Item Name: </label> <br>
+        <input type="text" id="txtItemName" name="itemName" required="required"> <br> <br>
 
-      <label> Price: </label> <br>
-      <input type="int" id="intPrice" name="Price" required="required"> <br> <br>
+        <label> Description: </label> <br>
+        <input type="text" id="txtDesc" name="Desc" required="required"> <br> <br>
 
-      <li class="dropdown">
-        <!--creates dropdown-->
-        <a class="dropdown-toggle" href="#" id="catDrop" data-toggle="dropdown">Department</a>
-        <!--name and type of dropdown-->
-        <div id="AdminDrop" class="dropdown-menu"></div>
-      </li>
+        <label> Price: </label> <br>
+        <input type="int" id="intPrice" name="Price" required="required"> <br> <br>
 
-      <label for="file">Choose item image to upload</label>
-      <input type="file" id="fileItemImage" name="file"> <br> <br>
+        <li class="dropdown">
+          <!--creates dropdown-->
+          <a class="dropdown-toggle" href="#" id="catDrop" data-toggle="dropdown">Department</a>
+          <!--name and type of dropdown-->
+          <div id="AdminDrop" class="dropdown-menu"></div>
+        </li>
 
-      <img src="" alt="Image preview..." id="bannerImg"> <br> <br>
+        <label for="file">Choose item image to upload</label>
+        <input type="file" id="fileItemImage" name="file"> <br> <br>
 
-      <input type="submit" id="btnSaveItem" value="Save">
+        <img src="" alt="Image preview..." id="bannerImg"> <br> <br>
 
-    </form>
+        <input type="submit" id="btnSaveItem" value="Save">
+
+      </form>
+    </div>
+
+    <div id="divItemList" class="container">
+      <h2> Item List </h2>
+    </div>
   </div>
 
-  <div id="AddCatFunc" class="container">
-    <h2> Add Category </h2>
-    <form id="formAddCat">
-      <label> Category Name: </label> <br>
-      <input type="text" id="txtCatName" name="catName" required="required"> <br> <br>
-      <label> Category Description: </label> <br>
-      <input type="text" id="txtCatDesc" name="catDesc" required="required"> <br> <br>
-      <input type="submit" id="btnAddCat" value="Add">
+  <button class="accordion">Add New Category</button>
+  <div class="panel">
+    <div id="AddCatFunc" class="container">
+      <h2> Add Category </h2>
+      <form id="formAddCat">
+        <label> Category Name: </label> <br>
+        <input type="text" id="txtCatName" name="catName" required="required"> <br> <br>
+        <label> Category Description: </label> <br>
+        <input type="text" id="txtCatDesc" name="catDesc" required="required"> <br> <br>
+        <input type="submit" id="btnAddCat" value="Add">
 
-    </form>
+      </form>
+    </div>
   </div>
 
-  <div id="divItemList" class="container">
-    <h2> Item List </h2>
-  </div>
+  <button class="accordion">Add New Location</button>
+    <div class="panel">
+      <h1>Create Events</h1>
+      <form id="formInsertEvent">
+          Event Date:
+          <input type="date" id="dateEvent"> </br></br>
+          Select event location in Map:</br>
+  
+          <!--placeholder for Google Map, javascript loads map-->
+          <div id="mapInput" style="width: 650px; height: 300px;"></div> </br>
+  
+          <input type="submit" id="btnSubmit">
+  
+          <script src="../Map/InsertEvent.js"></script>
+          <script src="../Map/InsertEventDAO.js"></script>
+  
+      </form>    
+    </div>
 
-  <!-- <div id="UpdateFunc" class="container">
+
+
+      <!-- <div id="UpdateFunc" class="container">
     <h2> Update Function </h2>
     <form id="formUpdateItem">
       <h3 id="itemID">Item ID</h3>
@@ -176,19 +247,19 @@ https://stackoverflow.com/questions/42635126/bootstrap-4-navbar-with-2-rows
     </form>
   </div> -->
 
-  <script src="../js/AddFunc/AddItem.js"></script>
-  <script src="../js/AddFunc/AddItemDAO.js"></script>
-  <script src="../js/ListFunc/ListItems.js"></script>
-  <script src="../js/ListFunc/ListItemsDAO.js"></script>
-  <!-- <script src="../js/UpdateFunc/UpdateItem.js"></script>
+      <script src="../js/AddFunc/AddItem.js"></script>
+      <script src="../js/AddFunc/AddItemDAO.js"></script>
+      <script src="../js/ListFunc/ListItems.js"></script>
+      <script src="../js/ListFunc/ListItemsDAO.js"></script>
+      <!-- <script src="../js/UpdateFunc/UpdateItem.js"></script>
   <script src="../js/UpdateFunc/UpdateItemDAO.js"></script> -->
-  <script src="../js/AddCat/AddCategory.js"></script>
-  <!-- <script src="../js/crudFunctions.js"></script> -->
+      <script src="../js/AddCat/AddCategory.js"></script>
+      <!-- <script src="../js/crudFunctions.js"></script> -->
 
-  <!--defines footer-->
-  <div id="footer">
-    <footer>This is the footer</footer>
-  </div>
+      <!--defines footer-->
+      <div id="footer">
+        <footer>This is the footer</footer>
+      </div>
 </body>
 
 </html>
