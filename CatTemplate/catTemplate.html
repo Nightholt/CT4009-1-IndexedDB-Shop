@@ -17,7 +17,7 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 
-  <!-- <script src="../js/data.js"></script> -->
+  <script src="../js/lib/indexeddb.js"></script>
   <script src="../js/main.js"></script>
 
 
@@ -138,7 +138,7 @@
 
 
 
-  <script>
+  <!-- <script>
 
     $(document).ready(function () {
       /*
@@ -156,7 +156,7 @@
       */
       var categoryName = $("#categoryHiddenField").val();// eg Phones
       var data =startDB(SelectOne(categoryName)); // this does not work atm - nat to fix !!!
-      var image = "<img src='" + data.image + "' />'";
+      var image = "<img src="" + data.image + "" />"";
       var desc = data.desc;
 
       $("#categoryInformation").val(data.name + "<br/>" + image + "<br/>" + desc);
@@ -166,7 +166,7 @@
     });
 
 
-  </script>
+  </script> -->
 
 
   <!--defines footer-->

@@ -13,7 +13,7 @@ function showAllEvents() {
             
             //create map marker
             marker = new google.maps.Marker({
-                map: MediaKeyStatusMap,
+                map: myMap,
                 position: markerLatLng
             });
             var infowindow = new google.maps.InfoWindow();

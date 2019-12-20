@@ -16,7 +16,7 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-  <script src="../js/data.js"></script>
+  <script src="../js/lib/indexeddb.js"></script>
   <script src="../js/main.js"></script>
   <!-- <script src="https://code.jquery.com/jquery-3.4.1.js"
   integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" 
@@ -93,23 +93,24 @@ https://stackoverflow.com/questions/42635126/bootstrap-4-navbar-with-2-rows
 
 
   </div>
-  <!--creates login form-->
-  <div id="login" class="container">
-    <form action="../Login/login.html" id="loginForm">
-      <div class="form-group">
-        <label for="email">Email:</label>
-        <input type="email" class="form-control" id="email" placeholder="Enter email" name="email" required>
-        <!--defines type of input, id, placeholder and requires user to make input-->
-      </div>
-      <div class="form-group">
-        <label for="key">Password:</label>
-        <input type="password" class="form-control" id="key" placeholder="Enter password" name="key" required>
-        <!--defines type of input, id, placeholder and requires user to make input-->
-      </div>
-      <button type="submit" id="btnSubmitLogin" class="btn btn-primary">Submit</button>
-      <!--submit button-->
-    </form>
+ <!--creates login form-->
+ <div id="login" class="container">
+  <!--<form action="../Login/login.html" id="loginForm"> -->
+  <div class="form-group">
+    <label for="email">Email:</label>
+    <input type="email" class="form-control" id="email" placeholder="Enter email" name="email" required>
+    <!--defines type of input, id, placeholder and requires user to make input-->
   </div>
+  <div class="form-group">
+    <label for="key">Password:</label>
+    <input type="password" class="form-control" id="key" placeholder="Enter password" name="key" encrypt="bcrypt"
+      salt="abc..." rounds="4" required>
+    <!--defines type of input, id, placeholder and requires user to make input-->
+  </div>
+  <button type="submit" id="btnSubmitLogin" class="btn btn-primary">Submit</button>
+  <!--submit button-->
+  </form>
+</div>
 
   <div id="UpdateFunc" class="container">
     <h2> Update Function </h2>
