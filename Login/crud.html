@@ -18,8 +18,9 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
     <!-- <script src="../js/data.js"></script> -->
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB6QCGqF325m9QTLFst-qHTbE1lUaePKHY"></script>
-    <script src="https://code.jquery.com/jquery-3.2.1.js" integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE=" crossorigin="anonymous">
-    </script>
+    <script src="https://code.jquery.com/jquery-3.2.1.js"
+        integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE=" crossorigin="anonymous">
+        </script>
     <script src="../js/main.js"></script>
     <script src="../js/lib/indexeddb.js"></script>
     <!-- <script src="https://code.jquery.com/jquery-3.4.1.js"
@@ -51,9 +52,10 @@
     <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
         <!--makes navbar dark and controls spacing of items-->
         <a class="navbar-brand" href="../home/HomePage.html">Logo</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
+            aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
         <div class="collapse navbar-collapse" id="navbarNavDropdown">
             <ul class="navbar-nav">
                 <!--defines type of navbar-->
@@ -123,27 +125,30 @@
         <div id='FuncAdd' class="container">
             <h2> Add item </h2>
             <form id="formSellItem">
-                <label> Item Name: </label> <br>
-                <input type="text" id="txtItemName" name="itemName" required="required"> <br> <br>
-
-                <label> Description: </label> <br>
-                <input type="text" id="txtDesc" name="Desc" required="required"> <br> <br>
-
-                <label> Price: </label> <br>
-                <input type="int" id="intPrice" name="Price" required="required"> <br> <br>
-
-                <li class="dropdown">
+                <div>
+                    <label> Item Name: </label> <br />
+                    <input type="text" id="txtItemName" name="itemName" required="required"> <br /> <br />
+                </div>
+                <div>
+                    <label> Description: </label> <br />
+                    <input type="text" id="txtDesc" name="Desc" required="required"> <br /> <br />
+                </div>
+                <div>
+                    <label> Price: </label> <br />
+                    <input type="int" id="intPrice" name="Price" required="required"> <br /> <br />
+                </div>
+                <div>
                     <!--creates dropdown-->
-                    <a class="dropdown-toggle" href="#" id="catDrop" data-toggle="dropdown">Department</a>
-                    <!--name and type of dropdown-->
-                    <div id="AdminDrop" class="dropdown-menu"></div>
-                </li>
+                    <select id="AdminDrop"></select>
+                    <br />&nbsp;
+                    <br />
+                </div>
+                <div>
+                    <label for="file">Choose item image to upload</label>
+                    <input type="file" id="fileItemImage" name="file"> <br /> <br />
 
-                <label for="file">Choose item image to upload</label>
-                <input type="file" id="fileItemImage" name="file"> <br> <br>
-
-                <img src="" alt="Image preview..." id="bannerImg"> <br> <br>
-
+                    <img src="" alt="Image preview..." id="bannerImg"> <br /> <br />
+                </div>
                 <input type="submit" id="btnSaveItem" value="Save">
 
             </form>
@@ -159,10 +164,10 @@
         <div id="AddCatFunc" class="container">
             <h2> Add Category </h2>
             <form id="formAddCat">
-                <label> Category Name: </label> <br>
-                <input type="text" id="txtCatName" name="catName" required="required"> <br> <br>
-                <label> Category Description: </label> <br>
-                <input type="text" id="txtCatDesc" name="catDesc" required="required"> <br> <br>
+                <label> Category Name: </label> <br />
+                <input type="text" id="txtCatName" name="catName" required="required"> <br /> <br />
+                <label> Category Description: </label> <br />
+                <input type="text" id="txtCatDesc" name="catDesc" required="required"> <br /> <br />
                 <input type="submit" id="btnAddCat" value="Add">
 
             </form>
@@ -196,13 +201,13 @@
     <h2> Update Function </h2>
     <form id="formUpdateItem">
       <h3 id="itemID">Item ID</h3>
-      <label> Item Name: </label> <br>
-      <input type="text" id="txtItemName" name="itemName" required="required"> <br> <br>
+      <label> Item Name: </label> <br/>
+      <input type="text" id="txtItemName" name="itemName" required="required"> <br/> <br/>
 
       <label for="file">Choose item image to upload</label>
-      <input type="file" id="fileItemImage" name="file"> <br> <br>
+      <input type="file" id="fileItemImage" name="file"> <br/> <br/>
 
-      <img src="" alt="Image preview..." id="bannerImg"> <br> <br>
+      <img src="" alt="Image preview..." id="bannerImg"> <br/> <br/>
 
       <input type="submit" id="btnUpdateItem" value="Update">
 
@@ -228,7 +233,7 @@
         var i;
 
         for (i = 0; i < acc.length; i++) {
-            acc[i].addEventListener("click", function() {
+            acc[i].addEventListener("click", function () {
                 this.classList.toggle("active");
                 var panel = this.nextElementSibling;
                 if (panel.style.display === "block") {
@@ -238,6 +243,16 @@
                 }
             });
         }
+
+        $("#AdminDrop").change(function (event) {
+            //event.preventDefault();
+            var value = $(this).val();
+            console.log("selcat was clicked value:" + value)
+            //return false;
+        });
+
+
+
     </script>
 
 </body>

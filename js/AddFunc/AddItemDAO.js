@@ -2,11 +2,15 @@ function saveItemData() {
     var itemName = $('#txtItemName').val();
     var itemDesc = $('#txtDesc').val();
     var itemPrice = $('#intPrice').val();
+    var itemCategory = $('#AdminDrop').val();
+    
+    console.log("saveItemData itemCategory: "+ itemCategory);
 
     var data = {
         'itemName': itemName,
         'itemDesc': itemDesc,
-        'itemPrice': itemPrice
+        'itemPrice': itemPrice,
+        'itemCategory': itemCategory
     };
 
     var fileInput = $('#fileItemImage');
