@@ -369,7 +369,7 @@ function DisplayCategoriesMenu(id, name, parentcategory) {
     if (parentcategory > 0) {
         css = "indent";
     }
-    var ahref = "<a class='dropdown-item " + css + "' href='../Categories/" + name + ".html'>" + name + "</a>";
+    var ahref = "<a class='dropdown-item " + css + "' href='../CatTemplate/catTemplate.html#" + id + "'>" + name + "</a>";
 
     var link = "<li>" + ahref + "</li>";
     $("#dropdown").append(link);

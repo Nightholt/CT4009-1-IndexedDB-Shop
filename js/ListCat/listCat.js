@@ -6,6 +6,10 @@ startDB(function() {
 
 function showAllCategories() {
     selectAll(function(results) {
+
+        //url  ../../catTemplate.html#2
+        
+
         var len = results.length;
         var html = '',
             i;
