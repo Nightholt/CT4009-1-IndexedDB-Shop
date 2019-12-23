@@ -384,7 +384,10 @@ function DisplayDepartments(id, name, parentcategory) {
     if (parentcategory > 0) {
         css = "indent";
     }
-    var link = "<li><a class='dropdown-item " + css + "' href='../Categories/" + name + ".html'>" + name + "</a></li>";
+
+    //var link = "<li><a class='dropdown-item " + css + "' href='../Categories/" + name + ".html'>" + name + "</a></li>";
+    var link = "<li id='" + id + "' class='selCat'>" + name + "</li>";
+
     $("#AdminDrop").append(link);
 }
 

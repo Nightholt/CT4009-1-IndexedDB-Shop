@@ -6,10 +6,6 @@ startDB(function() {
 
 function showAllCategories() {
     selectAll(function(results) {
-
-        //url  ../../catTemplate.html#2
-        
-
         var len = results.length;
         var html = '',
             i;
@@ -31,7 +27,7 @@ function showAllCategories() {
             var cat_id = parseInt($(this).parent().attr('id'));
 
             deleteOne(cat_id, function() {
-                alert("Item " + cat_id + " was deleted successfully");
+                alert("Category " + cat_id + " was deleted successfully");
                 location.reload();
             })
             return false;
@@ -39,7 +35,7 @@ function showAllCategories() {
 
         $('.actionUpdate').click(function() {
             var cat_id = parseInt($(this).parent().attr('id'));
-            window.open("../Update/Update.html?itemID=" + cat_id, "_self");
+            window.open("../Update/Update.html?cat_id=" + cat_id, "_self");
 
             return false;
         });
