@@ -1,8 +1,9 @@
 function showAllItems() {
     selectAll(function(results) {
         var len = results.length;
-        var html = '', i;
-        for(i = 0; i < len; i++) {
+        var html = '',
+            i;
+        for (i = 0; i < len; i++) {
             var item_id = results[i].id;
             html = html + '<div id="' + item_id + '">';
             html = html + '<h3>' + results[i].itemName + '</h3>';
@@ -17,10 +18,10 @@ function showAllItems() {
         }
 
         // $("#UpdateFunc").hide(); 
-    
+
         $('#divItemList').html(html);
-    
-        for(i = 0; i< len; i++) {
+
+        for (i = 0; i < len; i++) {
             var obj_url = window.URL.createObjectURL(results[i].itemImage);
             var item_id = results[i].id;
             var img_id = "image-" + item_id;
@@ -41,9 +42,9 @@ function showAllItems() {
         $('.actionUpdate').click(function() {
             //$("#UpdateFunc").toggle();
             var itemID = parseInt($(this).parent().attr('id'));
-            window.open("../Update/Update.html?itemID="+itemID,"_self");
-           
-            
+            window.open("../Update/Update.html?itemID=" + itemID, "_self");
+
+
             return false;
         });
     });

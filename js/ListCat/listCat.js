@@ -1,11 +1,11 @@
 setDatabaseName('dbCat', ['users', 'items', 'categories', 'events']);
 setCurrObjectStoreName('categories');
-startDB(function () {
+startDB(function() {
     showAllCategories();
 });
 
 function showAllCategories() {
-    selectAll(function (results) {
+    selectAll(function(results) {
         var len = results.length;
         var html = '',
             i;
@@ -26,17 +26,17 @@ function showAllCategories() {
 
         $('#divCatList').html(html);
 
-        $('.actionDelete').click(function () {
+        $('.actionDelete').click(function() {
             var cat_id = parseInt($(this).parent().attr('id'));
 
-            deleteOne(cat_id, function () {
+            deleteOne(cat_id, function() {
                 alert("Category " + cat_id + " was deleted successfully");
                 location.reload();
             })
             return false;
         });
 
-        $('.actionUpdate').click(function () {
+        $('.actionUpdate').click(function() {
             var cat_id = parseInt($(this).parent().attr('id'));
             window.open("../Update/Update.html?cat_id=" + cat_id, "_self");
 
@@ -48,9 +48,22 @@ function showAllCategories() {
 function GetCategoryItems(categoryId) {
     // setDatabaseName('dbCat', ['users', 'items', 'categories', 'events']);
     // setCurrObjectStoreName('items');
-    // startDB(function () {
+    // startDB(function() {
     //     getAllItemsByCategory();
     // });
+    getAllItemsByCategory();
 
-    return "<br/>this wil be an item for the categoryID: " + categoryId;
-}
+    function getAllItemsByCategory() {
+        selectAll(function(results) {
+            var len = results.length;
+            var html = '',
+                i;
+            for (i = 0; i < len; i++) {
+                var itemCat_id = results[i].id;
+                itemCat_id = itemCategory == cat_id;
+            }
+        });
+
+        return "<br/>this wil be an item for the categoryID: " + categoryId;
+    };
+};
