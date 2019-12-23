@@ -20,9 +20,8 @@ function showAllCategories() {
 
             html = html + '<h5>' + results[i].catDesc + '</h5>';
 
-            //alert(img_id);
             html = html + '<a href="#" class="actionDelete">Delete</a><br>';
-            //html = html + '<a href="#" class="actionUpdate">Update</a>';
+            html = html + '<a href="#" class="actionUpdate">Update</a>';
             html = html + '</div>';
         }
 
@@ -35,6 +34,13 @@ function showAllCategories() {
                 alert("Item " + cat_id + " was deleted successfully");
                 location.reload();
             })
+            return false;
+        });
+
+        $('.actionUpdate').click(function() {
+            var cat_id = parseInt($(this).parent().attr('id'));
+            window.open("../Update/Update.html?itemID=" + cat_id, "_self");
+
             return false;
         });
     });
