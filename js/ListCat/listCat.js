@@ -61,10 +61,10 @@ function FormatCategoriesAndItemsAsHtml() {
                 html += "   <label>" + listOfItems[j].itemDesc + "</label>";
                 html += "   <label>&pound;" + listOfItems[j].itemPrice + "</label>";
                 html += "   <label>CategoryId:" + listOfItems[j].itemCategory + "</label>";
+                //html += '<a href="#" class="actionItemDelete">Delete</a><br/>';
+                //html += '<a href="#" class="actionItemUpdate">Update</a>';
+                html += '</div>';
             }
-            //html += '<a href="#" class="actionItemDelete">Delete</a><br/>';
-            //html += '<a href="#" class="actionItemUpdate">Update</a>';
-            html += '</div>';
         }
         html += '</div>';
     }
