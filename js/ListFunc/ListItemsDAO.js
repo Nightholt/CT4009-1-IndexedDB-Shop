@@ -1,7 +1,10 @@
 function showAllItems() {
     selectAll(function (results) {
         var len = results.length;
-        var html = '', i;
+
+        var html = '',
+            i;
+
         for (i = 0; i < len; i++) {
             var item_id = results[i].id;
             html += '<div id="' + item_id + '">';
@@ -104,7 +107,7 @@ function showAllItemsForCategory(categoryId) {
         $('.actionUpdate').click(function() {
             //$("#UpdateFunc").toggle();
             var itemID = parseInt($(this).parent().attr('id'));
-            window.open("../Update/Update.html?itemID="+itemID,"_self");
+            window.open("../Update/Update.html?itemID=" + itemID, "_self");
             return false;
         });
     });

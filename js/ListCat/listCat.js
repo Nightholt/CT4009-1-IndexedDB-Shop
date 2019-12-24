@@ -1,97 +1,72 @@
+//global vars to hold the categories and items so that the html can be built once they have been retrieved from the db
+var listOfItems = [];
+var listOfCategories = [];
+
 setDatabaseName('dbCat', ['users', 'items', 'categories', 'events']);
 setCurrObjectStoreName('categories');
-startDB(function () {
-    showAllCategories();
+startDB(function () { // async func
+    getAllCategories(FormatCategoriesAndItemsAsHtml);
 });
 
-function showAllCategories() {
+
+function getAllCategories(callBack) {
     selectAll(function (results) {
         var len = results.length;
-        var html = '',
-            i;
+        var i;
         for (i = 0; i < len; i++) {
-            var cat_id = results[i].id;
-            html += '<div id="' + cat_id + '">';
-            html += '<h3>' + results[i].name + '</h3>';
-
-            html += '<h5>' + results[i].catDesc + '</h5>';
-
-            html += '<a href="#" class="actionDelete">Delete</a><br>';
-            html += '<a href="#" class="actionUpdate">Update</a>';
-
-            // add here code to go and get all the items for this category cat_id
-            html += GetCategoryItems(cat_id, CallBackUpdatePage);
-
-            html += '</div>';
+            listOfCategories[i] = results[i];
         }
+        //console.log("showAllCategories listOfCategories.length:" + listOfCategories.length);
+        setDatabaseName('dbCat', ['users', 'items', 'categories', 'events']);
+        setCurrObjectStoreName('items');
+        // need to get al the items before building the html
+        startDB(getAllItems(callBack)); // async func
+    });
+}
 
-        $('#divCatList').html(html);
-
-        $('.actionDelete').click(function () {
-            var cat_id = parseInt($(this).parent().attr('id'));
-
-            deleteOne(cat_id, function () {
-                alert("Category " + cat_id + " was deleted successfully");
-                location.reload();
-            })
-            return false;
-        });
-
-        $('.actionUpdate').click(function () {
-            var cat_id = parseInt($(this).parent().attr('id'));
-            window.open("../Update/Update.html?cat_id=" + cat_id, "_self");
-
-            return false;
-        });
+function getAllItems(callBack) {
+    selectAll(function (results) {
+        var len = results.length;
+        var i;
+        for (i = 0; i < len; i++) {
+            listOfItems[i] = results[i];
+        }
+        console.log("getAllItems listOfItems.length:" + listOfItems.length);
+        callBack();// now build the html at the end of the call stack :-)
     });
 }
 
 
-
-function GetCategoryItems(itemCategory, callback) {
-
-    // $.indexeddb("dbCat")
-    //     .objectStore("categories")
-    //     .openCursor()
-    //     .each(function () {
-    //         //Got Artist
-    //         //Enumerate for Albums
-
-    //         $.indexeddb("dbCat")
-    //             .objectStore("items")
-    //             .openCursor()
-    //             .each(function () {
-    //                 //Check for matching artist.Id
-    //                 //if this albums's artist matches artist
-    //                 //then do something
-    //             });
-    //     });
-    const items = await db.transaction(storeName).objectStore(storeName).getAll()
-    
-    setDatabaseName('dbCat', ['users', 'items', 'categories', 'events']);
-    setCurrObjectStoreName('items');
-    startDB(function () {
-        // showAllItemsForCategory(categoryId);
-        // return $('#hiddenCategoryItemList').val();
-        // data = {
-        //     'itemName': itemName,
-        //     'itemDesc': itemDesc,
-        //     'itemPrice': itemPrice,
-        //     'itemCategory': itemCategory
-        // };
-        selectOne(itemCategory, function (result) {
-
-            var data = result;
-            //console.log("GetCategoryItems data.itemName:" + data.itemName);
-            //$("#categoryDiv").html("category: " + data.name);
-            //return callback("<p>ITEM:" + data.itemName +"</p>");
-            return "<p>ITEM:" + data.itemName + "</p>";
-        });
-
-    }, "");
-}
-
-function CallBackUpdatePage(html) {
-    console.log("CallBackUpdatePage html:" + html);
-    return html;
+function FormatCategoriesAndItemsAsHtml() {
+    var len = listOfCategories.length;
+    //categories
+    var html = "";
+    for (i = 0; i < len; i++) {
+        var categoryId = listOfCategories[i].id;
+        html += '<div id="' + categoryId + '">';
+        html += '<h1>' + listOfCategories[i].name + '</h3>';
+        html += '<h5>' + listOfCategories[i].catDesc + '</h5>';
+        //html += '<a href="#" class="actionDelete">Delete</a><br/>';
+        //html += '<a href="#" class="actionUpdate">Update</a>';
+        // build html
+        var j = 0;
+        var lenItems = listOfItems.length;
+        for (j = 0; j < lenItems; j++) {
+            // iterate over items array 
+            var itemCategoryId = listOfItems[j].itemCategory;
+            //console.log("FormatCategoriesAndItems categoryId: " + categoryId + ",itemCategoryId: " + itemCategoryId);
+            if (parseInt(categoryId) === parseInt(itemCategoryId)) {
+                html += "<div class='indent'>";
+                html += "   <h3>" + listOfItems[j].itemName + "</h3>";
+                html += "   <label>" + listOfItems[j].itemDesc + "</label>";
+                html += "   <label>&pound;" + listOfItems[j].itemPrice + "</label>";
+                html += "   <label>CategoryId:" + listOfItems[j].itemCategory + "</label>";
+            }
+            //html += '<a href="#" class="actionItemDelete">Delete</a><br/>';
+            //html += '<a href="#" class="actionItemUpdate">Update</a>';
+            html += '</div>';
+        }
+        html += '</div>';
+    }
+    $("#divCatList").html(html);
 }
