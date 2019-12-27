@@ -30,7 +30,8 @@
             height: 300px;
             min-width: 500px;
         }
-        .indent{
+
+        .indent {
             margin-left: 40px;
         }
     </style>
@@ -43,9 +44,10 @@
     <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
         <!--makes navbar dark and controls spacing of items-->
         <a class="navbar-brand" href="../home/home.html">Logo</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
+            aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
         <!--defines type of navbar-->
         <div class="collapse navbar-collapse" id="navbarNavDropdown">
             <ul class="navbar-nav">
@@ -98,7 +100,8 @@
         </div>
         <div class="form-group">
             <label for="key">Password:</label>
-            <input type="password" class="form-control" id="key" placeholder="Enter password" name="key" encrypt="bcrypt" salt="abc..." rounds="4" required>
+            <input type="password" class="form-control" id="key" placeholder="Enter password" name="key"
+                encrypt="bcrypt" salt="abc..." rounds="4" required>
             <!--defines type of input, id, placeholder and requires user to make input-->
         </div>
         <button type="submit" id="btnSubmitLogin" class="btn btn-primary">Submit</button>
@@ -106,21 +109,143 @@
         </form>
     </div>
 
-    <div class="title"><h1>Categories</h1></div>
-    <div id="divCatList" class="container">        
+    <div class="title">
+        <h1>Categories</h1>
     </div>
-   
+    <div id="divCatList" class="container">
+    </div>
+
+    <div id="divCompare" class="title">
+        <h1>Compare</h1>
+    </div>
+    <div id="divCompareList" class="container">
+        <div id="compareDiv1"></div>
+        <div id="compareDiv2"></div>
+    </div>
+
     <!-- <script src="../js/lib/indexeddb.js"></script> -->
     <script src="../js/ListFunc/ListItems.js"></script>
     <script src="../js/ListFunc/ListItemsDAO.js"></script>
     <script src="../js/ListCat/listCat.js"></script>
     <script src="../js/AddCompare/addCompare.js"></script>
-    
+
 
     <!--defines footer-->
     <div id="footer">
         <footer>This is the footer</footer>
     </div>
+
+    <script>
+
+        $(document).ready(function () {
+            var maxItemsToCompare = 2;
+            var countItemsBeingCompared = 0;
+            var itemsToCompare = [];
+
+            $(document).on('change', '.cellChkbox', function (event) {
+
+                console.log("check boix function was fired");
+                var chkBoxId = this.Id;
+                var idArray = chkBoxId.split("_");
+                var itemId = idArray[1];
+
+                AddItemToCompare(itemId);
+
+            });
+
+            function AddItemToCompare(itemId) {
+
+                countItemsBeingCompared++;
+                // for each loop through the list of items 
+                var lenItems = listOfItems.length;
+                var j = 0;
+                for (j = 0; j < lenItems; j++) {
+                    var masteritemCategoryId = listOfItems[j].itemCategoryId;
+
+                    // if item id matches the list and count of compares < 2 add to compare div
+                    if (countItemsBeingCompared >= maxItemsToCompare) {
+                        alert("only 2 items can be compared at a time");
+                    }
+                    else {
+                        if (masteritemCategoryId !== itemId) {
+                            continue;
+                        }
+                        // go compare:
+
+                        // go get the div html of the item id 
+                        var itemDivhtml = $("#cellItem_" + itemId).html();
+                        if (itemsToCompare.length > 0) {
+                            itemsToCompare[itemsToCompare.length - 1] = itemId;
+                        }
+                        else {
+                            itemsToCompare[0] = itemId;
+                        }
+                        var number = 1;
+                        // stuff it into the div to be compared
+
+                        $("#compareDiv" + number).append(itemDivhtml);//you may have to add a class to allow side by side divs
+
+                    }
+                }
+            }
+
+            function RemoveItemToCompare(item) {
+        
+                // add if guard to check that there are items to remove if (itemsToCompare.length > 0){
+                itemsToCompare[position] = "";
+            }
+
+        });
+
+
+    </script>
 </body>
 
 </html>
+
+<!-- 
+    
+    ------------------------------------------------------
+
+user flow:
+
+user views list of items
+user: 
+1. add item: click on check box/button to add item to compare
+2. view comparison: click compare button to jump to comparison page section
+3. remove item: click on button in comparison section for item to rmeove
+
+javascript: 
+function 1
+function 2
+function 3
+
+
+
+    tell nat abbout for each loops 
+https://stackoverflow.com/questions/9329446/for-each-over-an-array-in-javascript
+var a = ["a", "b", "c"];
+a.forEach(function(entry) {
+    console.log(entry);
+});
+
+or use ordinary for loop
+
+
+talk about split
+
+                
+cellItem_2_4_5_6
+zero based arrays: index: 
+0           1   2   3   4 ( index or position in the array)
+cellItem    2   4   5   6 (array item at position)
+                split: 
+                split on " a character" 
+var xArray = stringVar.split("_");
+var 4thItem = xArray[3];=> outputs: 5
+var 2stItem = xArray[0];=> outputs: "cellItem"
+var 3rdItem = xArray[2];=> outputs: 2
+
+
+
+-->
