@@ -61,8 +61,10 @@ function FormatCategoriesAndItemsAsHtml() {
                 html += "   <h3>" + listOfItems[j].itemName + "</h3><br/>";
                 html += "   <img id=" + img_id + "' height='100' width='100'/><br/>";
                 html += "   <label>" + listOfItems[j].itemDesc + "</label><br/>";
-                html += "   <label>&pound;" + listOfItems[j].itemPrice + "</label><br/>";
+                html += "   <label><b>&pound;" + listOfItems[j].itemPrice + "</b></label><br/>";
                 html += "   <label>CategoryId:" + listOfItems[j].itemCategory + "</label><br/>";
+                html += "   <form id='formAddCompare'><input type='submit' name='compare' value='add to Compare'> Add to compare</form>"
+                html += "   <form id='formAddwatch'><input type='checkbox' name='watch' value='watch'> Add to watchlist</form></br>"
                
                 //html += '<a href="#" class="actionItemDelete">Delete</a><br/>';
                 //html += '<a href="#" class="actionItemUpdate">Update</a>';
