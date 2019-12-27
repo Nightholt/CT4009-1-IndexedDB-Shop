@@ -6,13 +6,13 @@ const events = [
     // eventLng : 'eventLng'
 ];
 
-const items = [
+const items = [{
     // itemName: "laptop",
     // itemDesc: "computing hardware",
     // itemPrice: "£500",
     // //itemImage: "<img src='../images/laptop.jpeg'></img>"
     // category: "laptops"
-];
+}];
 
 const users = [{
         username: "public@test.com",
@@ -223,13 +223,13 @@ function initDB() {
         objStoreUsers.createIndex("idxUsername", "username", { unique: true })
 
         let objStoreCategories = db.createObjectStore("categories", { autoIncrement: true });
-        //objStoreCategories.createIndex("idxCategories", "name", { unique: true })
+        objStoreCategories.createIndex("idxCategories", "name", { unique: true })
 
         let objStoreItems = db.createObjectStore("items", { autoIncrement: true });
-        //objStoreItems.createIndex("idxItems", "name", { unique: true })
+        objStoreItems.createIndex("idxItems", "itemName", { unique: true })
 
         let objStoreEvents = db.createObjectStore("events", { autoIncrement: true });
-        //objStoreEvents.createIndex("idxEvents", "name", { unique: true })
+        objStoreEvents.createIndex("idxEvents", "eventDate", { unique: true })
 
         // Because the "names" object store has the key generator, the key for the name value is generated automatically.
 

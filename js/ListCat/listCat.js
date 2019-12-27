@@ -44,8 +44,8 @@ function FormatCategoriesAndItemsAsHtml() {
     for (i = 0; i < len; i++) {
         var categoryId = listOfCategories[i].id;
         html += '<div id="' + categoryId + '">';
-        html += '<h1>' + listOfCategories[i].name + '</h3>';
-        html += '<h5>' + listOfCategories[i].catDesc + '</h5>';
+        html += '<h1>' + listOfCategories[i].name + '</h1>';
+        html += '<h6>' + listOfCategories[i].catDesc + '</h6>';
         //html += '<a href="#" class="actionDelete">Delete</a><br/>';
         //html += '<a href="#" class="actionUpdate">Update</a>';
         // build html
@@ -54,13 +54,16 @@ function FormatCategoriesAndItemsAsHtml() {
         for (j = 0; j < lenItems; j++) {
             // iterate over items array 
             var itemCategoryId = listOfItems[j].itemCategory;
+            var img_id = "image-" + itemCategoryId;
             //console.log("FormatCategoriesAndItems categoryId: " + categoryId + ",itemCategoryId: " + itemCategoryId);
             if (parseInt(categoryId) === parseInt(itemCategoryId)) {
                 html += "<div class='indent'>";
-                html += "   <h3>" + listOfItems[j].itemName + "</h3>";
-                html += "   <label>" + listOfItems[j].itemDesc + "</label>";
-                html += "   <label>&pound;" + listOfItems[j].itemPrice + "</label>";
-                html += "   <label>CategoryId:" + listOfItems[j].itemCategory + "</label>";
+                html += "   <h3>" + listOfItems[j].itemName + "</h3><br/>";
+                html += "   <img id=" + img_id + "' height='100' width='100'/><br/>";
+                html += "   <label>" + listOfItems[j].itemDesc + "</label><br/>";
+                html += "   <label>&pound;" + listOfItems[j].itemPrice + "</label><br/>";
+                html += "   <label>CategoryId:" + listOfItems[j].itemCategory + "</label><br/>";
+               
                 //html += '<a href="#" class="actionItemDelete">Delete</a><br/>';
                 //html += '<a href="#" class="actionItemUpdate">Update</a>';
                 html += '</div>';
