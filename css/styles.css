@@ -116,3 +116,9 @@ a:hover {
     border: 3px solid;
     border-color: rgb(0, 0, 0);
 }
+
+.leftCell {
+    clear: both;
+    max-width: 200px;
+    display: inline;
+}

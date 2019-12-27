@@ -57,7 +57,7 @@ function FormatCategoriesAndItemsAsHtml() {
             var img_id = "image-" + itemCategoryId;
             //console.log("FormatCategoriesAndItems categoryId: " + categoryId + ",itemCategoryId: " + itemCategoryId);
             if (parseInt(categoryId) === parseInt(itemCategoryId)) {
-                html += "<div class='indent'>";
+                html += "<div class='leftCell'>";
                 html += "   <h3>" + listOfItems[j].itemName + "</h3><br/>";
                 html += "   <img id=" + img_id + "' height='100' width='100'/><br/>";
                 html += "   <label>" + listOfItems[j].itemDesc + "</label><br/>";
