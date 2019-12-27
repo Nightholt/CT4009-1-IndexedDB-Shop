@@ -106,77 +106,11 @@
         </form>
     </div>
 
-    <!-- <button class="accordion">Category 1</button>
-  <div class="panel" id="acc">
-    <p>Cat 1</p>
-  </div>
-  <button class="accordion">Category 2</button>
-  <div class="panel" id="acc2">
-    <p>Cat 2</p>
-  </div>
-   -->
-    <!-- <input type="hidden" id="categoryHiddenField" value="categoryName" />
-
-    <div id="categoryInformation">
-
-    </div>
-
-    <div id="itemList">
-
-    </div> -->
-
-    <!-- <div id="divItemList" class="container">
-        <h2> Item List </h2>
-    </div> -->
-    <h2> Category List </h2>
+    <div class="title"><h1>Categories</h1></div>
     <div id="divCatList" class="container">        
     </div>
-
-   <!-- <input type="hidden" id="hiddenCategoryItemList" value=""/> -->
-
-    <!-- <div class="container" style="display:none;" >
-    <div class="row">
-      <div class="col-sm">
-        <ul class="list-unstyled" id="categoryPageCategoriesList">     
-        </ul>
-      </div>
-      <div class="col-sm categoryDisplayText" id="categoryDiv">
-      </div>
-    </div>
-  </div> -->
-
-
-
-    <!-- <script>
-
-    $(document).ready(function () {
-      /*
-        load this page with the category 
-      
-        go to the db
-        query the db with the $("#categoryHiddenField").val() value of categoryHiddenField
-        eg "Phones"
-        db returns all the info for that category
-      and displays it in, say, $("#categoryInformation").val("info from the db")
-        
-        data = SelectOne($("#categoryHiddenField").val())
-        $("#categoryInformation").val(data);
-      
-      */
-      var categoryName = $("#categoryHiddenField").val();// eg Phones
-      var data =startDB(SelectOne(categoryName)); // this does not work atm - nat to fix !!!
-      var image = "<img src="" + data.image + "" />"";
-      var desc = data.desc;
-
-      $("#categoryInformation").val(data.name + "<br/>" + image + "<br/>" + desc);
-
-      // get items db query for "Phones"
-      // selectList(...) div into itemList
-    });
-
-
-  </script> -->
-  <script src="../js/lib/indexeddb.js"></script>
+   
+    <!-- <script src="../js/lib/indexeddb.js"></script> -->
     <script src="../js/ListFunc/ListItems.js"></script>
     <script src="../js/ListFunc/ListItemsDAO.js"></script>
     <script src="../js/ListCat/listCat.js"></script>

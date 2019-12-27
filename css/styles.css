@@ -6,6 +6,21 @@
     z-index: 1000;
 }
 
+#contact {
+    margin: 10px;
+    padding: 10px;
+    font-size: 18px;
+}
+
+.title {
+    margin: 20px;
+}
+
+#homeTitle {
+    float: center;
+    text-align: center;
+}
+
 #search.div_block_right {
     size: 200px;
     float: right;
