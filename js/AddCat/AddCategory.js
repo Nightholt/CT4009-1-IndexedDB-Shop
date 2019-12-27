@@ -2,13 +2,13 @@ $('#formAddCat').submit(function(event) {
     event.preventDefault();
     console.log("formAddCat submit:");
 
-    setDatabaseName('dbCat', ['users', 'items', 'categories']);
+    setDatabaseName('dbCat', ['users', 'items', 'categories', 'events']);
     setCurrObjectStoreName('categories');
 
 
     startDB(function() {
         saveCatData();
-        alert("Item has been saved successfully!");
+        alert("Category has been saved successfully");
     });
 });
 
@@ -21,8 +21,6 @@ function saveCatData() {
     var data = {
         'name': name,
         'catDesc': catDesc
-            // 'id':""
-
     };
 
     //create new category in db

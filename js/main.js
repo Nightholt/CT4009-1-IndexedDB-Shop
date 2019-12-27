@@ -6,13 +6,13 @@ const events = [
     // eventLng : 'eventLng'
 ];
 
-const items = [{
+const items = [
     // itemName: "laptop",
     // itemDesc: "computing hardware",
     // itemPrice: "£500",
     // //itemImage: "<img src='../images/laptop.jpeg'></img>"
     // category: "laptops"
-}];
+];
 
 const users = [{
         username: "public@test.com",
@@ -64,6 +64,14 @@ const categories = [
     //     {
     //         name: "Consoles",
     //         parentcategory: "7"
+
+];
+
+const compare = [
+
+];
+
+const watchlist = [
 
 ];
 
@@ -141,7 +149,7 @@ $(document).ready(function() {
         // logic 
         // go off to the db with a category id eg 1
         // query the db
-        // return the categiry object 
+        // return the category object 
         // push the info of the category object name, image and desc into the div
 
         DisplayCategoryInDiv($(this).id);
@@ -186,7 +194,7 @@ function init() {
 
 function initDB() {
 
-    setDatabaseName('dbCat', ['users', 'items', 'categories', 'events']);
+    setDatabaseName('dbCat', ['users', 'items', 'categories', 'events', 'compare', 'watchlist']);
     // Let us open our database
     // checks user's browser for indexeddb support
     window.indexedDB = window.indexedDB || window.mozIndexedDB || window.webkitIndexedDB || window.msIndexedDB;
@@ -218,18 +226,25 @@ function initDB() {
     request.onupgradeneeded = function(event) {
         db = event.target.result;
         console.log("onupgradeneeded: " + db);
-
+        
+        //each table is defined here, ready for values to be added
         let objStoreUsers = db.createObjectStore("users", { autoIncrement: true });
         objStoreUsers.createIndex("idxUsername", "username", { unique: true })
 
         let objStoreCategories = db.createObjectStore("categories", { autoIncrement: true });
-        objStoreCategories.createIndex("idxCategories", "name", { unique: true })
+        //objStoreCategories.createIndex("idxCategories", "name", { unique: true })
 
         let objStoreItems = db.createObjectStore("items", { autoIncrement: true });
-        objStoreItems.createIndex("idxItems", "itemName", { unique: true })
+        //objStoreItems.createIndex("idxItems", "itemName", { unique: true })
 
         let objStoreEvents = db.createObjectStore("events", { autoIncrement: true });
         objStoreEvents.createIndex("idxEvents", "eventDate", { unique: true })
+
+        let objStoreCompare = db.createObjectStore("compare", { autoIncrement: true });
+        //objStoreCompare.createIndex("idxComparison", "itemName", { unique: true })
+
+        let objStoreWatchlist = db.createObjectStore("watchlist", { autoIncrement: true });
+        //objStorewatchlist.createIndex("idxWatch", "itemName", { unique: true })
 
         // Because the "names" object store has the key generator, the key for the name value is generated automatically.
 
@@ -249,6 +264,13 @@ function initDB() {
             objStoreEvents.add(event);
         });
 
+        compare.forEach(function(event) {
+            objStorecompare.add(event);
+        });
+
+        watchlist.forEach(function(event) {
+            objStoreWatchlist.add(event);
+        });
 
         db.onerror = function(event) {
             // Generic error handler for all errors targeted at this database's
@@ -395,25 +417,6 @@ function DisplayDepartments(id, name, parentcategory) {
     $("#AdminDrop").append(option);
 }
 
-// function DisplayItems(id, name, desc, price, title, image, category) {
-
-//     var html = "<div class='classname'>"
-//     html += "Name" + name;
-//     html += "</div>";
-
-//     html += "<div>";
-//     html += "Price" + price;
-//     html += "</div>";
-
-//     html += "<img src='images/" + image + "'>";
-//     html += "(image)" + name;
-//     html += "</img>";
-
-//     //$("#items").append("<br/> ID:" + id + ", Name: " + name + ", desc: " + desc + ", price:" + price + ",title" + title + ",image:" + image + ", category" + category);
-//     $("#items").append(html);
-
-// }
-
 function IsAdminLoggedIn() {
     //check cookie and return t/f
     let adminCookie = true;
@@ -438,36 +441,6 @@ for (i = 0; i < acc.length; i++) {
         }
     });
 }
-
-
-/* todo:
-DONE list items
-DONE list users
-DONE list categories
-DONE list subcategories - in the categories list
-login
-DONE display login form
-DONE create login function - check entered details against the database
-DONE display error if the password if wrong
- and create admin cookie if logged in
- OR record logged-in in the database - better?
-
-only show add new buttons for admin login
-create CRUD page:
-DONE add new item
-DONE add new category
-DONE delete old items?
-DONE update existing item ?
-DONE Fix list items functions
-
-
-New Category makes new page
-add new subcategory
-Display items in category pages
-Add items to a watchlist
-delete old categories
-login cookies
-*/
 
 function SelectUser() {
 
@@ -540,3 +513,32 @@ function ValidateSelectedUser(formUsername, formKey, match) {
     }
 
 }
+
+/* todo:
+DONE list items
+DONE list users
+DONE list categories
+DONE list subcategories - in the categories list
+login
+DONE display login form
+DONE create login function - check entered details against the database
+DONE display error if the password if wrong
+ and create admin cookie if logged in
+ OR record logged-in in the database - better?
+
+only show add new buttons for admin login
+create CRUD page:
+DONE add new item
+DONE add new category
+DONE delete old items?
+DONE update existing item ?
+DONE Fix list items functions
+
+
+New Category makes new page
+add new subcategory
+Display items in category pages
+Add items to a watchlist
+delete old categories
+login cookies
+*/

@@ -2,21 +2,21 @@
 <html lang="en-gb">
 
 <head>
-    <meta name="description" content="catalogue and shopping website">
     <!--helps search engines define what the purpose of the site is-->
+    <meta name="description" content="catalogue and shopping website">
     <meta name="keywords" content="shopping, search, catalogue">
-    <meta charset="utf-8">
     <!--defines correct character set-->
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="utf-8">
     <!--ensures site will render correctly on all platforms, primarily mobile-->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <!--links to the Boostrap CDN-->
     <link rel="stylesheet" href="../css/styles.css" />
+    <!--links to the Boostrap CDN-->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-    <!-- <script src="../js/data.js"></script> -->
+    <!-- google map api and jquery links -->
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB6QCGqF325m9QTLFst-qHTbE1lUaePKHY"></script>
     <script src="https://code.jquery.com/jquery-3.2.1.js"
         integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE=" crossorigin="anonymous">
@@ -34,31 +34,17 @@
 
 <body>
 
-    <!--
-  references 
-  https://stackoverflow.com/questions/42635126/bootstrap-4-navbar-with-2-rows
-
-    https://getbootstrap.com/docs/4.0/components/navbar/
-
-    https://www.raymondcamden.com/2012/08/10/Searching-for-array-elements-in-IndexedDB
-
-    equality: == vs ===  see :  https://codeburst.io/javascript-double-equals-vs-triple-equals-61d4ce5a121a?gi=a7a512abed2a
-    cookies and js see : https://www.w3schools.com/js/js_cookies.asp
-
-
-    -->
-    <!--creates search bar form-->
-
+    <!--makes navbar dark and controls spacing of items-->
     <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
-        <!--makes navbar dark and controls spacing of items-->
         <a class="navbar-brand" href="../home/HomePage.html">Logo</a>
+        <!--defines type of navbar-->
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
             aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNavDropdown">
             <ul class="navbar-nav">
-                <!--defines type of navbar-->
+                <!--creates search bar form-->
                 <li class="nav-item active">
                     <div id="search" class="">
                         <form class="form-inline" action="../Search/results.html">
@@ -96,30 +82,29 @@
         </div>
     </nav>
 
-
-    </div>
     <!--creates login form-->
     <div id="login" class="container">
         <form action="../Login/login.html" id="loginForm">
             <div class="form-group">
                 <label for="email">Email:</label>
-                <input type="email" class="form-control" id="email" placeholder="Enter email" name="email" required>
                 <!--defines type of input, id, placeholder and requires user to make input-->
+                <input type="email" class="form-control" id="email" placeholder="Enter email" name="email" required>
             </div>
             <div class="form-group">
                 <label for="key">Password:</label>
-                <input type="password" class="form-control" id="key" placeholder="Enter password" name="key" required>
                 <!--defines type of input, id, placeholder and requires user to make input-->
+                <input type="password" class="form-control" id="key" placeholder="Enter password" name="key" required>
             </div>
-            <button type="submit" id="btnSubmitLogin" class="btn btn-primary">Submit</button>
             <!--submit button-->
+            <button type="submit" id="btnSubmitLogin" class="btn btn-primary">Submit</button>
         </form>
     </div>
 
-    <h2>Admin Functions</h2>
+    <div class="title">
+        <h1>Admin Controls</h1>
+    </div>
 
-
-
+    <!-- all functions are in separate accordion divs to look cleaner -->
     <button class="accordion">Add New Item</button>
     <div class="panel">
         <div id='FuncAdd' class="container">
@@ -138,7 +123,7 @@
                     <input type="int" id="intPrice" name="Price" required="required"> <br /> <br />
                 </div>
                 <div>
-                    <!--creates dropdown-->
+                    <!--creates dropdown fed with categories from db-->
                     <select id="AdminDrop"></select>
                     <br />&nbsp;
                     <br />
@@ -153,12 +138,9 @@
 
             </form>
         </div>
-
-        <div id="divItemList" class="container">
-            <h2> Item List </h2>
-        </div>
     </div>
 
+    <!-- form for add category func, links to AddCategory.js -->
     <button class="accordion">Add New Category</button>
     <div class="panel">
         <div id="AddCatFunc" class="container">
@@ -169,59 +151,47 @@
                 <label> Category Description: </label> <br />
                 <input type="text" id="txtCatDesc" name="catDesc" required="required"> <br /> <br />
                 <input type="submit" id="btnAddCat" value="Add">
+            </form>
+        </div>
+        <div id="divCatList" class="container">
+        </div>
+    </div>
 
+    <!-- input for new location, links to InsertEvent/DAO.js 
+    uses google map api-->
+    <button class="accordion">Add New Location</button>
+    <div class="panel">
+        <div id="addLoc" class="container">
+            <h2>Add New Location</h2>
+            <form id="formInsertEvent">
+                Store Name:
+                <input type="text" id="txtEvent"> </br>
+                </br>
+                Select new location in Map:</br></br>
+                <!--placeholder for Google Map, javascript loads map-->
+                <div id="mapInput" style="width: 650px; height: 450px;"></div>
+                </br>
+                <input type="submit" id="btnSubmit">
+
+                <script src="../Map/InsertEvent.js"></script>
+                <script src="../Map/InsertEventDAO.js"></script>
             </form>
         </div>
     </div>
 
-    <button class="accordion">Add New Location</button>
+    <button class="accordion">Update & Items</button>
     <div class="panel">
-        <h1>Create Events</h1>
-        <form id="formInsertEvent">
-            Event Date:
-            <input type="date" id="dateEvent"> </br>
-            </br>
-            Select event location in Map:</br>
-
-            <!--placeholder for Google Map, javascript loads map-->
-            <div id="mapInput" style="width: 650px; height: 300px;"></div>
-            </br>
-
-            <input type="submit" id="btnSubmit">
-
-            <script src="../Map/InsertEvent.js"></script>
-            <script src="../Map/InsertEventDAO.js"></script>
-
-        </form>
+        <div id="divItemList" class="container">
+            <h2> Item List </h2>
+        </div>
     </div>
-
-
-
-    <!-- <div id="UpdateFunc" class="container">
-    <h2> Update Function </h2>
-    <form id="formUpdateItem">
-      <h3 id="itemID">Item ID</h3>
-      <label> Item Name: </label> <br/>
-      <input type="text" id="txtItemName" name="itemName" required="required"> <br/> <br/>
-
-      <label for="file">Choose item image to upload</label>
-      <input type="file" id="fileItemImage" name="file"> <br/> <br/>
-
-      <img src="" alt="Image preview..." id="bannerImg"> <br/> <br/>
-
-      <input type="submit" id="btnUpdateItem" value="Update">
-
-    </form>
-  </div> -->
 
     <script src="../js/AddFunc/AddItem.js"></script>
     <script src="../js/AddFunc/AddItemDAO.js"></script>
     <script src="../js/ListFunc/ListItems.js"></script>
     <script src="../js/ListFunc/ListItemsDAO.js"></script>
     <script src="../js/AddCat/AddCategory.js"></script>
-    <!-- <script src="../FileSaver.js-master/dist/FileSaver.min.js"></script>
-    <script src="../FileSaver.js-master/dist/FileSaver.min.js.map"></script> -->
-    <!-- <script src="../js/crudFunctions.js"></script> -->
+    <!-- <script src="../js/ListCat/listCat.js"></script> -->
 
     <!--defines footer-->
     <div id="footer">
@@ -250,9 +220,6 @@
             console.log("selcat was clicked value:" + value)
             //return false;
         });
-
-
-
     </script>
 
 </body>

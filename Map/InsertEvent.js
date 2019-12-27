@@ -40,6 +40,6 @@ $('#formInsertEvent').submit(function() {
     startDB(function() {
         insertEvent(marker);
 
-        alert("Event has added successfully");
+        alert("New location successfully added");
     })
 })
