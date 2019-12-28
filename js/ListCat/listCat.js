@@ -54,13 +54,13 @@ function FormatCategoriesAndItemsAsHtml() {
         for (j = 0; j < lenItems; j++) {
             // iterate over items array 
             var itemCategoryId = listOfItems[j].itemCategory;
-            var img_id = "image-" + listOfItems[j].itemImage;
+            //var img_id = "image-" + listOfItems[j].itemImage;
             //console.log("FormatCategoriesAndItems categoryId: " + categoryId + ",itemCategoryId: " + itemCategoryId);
             if (parseInt(categoryId) === parseInt(itemCategoryId)) {
                 html += "<div class='indent'>";
                 html += "   <div class='leftCell' id='cellItem_" + itemCategoryId + "'>";
                 html += "       <h3>" + listOfItems[j].itemName + "</h3><br/>";
-                html += "       <img id=" + listOfItems[j].itemImage + "' height='100' width='100'/><br/>";
+                html += "       <img src='../images/" + listOfItems[j].itemImage.name + "' height='100' width='100'/><br/>";
                 html += "       <label>" + listOfItems[j].itemDesc + "</label><br/>";
                 html += "       <label><b>&pound;" + listOfItems[j].itemPrice + "</b></label><br/>";
                 html += "       <label>CategoryId:" + listOfItems[j].itemCategory + "</label><br/>";
