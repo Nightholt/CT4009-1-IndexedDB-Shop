@@ -19,7 +19,7 @@ function getAllCategories(callBack) {
         //console.log("showAllCategories listOfCategories.length:" + listOfCategories.length);
         setDatabaseName('dbCat', ['users', 'items', 'categories', 'events']);
         setCurrObjectStoreName('items');
-        // need to get al the items before building the html
+        // need to get all the items before building the html
         startDB(getAllItems(callBack)); // async func
     });
 }
@@ -54,20 +54,22 @@ function FormatCategoriesAndItemsAsHtml() {
         for (j = 0; j < lenItems; j++) {
             // iterate over items array 
             var itemCategoryId = listOfItems[j].itemCategory;
-            var img_id = "image-" + itemCategoryId;
+            var img_id = "image-" + listOfItems[j].itemImage;
             //console.log("FormatCategoriesAndItems categoryId: " + categoryId + ",itemCategoryId: " + itemCategoryId);
             if (parseInt(categoryId) === parseInt(itemCategoryId)) {
-                html += "<div class='leftCell' id='cellItem_" + itemCategoryId + "'>";
-                html += "   <h3>" + listOfItems[j].itemName + "</h3><br/>";
-                html += "   <img id=" + img_id + "' height='100' width='100'/><br/>";
-                html += "   <label>" + listOfItems[j].itemDesc + "</label><br/>";
-                html += "   <label><b>&pound;" + listOfItems[j].itemPrice + "</b></label><br/>";
-                html += "   <label>CategoryId:" + listOfItems[j].itemCategory + "</label><br/>";
-                html += "   <input class='cellChkbox' type='checkbox' name='compare' value='add to Compare' id='compareCheckBox_" + itemCategoryId + "'/><label for='compareCheckBox_" + itemCategoryId + "'> Add to compare</label>"
-                html += "   <form id='formAddwatch'><input type='checkbox' name='watch' value='watch'/> Add to watchlist</form><br/>"
+                html += "<div class='indent'>";
+                html += "   <div class='leftCell' id='cellItem_" + itemCategoryId + "'>";
+                html += "       <h3>" + listOfItems[j].itemName + "</h3><br/>";
+                html += "       <img id=" + listOfItems[j].itemImage + "' height='100' width='100'/><br/>";
+                html += "       <label>" + listOfItems[j].itemDesc + "</label><br/>";
+                html += "       <label><b>&pound;" + listOfItems[j].itemPrice + "</b></label><br/>";
+                html += "       <label>CategoryId:" + listOfItems[j].itemCategory + "</label><br/>";
+                html += "       <input class='cellChkbox' type='checkbox' name='compare' value='add to Compare' id='compareCheckBox_" + itemCategoryId + "'/><label for='compareCheckBox_" + itemCategoryId + "'> Add to compare</label>"
+                html += "       <form id='formAddwatch'><input type='checkbox' name='watch' value='watch'/> Add to watchlist</form><br/>"
 
                 //html += '<a href="#" class="actionItemDelete">Delete</a><br/>';
                 //html += '<a href="#" class="actionItemUpdate">Update</a>';
+                html += '   </div>';
                 html += '</div>';
             }
         }

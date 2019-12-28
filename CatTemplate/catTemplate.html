@@ -21,7 +21,7 @@
     <script src="../js/main.js"></script>
 
 
-    <title>Catalogue Website</title>
+    <title>Catalogue Website Categories</title>
     <!--title of site-->
 
     <style>
@@ -119,21 +119,19 @@
         <h1>Compare</h1>
     </div>
     <div id="divCompareList" class="container">
-        <div id="compareDiv1"></div>
-        <div id="compareDiv2"></div>
+        <div id="compareDiv1">
+            <button type="submit" id="remove" value="Remove">
+        </div>
+        <div id="compareDiv2">
+            <button type="submit" id="remove" value="Remove">
+        </div>
     </div>
 
     <!-- <script src="../js/lib/indexeddb.js"></script> -->
     <script src="../js/ListFunc/ListItems.js"></script>
     <script src="../js/ListFunc/ListItemsDAO.js"></script>
     <script src="../js/ListCat/listCat.js"></script>
-    <script src="../js/AddCompare/addCompare.js"></script>
-
-
-    <!--defines footer-->
-    <div id="footer">
-        <footer>This is the footer</footer>
-    </div>
+    <!-- <script src="../js/AddCompare/addCompare.js"></script> -->
 
     <script>
 
@@ -150,6 +148,7 @@
                     alert("please select an item to compare");
                     return false;
                 }
+                
                 var idArray = chkBoxId.split("_");
                 var itemId = idArray[1];
 
@@ -164,14 +163,15 @@
                 var lenItems = listOfItems.length;
                 var j = 0;
                 for (j = 0; j < lenItems; j++) {
-                    var masteritemCategoryId = listOfItems[j].itemCategoryId;
+                    var masterItemCategoryId = listOfItems[j].itemCategoryId;
 
                     // if item id matches the list and count of compares < 2 add to compare div
                     if (countItemsBeingCompared >= maxItemsToCompare) {
+                        event.preventDefault();
                         alert("only 2 items can be compared at a time");
                     }
                     else {
-                        if (masteritemCategoryId !== itemId) {
+                        if (masterItemCategoryId !== itemId) {
                             continue;
                         }
                         // go compare:
@@ -192,9 +192,11 @@
                     }
                 }
             }
+            $("#remove").click(RemoveItemToCompare);
 
             function RemoveItemToCompare(item) {
-            
+                countItemsBeingCompared - 1;
+                console.log("countItemsBeingCompared = " + countItemsBeingCompared)
                 // add if guard to check that there are items to remove if (itemsToCompare.length > 0){
                 itemsToCompare[position] = "";
             }
