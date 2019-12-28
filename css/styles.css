@@ -118,7 +118,34 @@ a:hover {
 }
 
 .leftCell {
-    clear: both;
+    /* float: left; */
+    /* clear: both; */
     max-width: 200px;
+    /* display: inline; */
+}
+
+#compareDiv1 {
+    height: 350px;
+    width: 350px;
+    float: left;
+    border: 3px solid;
+    border-right: 1.5px solid;
+    margin-top: 10px;
+    margin-left: 10px;
+    margin-bottom: 30px;
+}
+
+#compareDiv2 {
+    height: 350px;
+    width: 350px;
+    float: left;
+    border: 3px solid;
+    border-left: 1.5px solid;
+    margin-top: 10px;
+    margin-right: 10px;
+    margin-bottom: 30px;
+}
+
+#footer {
     display: inline;
 }
