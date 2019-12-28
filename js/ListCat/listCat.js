@@ -64,12 +64,13 @@ function FormatCategoriesAndItemsAsHtml() {
                 html += "       <label>" + listOfItems[j].itemDesc + "</label><br/>";
                 html += "       <label><b>&pound;" + listOfItems[j].itemPrice + "</b></label><br/>";
                 html += "       <label>CategoryId:" + listOfItems[j].itemCategory + "</label><br/>";
-                html += "       <input class='cellChkbox' type='checkbox' name='compare' value='add to Compare' id='compareCheckBox_" + itemCategoryId + "'/><label for='compareCheckBox_" + itemCategoryId + "'> Add to compare</label>"
-                html += "       <form id='formAddwatch'><input type='checkbox' name='watch' value='watch'/> Add to watchlist</form><br/>"
+                html += '   </div>';
+                html += "   <input class='cellChkbox' type='checkbox' name='compare' value='add to Compare' id='compareCheckBox_" + itemCategoryId + "'/><label for='compareCheckBox_" + itemCategoryId + "'> Add to compare</label>"
+                html += "   <form id='formAddwatch'><input type='checkbox' name='watch' value='watch'/> Add to watchlist</form><br/>"
 
                 //html += '<a href="#" class="actionItemDelete">Delete</a><br/>';
                 //html += '<a href="#" class="actionItemUpdate">Update</a>';
-                html += '   </div>';
+
                 html += '</div>';
             }
         }
