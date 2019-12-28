@@ -57,15 +57,16 @@ function FormatCategoriesAndItemsAsHtml() {
             //var img_id = "image-" + listOfItems[j].itemImage;
             //console.log("FormatCategoriesAndItems categoryId: " + categoryId + ",itemCategoryId: " + itemCategoryId);
             if (parseInt(categoryId) === parseInt(itemCategoryId)) {
+                var itemId = listOfItems[j].id;
                 html += "<div class='indent'>";
-                html += "   <div class='leftCell' id='cellItem_" + itemCategoryId + "'>";
+                html += "   <div class='leftCell' id='cellItem_" + itemId + "'>";
                 html += "       <h3>" + listOfItems[j].itemName + "</h3><br/>";
                 html += "       <img src='../images/" + listOfItems[j].itemImage.name + "' height='100' width='100'/><br/>";
                 html += "       <label>" + listOfItems[j].itemDesc + "</label><br/>";
                 html += "       <label><b>&pound;" + listOfItems[j].itemPrice + "</b></label><br/>";
                 html += "       <label>CategoryId:" + listOfItems[j].itemCategory + "</label><br/>";
                 html += '   </div>';
-                html += "   <input class='cellChkbox' type='checkbox' name='compare' value='add to Compare' id='compareCheckBox_" + itemCategoryId + "'/><label for='compareCheckBox_" + itemCategoryId + "'> Add to compare</label>"
+                html += "   <input class='cellChkbox' type='checkbox' name='compare' value='add to Compare' id='compareCheckBox_" + itemId + "'/><label for='compareCheckBox_" + itemId + "'> Add to compare</label>"
                 html += "   <form id='formAddwatch'><input type='checkbox' name='watch' value='watch'/> Add to watchlist</form><br/>"
 
                 //html += '<a href="#" class="actionItemDelete">Delete</a><br/>';
