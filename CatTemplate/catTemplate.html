@@ -118,13 +118,7 @@
     <div id="divCompare" class="title">
         <h1>Compare</h1>
     </div>
-    <div id="divCompareList" class="container">
-        <div id="compareDiv1">
-            <button type="submit" id="remove" value="Remove">
-        </div>
-        <div id="compareDiv2">
-            <button type="submit" id="remove" value="Remove">
-        </div>
+    <div id="divCompareList" class="container">      
     </div>
 
     <!-- <script src="../js/lib/indexeddb.js"></script> -->
@@ -134,82 +128,89 @@
     <!-- <script src="../js/AddCompare/addCompare.js"></script> -->
 
     <script>
+        var compareItemsList = [];
+        var maxItemsToCompare = 2;
 
         $(document).ready(function () {
-            var maxItemsToCompare = 2;
-            var countItemsBeingCompared = 0;
-            var itemsToCompare = [];
 
-            $(document).on("change", "input[class='cellChkbox']", function (){
-            
-                console.log("check box function was fired");
+            initialisePage();
+
+            $(document).on("change", "input[class='cellChkbox']", function () {
 
                 if ($(this).is(":checked")) {
                     var chkBoxId = this.id;
-                    console.log("chkBoxId: " + chkBoxId);
-
                     if (chkBoxId === undefined && chkBoxId === "") {
                         alert("please select an item to compare");
                         return false;
                     }
                     var idArray = chkBoxId.split("_");
                     var itemId = idArray[1];
-                    var itemDivhtml = $("#cellItem_" + itemId).html();
+
                     AddItemToCompare(itemId);
                 } else {
-                    // remove from div ??
+                    HideCompareDiv();
                 }
-                
             });
-
 
             function AddItemToCompare(itemId) {
 
-                countItemsBeingCompared++;
-                // for each loop through the list of items 
-                var lenItems = listOfItems.length;
-                var j = 0;
-                for (j = 0; j < lenItems; j++) {
-                    var masterItemCategoryId = listOfItems[j].itemCategoryId;
+                var numberOfExistingItems = compareItemsList.length;
+                // check if wanted item exists
+                if (numberOfExistingItems > 0 && (compareItemsList.includes("itemId"))) {
+                    alert("This item is already being compared.");
+                    return;
+                }
 
-                    // if item id matches the list and count of compares < 2 add to compare div
-                    if (countItemsBeingCompared >= maxItemsToCompare) {
-                        event.preventDefault();
-                        alert("only 2 items can be compared at a time");
-                    }
-                    else {
-                        if (masterItemCategoryId !== itemId) {
-                            continue;
-                        }
-                        // go compare:
+                if (numberOfExistingItems < maxItemsToCompare) {
+                    // add the item
+                    compareItemsList.push(itemId);
+                    var itemDivhtml = "<div class='leftCellCompare' id='cellCompare_" + itemId + "'>" + $("#cellItem_" + itemId).html();
+                    itemDivhtml += "<br />";
+                    itemDivhtml += "<input type='button' id='removeCompareItem_" + itemId + "' class='removeCompareItem' value='Remove' /> "
+                    itemDivhtml += "</div>";
 
-                        // go get the div html of the item id 
-                        var itemDivhtml = $("#cellItem_" + itemId).html();
-                        if (itemsToCompare.length > 0) {
-                            itemsToCompare[itemsToCompare.length - 1] = itemId;
-                        }
-                        else {
-                            itemsToCompare[0] = itemId;
-                        }
-                        var number = 1;
-                        // stuff it into the div to be compared
-
-                        $("#compareDiv" + number).append(itemDivhtml);//you may have to add a class to allow side by side divs
-
-                    }
+                    $("#divCompareList").append(itemDivhtml);
+                    ShowCompareDiv();
+                }
+                else {
+                    alert("Only " + maxItemsToCompare + " items can be compared.");
                 }
             }
-            $("#remove").click(RemoveItemToCompare);
 
-            function RemoveItemToCompare(item) {
-                countItemsBeingCompared - 1;
-                console.log("countItemsBeingCompared = " + countItemsBeingCompared)
-                // add if guard to check that there are items to remove if (itemsToCompare.length > 0){
-                itemsToCompare[position] = "";
+            $(document).on("click", "input[class='removeCompareItem']", function () {                                
+                var classId = this.id;
+                console.log("removeCompareItem click classId: " +classId);
+                var idArray = classId.split("_");
+                var itemId = idArray[1];
+
+                RemoveItemToCompare(itemId);
+            });
+
+            function RemoveItemToCompare(itemId) {
+                compareItemsList.pop(itemId);
+                
+                $("#compareCheckBox_"+ itemId).prop("checked", false);
+
+                $("#cellCompare_" + itemId).remove();
+
+                HideCompareDiv();
             }
 
         });
+        function initialisePage() {
+            HideCompareDiv();
+        }
 
+        function HideCompareDiv() {
+            if (compareItemsList.length === 0) {
+                $("#divCompare").hide();
+            }
+        }
+
+        function ShowCompareDiv() {
+            $("#divCompare").show();
+            $("#divCompareList").show();
+        }
 
     </script>
 </body>
