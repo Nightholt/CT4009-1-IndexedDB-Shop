@@ -52,7 +52,7 @@ function FormatCategoriesAndItemsAsHtml() {
         var j = 0;
         var lenItems = listOfItems.length;
         for (j = 0; j < lenItems; j++) {
-            // iterate over items array 
+            // iterate over items array
             var itemCategoryId = listOfItems[j].itemCategory;
             //var img_id = "image-" + listOfItems[j].itemImage;
             //console.log("FormatCategoriesAndItems categoryId: " + categoryId + ",itemCategoryId: " + itemCategoryId);
