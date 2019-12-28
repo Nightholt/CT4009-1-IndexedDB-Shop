@@ -144,8 +144,12 @@
 
             $(document).on('change', '.cellChkbox', function (event) {
 
-                console.log("check boix function was fired");
+                console.log("check box function was fired");
                 var chkBoxId = this.Id;
+                if (chkBoxId === undefined && chkBoxId === ""){
+                    alert("please select an item to compare");
+                    return false;
+                }
                 var idArray = chkBoxId.split("_");
                 var itemId = idArray[1];
 
@@ -190,7 +194,7 @@
             }
 
             function RemoveItemToCompare(item) {
-            #
+            
                 // add if guard to check that there are items to remove if (itemsToCompare.length > 0){
                 itemsToCompare[position] = "";
             }
