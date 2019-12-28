@@ -140,21 +140,28 @@
             var countItemsBeingCompared = 0;
             var itemsToCompare = [];
 
-            $(document).on('change', '.cellChkbox', function (event) {
-
+            $(document).on("change", "input[class='cellChkbox']", function (){
+            
                 console.log("check box function was fired");
-                var chkBoxId = this.Id;
-                if (chkBoxId === undefined && chkBoxId === ""){
-                    alert("please select an item to compare");
-                    return false;
+
+                if ($(this).is(":checked")) {
+                    var chkBoxId = this.id;
+                    console.log("chkBoxId: " + chkBoxId);
+
+                    if (chkBoxId === undefined && chkBoxId === "") {
+                        alert("please select an item to compare");
+                        return false;
+                    }
+                    var idArray = chkBoxId.split("_");
+                    var itemId = idArray[1];
+                    var itemDivhtml = $("#cellItem_" + itemId).html();
+                    AddItemToCompare(itemId);
+                } else {
+                    // remove from div ??
                 }
                 
-                var idArray = chkBoxId.split("_");
-                var itemId = idArray[1];
-
-                AddItemToCompare(itemId);
-
             });
+
 
             function AddItemToCompare(itemId) {
 
@@ -251,6 +258,18 @@ var xArray = stringVar.split("_");
 var 4thItem = xArray[3];=> outputs: 5
 var 2stItem = xArray[0];=> outputs: "cellItem"
 var 3rdItem = xArray[2];=> outputs: 2
+
+
+
+var person1 = new Person{ Name = "harry", Dob = new Date(year, month, day)};
+
+person.Name = "Paula";
+
+person.SetPartner(person);
+
+console.writeLine($"{person.name},spouse:{person.Spouse}");
+
+>$ bob,spouse:Paula
 
 
 
