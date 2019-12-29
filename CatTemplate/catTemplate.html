@@ -118,7 +118,7 @@
     <div id="divCompare" class="title">
         <h1>Compare</h1>
     </div>
-    <div id="divCompareList" class="container">      
+    <div id="divCompareList" class="container">
     </div>
 
     <!-- <script src="../js/lib/indexeddb.js"></script> -->
@@ -177,9 +177,9 @@
                 }
             }
 
-            $(document).on("click", "input[class='removeCompareItem']", function () {                                
+            $(document).on("click", "input[class='removeCompareItem']", function () {
                 var classId = this.id;
-                console.log("removeCompareItem click classId: " +classId);
+                console.log("removeCompareItem click classId: " + classId);
                 var idArray = classId.split("_");
                 var itemId = idArray[1];
 
@@ -188,8 +188,8 @@
 
             function RemoveItemToCompare(itemId) {
                 compareItemsList.pop(itemId);
-                
-                $("#compareCheckBox_"+ itemId).prop("checked", false);
+
+                $("#compareCheckBox_" + itemId).prop("checked", false);
 
                 $("#cellCompare_" + itemId).remove();
 
@@ -198,6 +198,14 @@
 
         });
         function initialisePage() {
+            console.log("initialisePage called")
+            setDatabaseName('dbCat', ['users', 'items', 'categories', 'events']);
+            setCurrObjectStoreName('categories');
+            startDB(function () { // async func
+                
+                getAllCategories(FormatCategoriesAndItemsAsHtml);
+                
+            });
             HideCompareDiv();
         }
 

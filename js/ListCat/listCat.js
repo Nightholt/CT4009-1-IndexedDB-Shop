@@ -2,12 +2,8 @@
 var listOfItems = [];
 var listOfCategories = [];
 
-setDatabaseName('dbCat', ['users', 'items', 'categories', 'events']);
-setCurrObjectStoreName('categories');
-startDB(function () { // async func
-    getAllCategories(FormatCategoriesAndItemsAsHtml);
-});
-
+var catIndex = objStore.index('categories'); 
+var getKeyRequest = catIndex.getKey(selectAll(function(results){}));
 
 function getAllCategories(callBack) {
     selectAll(function (results) {
@@ -42,19 +38,20 @@ function FormatCategoriesAndItemsAsHtml() {
     //categories
     var html = "";
     for (i = 0; i < len; i++) {
-        var categoryId = listOfCategories[i].id;
+        var categoryId = listOfCategories[i].key;
         html += '<div id="' + categoryId + '">';
         html += '<h1>' + listOfCategories[i].name + '</h1>';
         html += '<h6>' + listOfCategories[i].catDesc + '</h6>';
         // build html
         var j = 0;
         var lenItems = listOfItems.length;
+        
         for (j = 0; j < lenItems; j++) {
             // iterate over items array
             var itemCategoryId = listOfItems[j].itemCategory;
-            //var img_id = "image-" + listOfItems[j].itemImage;
-            //console.log("FormatCategoriesAndItems categoryId: " + categoryId + ",itemCategoryId: " + itemCategoryId);
+            console.log("FormatCategoriesAndItems categoryId: " + categoryId + ",itemCategoryId: " + itemCategoryId);
             if (parseInt(categoryId) === parseInt(itemCategoryId)) {
+                //console.log(lenItems +" called")
                 var itemId = listOfItems[j].id;
                 html += "<div class='indent'>";
                 html += "   <div class='leftCell' id='cellItem_" + itemId + "'>";

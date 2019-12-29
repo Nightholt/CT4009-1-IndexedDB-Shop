@@ -228,10 +228,10 @@ function initDB() {
         objStoreUsers.createIndex("idxUsername", "username", { unique: true })
 
         let objStoreCategories = db.createObjectStore("categories", { autoIncrement: true });
-        //objStoreCategories.createIndex("idxCategories", "name", { unique: true })
+        objStoreCategories.createIndex("idxCategories", "name", { unique: true })
 
         let objStoreItems = db.createObjectStore("items", { autoIncrement: true });
-        //objStoreItems.createIndex("idxItems", "itemName", { unique: true })
+        objStoreItems.createIndex("idxItems", "itemName", { unique: true })
 
         let objStoreEvents = db.createObjectStore("events", { autoIncrement: true });
         objStoreEvents.createIndex("idxEvents", "eventDate", { unique: true })
@@ -257,12 +257,8 @@ function initDB() {
             objStoreEvents.add(event);
         });
 
-        compare.forEach(function(event) {
-            objStorecompare.add(event);
-        });
-
-        watchlist.forEach(function(event) {
-            objStoreWatchlist.add(event);
+        watchlist.forEach(function(item) {
+            objStoreWatchlist.add(item);
         });
 
         db.onerror = function(event) {

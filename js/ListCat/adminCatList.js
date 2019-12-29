@@ -2,6 +2,8 @@ setDatabaseName('dbCat', ['users', 'items', 'categories', 'events']);
 setCurrObjectStoreName('categories');
 startDB(function() {
     showAllCategories();
+    //getAllCategories(FormatCategoriesAndItemsAsHtml);
+
 });
 
 function showAllCategories() {
@@ -25,6 +27,11 @@ function showAllCategories() {
 
         $('.deleteAction').click(function () {
             var catID = parseInt($(this).parent().attr('id'));
+            if (!confirm("Are you sure you want to delete this Category with its items?")){
+                return;
+            };
+
+            
 
             deleteOne(catID, function () {
                 alert("Category " + catID + " was deleted successfully");
