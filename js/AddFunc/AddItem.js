@@ -19,7 +19,12 @@ function previewFile(){
 }
 
 $('#formSellItem').submit(function(event)  {
+    console.log("AdminDrop: " + $('#AdminDrop').val());
     event.preventDefault();
+    if ($('#AdminDrop').val() === '0'){
+        alert("Please Select a Category");
+        return false;
+    }
 
     setDatabaseName('dbCat', ['users', 'items', 'categories', 'events', 'watchlist']);
     setCurrObjectStoreName('items');
@@ -27,5 +32,6 @@ $('#formSellItem').submit(function(event)  {
     startDB(function () {
         saveItemData();
         alert("Item has been saved successfully");
+        return true;
     });
 });
