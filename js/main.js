@@ -67,10 +67,6 @@ const categories = [
 
 ];
 
-const compare = [
-
-];
-
 const watchlist = [
 
 ];
@@ -187,14 +183,14 @@ function init() {
     // // if cookie has not expired then : 
     // $("#btnLogin").val("Log In");
 
+    //hides login form on page load
     $("#login").hide();
 
 }
 
-
 function initDB() {
 
-    setDatabaseName('dbCat', ['users', 'items', 'categories', 'events', 'compare', 'watchlist']);
+    setDatabaseName('dbCat', ['users', 'items', 'categories', 'events', 'watchlist']);
     // Let us open our database
     // checks user's browser for indexeddb support
     window.indexedDB = window.indexedDB || window.mozIndexedDB || window.webkitIndexedDB || window.msIndexedDB;
@@ -240,9 +236,6 @@ function initDB() {
         let objStoreEvents = db.createObjectStore("events", { autoIncrement: true });
         objStoreEvents.createIndex("idxEvents", "eventDate", { unique: true })
 
-        let objStoreCompare = db.createObjectStore("compare", { autoIncrement: true });
-        //objStoreCompare.createIndex("idxComparison", "itemName", { unique: true })
-
         let objStoreWatchlist = db.createObjectStore("watchlist", { autoIncrement: true });
         //objStorewatchlist.createIndex("idxWatch", "itemName", { unique: true })
 
@@ -273,8 +266,7 @@ function initDB() {
         });
 
         db.onerror = function(event) {
-            // Generic error handler for all errors targeted at this database's
-            // requests!
+            // Generic error handler for all errors targeted at this database's requests
             console.error("Database error: " + event.target.error + ", " + event.target.errorCode);
         };
 

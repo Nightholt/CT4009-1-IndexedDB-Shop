@@ -22,7 +22,7 @@ $('#formAddCompare').submit(function(event) {
     event.preventDefault();
     console.log("formAddCompare submit:");
 
-    setDatabaseName('dbCat', ['users', 'items', 'categories', 'events', 'compare', 'watchlist']);
+    setDatabaseName('dbCat', ['users', 'items', 'categories', 'events', 'watchlist']);
     setCurrObjectStoreName('compare');
 
 

@@ -124,7 +124,7 @@
                 </div>
                 <div>
                     <!--creates dropdown fed with categories from db-->
-                    <select id="AdminDrop"></select>
+                    <select id="AdminDrop" required="required"></select>
                     <br />&nbsp;
                     <br />
                 </div>
@@ -146,10 +146,10 @@
         <div id="AddCatFunc" class="container">
             <h2> Add Category </h2>
             <form id="formAddCat">
-                <label> Category Name: </label> <br />
-                <input type="text" id="txtCatName" name="catName" required="required"> <br /> <br />
-                <label> Category Description: </label> <br />
-                <input type="text" id="txtCatDesc" name="catDesc" required="required"> <br /> <br />
+                <label> Category Name: </label> <br/>
+                <input type="text" id="txtCatName" name="catName" required="required"> <br/> <br/>
+                <label> Category Description: </label> <br/>
+                <input type="text" id="txtCatDesc" name="catDesc" required="required"> <br/> <br/>
                 <input type="submit" id="btnAddCat" value="Add">
             </form>
         </div>
@@ -186,12 +186,21 @@
         </div>
     </div>
 
+    <button class="accordion">Update & Delete Categories</button>
+    <div class="panel">
+        <div id="divCategoryList" class="container">
+            <h2>Category List</h2>
+        </div>
+    </div>
+
     <script src="../js/AddFunc/AddItem.js"></script>
     <script src="../js/AddFunc/AddItemDAO.js"></script>
     <script src="../js/ListFunc/ListItems.js"></script>
     <script src="../js/ListFunc/ListItemsDAO.js"></script>
     <script src="../js/AddCat/AddCategory.js"></script>
-    <!-- <script src="../js/ListCat/listCat.js"></script> -->
+    <script src="../js/ListCat/adminCatList.js"></script>
+    <script src="../js/accordian.js"></script>
+
 
     <!--defines footer-->
     <div id="footer">
@@ -199,21 +208,6 @@
     </div>
 
     <script>
-        var acc = document.getElementsByClassName("accordion");
-        var i;
-
-        for (i = 0; i < acc.length; i++) {
-            acc[i].addEventListener("click", function () {
-                this.classList.toggle("active");
-                var panel = this.nextElementSibling;
-                if (panel.style.display === "block") {
-                    panel.style.display = "none";
-                } else {
-                    panel.style.display = "block";
-                }
-            });
-        }
-
         $("#AdminDrop").change(function (event) {
             //event.preventDefault();
             var value = $(this).val();

@@ -201,12 +201,14 @@
             HideCompareDiv();
         }
 
+        //hide compare div when empty
         function HideCompareDiv() {
             if (compareItemsList.length === 0) {
                 $("#divCompare").hide();
             }
         }
 
+        //show compare div when values added
         function ShowCompareDiv() {
             $("#divCompare").show();
             $("#divCompareList").show();

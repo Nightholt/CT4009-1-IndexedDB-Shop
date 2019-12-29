@@ -46,8 +46,6 @@ function FormatCategoriesAndItemsAsHtml() {
         html += '<div id="' + categoryId + '">';
         html += '<h1>' + listOfCategories[i].name + '</h1>';
         html += '<h6>' + listOfCategories[i].catDesc + '</h6>';
-        //html += '<a href="#" class="actionDelete">Delete</a><br/>';
-        //html += '<a href="#" class="actionUpdate">Update</a>';
         // build html
         var j = 0;
         var lenItems = listOfItems.length;
@@ -68,10 +66,6 @@ function FormatCategoriesAndItemsAsHtml() {
                 html += '   </div>';
                 html += "   <input class='cellChkbox' type='checkbox' name='compare' value='add to Compare' id='compareCheckBox_" + itemId + "'/><label for='compareCheckBox_" + itemId + "'> Add to compare</label>"
                 html += "   <form id='formAddwatch'><input type='checkbox' name='watch' value='watch'/> Add to watchlist</form><br/>"
-
-                //html += '<a href="#" class="actionItemDelete">Delete</a><br/>';
-                //html += '<a href="#" class="actionItemUpdate">Update</a>';
-
                 html += '</div>';
             }
         }

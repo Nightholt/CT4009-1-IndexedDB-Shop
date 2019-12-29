@@ -21,7 +21,7 @@ function previewFile(){
 $('#formSellItem').submit(function(event)  {
     event.preventDefault();
 
-    setDatabaseName('dbCat', ['users', 'items', 'categories', 'events', 'compare', 'watchlist']);
+    setDatabaseName('dbCat', ['users', 'items', 'categories', 'events', 'watchlist']);
     setCurrObjectStoreName('items');
     
     startDB(function () {

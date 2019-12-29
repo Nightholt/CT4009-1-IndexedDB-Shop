@@ -144,7 +144,7 @@
 		transaction.onerror = indexedDBError;
 
 		transaction.oncomplete = function(event) {
-			console.log('Data with ' + lastID + ' was deleted successfully');
+			console.log('Data with ' + lastID + ' was updated successfully');
 			if(successCallback) {
 				successCallback(lastID);
 			}
