@@ -1,8 +1,8 @@
 function updateCatData(data) {
-    var name = $('#txtCatName').val();
+    var catName = $('#txtCatName').val();
     var catDesc = $('#txtCatDesc').val();
 
-    data.catName = name;
+    data.name = catName;
     data.catDesc = catDesc;
     
     updateOne(data, function(lastID) {
