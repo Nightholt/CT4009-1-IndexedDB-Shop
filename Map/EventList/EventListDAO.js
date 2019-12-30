@@ -21,22 +21,6 @@ function showAllEvents() {
             infowindow.setContent(eventName);
             infowindow.open(myMap, marker);
 
-            marker.click(function () {
-                var markerID = parseInt($(this).parent().attr('id'));
-    
-                deleteOne(markerID, function () {
-                    alert("Location " + markerID + " was deleted successfully");
-                    location.reload();
-                })
-                return false;
-            });
-    
-            $('.actionUpdate').click(function () {
-                var markerID = parseInt($(this).parent().attr('id'));
-                window.open("../Update/Update.html?markerID=" + markerID, "_self");
-    
-                return false;
-            });
         }
     });
 }

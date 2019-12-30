@@ -22,8 +22,6 @@ function initialise() {
         draggable: true
     });
 
-
-    
 }
 
 //addDomListener triggered when html page loaded
@@ -39,7 +37,52 @@ $('#formInsertEvent').submit(function() {
     setCurrObjectStoreName('events');
     startDB(function() {
         insertEvent(marker);
-
         alert("New location successfully added");
+        location.reload();
     })
 })
+
+setDatabaseName('dbCat', ['users', 'items', 'categories', 'events']);
+setCurrObjectStoreName('events');
+startDB(function() {
+    showAllMarkers();
+});
+
+function showAllMarkers() {
+    selectAll(function (results) {
+        var len = results.length;
+
+        var html = '',
+            i;
+
+        for (i = 0; i < len; i++) {
+            var marker_id = results[i].id;
+            html += '<div id="' + marker_id + '">';
+            html += '<h3>' + results[i].eventName + '</h3>';
+            html += '<h5>' + results[i].eventLat + '</h5>';
+            html += '<h5>' + results[i].eventLng + '</h5>'
+            html += '<a href="#" class="mapActionDelete">Delete</a><br/>';
+            html += '<a href="#" class="mapActionUpdate">Update</a>';
+            html += '</div>';
+        }
+
+        $('#markerList').html(html);
+
+        $('.mapActionDelete').click(function () {
+            var markerID = parseInt($(this).parent().attr('id'));
+
+            deleteOne(markerID, function () {
+                alert("Store marker " + markerID + " was deleted successfully");
+                location.reload();
+            })
+            return false;
+        });
+
+        $('.mapActionUpdate').click(function () {
+            var markerID = parseInt($(this).parent().attr('id'));
+            window.open("../Update/updateMap.html?markerID=" + markerID, "_self");
+
+            return false;
+        });
+    });
+}
