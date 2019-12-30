@@ -21,9 +21,8 @@
     text-align: center;
 }
 
-#search.div_block_right {
-    size: 200px;
-    float: right;
+.nav-item.active{
+    background-color: transparent;
 }
 
 .carousel-inner img {
@@ -77,7 +76,7 @@ li .indent {
 }
 
 a:hover {
-    background-color: hotpink;
+    background-color: rgb(94, 94, 94);
 }
 
 .accordion {
@@ -126,13 +125,21 @@ a:hover {
     width: 350px;
     float: left;
     border: 3px solid;
-    border-right: 1.5px solid;    
     margin-top: 10px;
     margin-left: -2px;
     margin-bottom: 30px;
     padding: 10px;
 }
 
+.categoryDisplayText {
+    border: 1px solid silver;
+    height: 300px;
+    min-width: 500px;
+}
+
+.indent {
+    margin-left: 40px;
+}
 
 #footer {
     display: inline;

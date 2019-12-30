@@ -430,9 +430,19 @@ for (i = 0; i < acc.length; i++) {
     });
 }
 
+$('#btnSubmitLogin').submit(function(event)  {
+    setDatabaseName('dbCat', ['users', 'items', 'categories', 'events']);
+    setCurrObjectStoreName('users');
+    startDB(function() {
+        SelectUser()
+        console.log("SelectUser was fired")
+    });
+});
+
 function SelectUser() {
 
-    startDB("", DisplayError);
+    
+    // startDB("", DisplayError);
 
     // get form data
     let formUsername = $("#email").val();
@@ -450,9 +460,8 @@ function SelectUser() {
         objectStore, request;
 
     transaction.onerror = indexedDBError;
-    objectStore = transaction.objectStore(currObjectStoreName);
-    let index = objectStore.index("idxUsername");
-    let result = index.get(formUsername); // query the index using get
+    
+    let result = (formUsername); // query the index using get
 
 
     result.onerror = indexedDBError;

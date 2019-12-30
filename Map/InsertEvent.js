@@ -42,6 +42,7 @@ $('#formInsertEvent').submit(function() {
     })
 })
 
+//set db table to get data from for showAllMarkers func
 setDatabaseName('dbCat', ['users', 'items', 'categories', 'events']);
 setCurrObjectStoreName('events');
 startDB(function() {
@@ -54,20 +55,22 @@ function showAllMarkers() {
 
         var html = '',
             i;
-
+        
+        //new div is created for each item in the events table in loop
         for (i = 0; i < len; i++) {
             var marker_id = results[i].id;
             html += '<div id="' + marker_id + '">';
             html += '<h3>' + results[i].eventName + '</h3>';
             html += '<h5>' + results[i].eventLat + '</h5>';
             html += '<h5>' + results[i].eventLng + '</h5>'
-            html += '<a href="#" class="mapActionDelete">Delete</a><br/>';
-            html += '<a href="#" class="mapActionUpdate">Update</a>';
+            html += '<a href="#" class="mapActionDelete">Delete</a><br/>'; //delete function
+            html += '<a href="#" class="mapActionUpdate">Update</a>'; //update function
             html += '</div>';
         }
 
-        $('#markerList').html(html);
+        $('#markerList').html(html); //div that the newly created divs will go into
 
+        //function to delete entry in table
         $('.mapActionDelete').click(function () {
             var markerID = parseInt($(this).parent().attr('id'));
 
@@ -78,6 +81,7 @@ function showAllMarkers() {
             return false;
         });
 
+        //function to update entry
         $('.mapActionUpdate').click(function () {
             var markerID = parseInt($(this).parent().attr('id'));
             window.open("../Update/updateMap.html?markerID=" + markerID, "_self");

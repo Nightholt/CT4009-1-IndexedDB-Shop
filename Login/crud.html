@@ -13,14 +13,17 @@
     <link rel="stylesheet" href="../css/styles.css" />
     <!--links to the Boostrap CDN-->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <!-- jquery link -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <!-- bootstrap js link -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
     <!-- google map api and jquery links -->
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB6QCGqF325m9QTLFst-qHTbE1lUaePKHY"></script>
     <script src="https://code.jquery.com/jquery-3.2.1.js"
         integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE=" crossorigin="anonymous">
         </script>
+    <!-- indexeddb wrapper and main javascript file links -->
     <script src="../js/main.js"></script>
     <script src="../js/lib/indexeddb.js"></script>
 
@@ -30,11 +33,12 @@
 </head>
 
 <body>
-
-    <!--makes navbar dark and controls spacing of items-->
+    <!--defines type of navbar and makes navbar dark and controls spacing of items-->
     <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
-        <a class="navbar-brand" href="../home/HomePage.html">Logo</a>
-        <!--defines type of navbar-->
+        <!-- logo link to home page -->
+        <a class="navbar-brand" href="../home/HomePage.html">
+            <img src="../images/Misc/trolley.png" alt="Trolley Logo" width="50" height="50">
+        </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
             aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -43,7 +47,8 @@
             <ul class="navbar-nav">
                 <!--creates search bar form-->
                 <li class="nav-item active">
-                    <div id="search" class="">
+                    <div id="search">
+                        <!-- search form goes to search results page -->
                         <form class="form-inline" action="../Search/results.html">
                             <input class="form-control mr-sm-2" type="text" placeholder="Search">
                             <button class="btn btn-success" type="submit">Search</button>
@@ -51,10 +56,11 @@
                     </div>
                 </li>
                 <li class="nav-item">
+                    <!--link to home page-->
                     <a class="nav-link" href="../home/HomePage.html">Home</a>
                 </li>
                 <li class="nav-item dropdown">
-                    <!--creates dropdown updated from indexeddb-->
+                    <!--creates dropdown-->
                     <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">Categories</a>
                     <!--name and type of dropdown-->
                     <div id="dropdown" class="dropdown-menu"></div>
@@ -72,7 +78,6 @@
                     <a class="nav-link" href="../Contact/contact.html">Contact</a>
                 </li>
                 <li class="nav-item">
-                    <!--button for login popup-->
                     <a class="nav-link" id="loginToggle">Login</a>
                 </li>
             </ul>
@@ -81,19 +86,18 @@
 
     <!--creates login form-->
     <div id="login" class="container">
-        <form action="../Login/login.html" id="loginForm">
-            <div class="form-group">
-                <label for="email">Email:</label>
-                <!--defines type of input, id, placeholder and requires user to make input-->
-                <input type="email" class="form-control" id="email" placeholder="Enter email" name="email" required>
-            </div>
-            <div class="form-group">
-                <label for="key">Password:</label>
-                <!--defines type of input, id, placeholder and requires user to make input-->
-                <input type="password" class="form-control" id="key" placeholder="Enter password" name="key" required>
-            </div>
-            <!--submit button-->
-            <button type="submit" id="btnSubmitLogin" class="btn btn-primary">Submit</button>
+        <div class="form-group">
+            <label for="email">Email:</label>
+            <!--defines type of input, id, placeholder and requires user to make input-->
+            <input type="email" class="form-control" id="email" placeholder="Enter email" name="email" required>
+        </div>
+        <div class="form-group">
+            <label for="key">Password:</label>
+            <!--defines type of input, id, placeholder and requires user to make input-->
+            <input type="password" class="form-control" id="key" placeholder="Enter password" name="key" required>
+        </div>
+        <!--submit button-->
+        <button type="submit" id="btnSubmitLogin" class="btn btn-primary">Submit</button>
         </form>
     </div>
 
@@ -102,6 +106,7 @@
     <!-- all functions are in separate accordion divs to look cleaner -->
     <button class="accordion">Add New Item</button>
     <div class="panel">
+        <!-- Add item function -->
         <div id='FuncAdd' class="container">
             <h2> Add item </h2>
             <form id="formSellItem">
@@ -123,6 +128,7 @@
                     <br />&nbsp;
                     <br />
                 </div>
+                <!-- image upload -->
                 <div>
                     <label for="file">Choose item image to upload</label>
                     <input type="file" id="fileItemImage" name="file"> <br /> <br />
@@ -153,7 +159,7 @@
     </div>
 
     <!-- input for new location, links to InsertEvent/DAO.js 
-    uses google map api-->
+    uses google map api -->
     <button class="accordion">Add New Location</button>
     <div class="panel">
         <div id="addLoc" class="container">
@@ -172,12 +178,14 @@
                 <script src="../Map/InsertEventDAO.js"></script>
             </form>
         </div>
+        <!-- displays map marker list to delete/update -->
         <div id="markerList">
             <h2>Store Markers List</h2>
         </div>
     </div>
 
     <div class="title"><h2>Update And Delete Controls</h2></div>
+    <!-- displays item list to delete/update -->
     <button class="accordion">Update & Delete Items</button>
     <div class="panel">
         <div id="divItemList" class="container">
@@ -185,6 +193,7 @@
         </div>
     </div>
 
+    <!-- displays category list to delete/update -->
     <button class="accordion">Update & Delete Categories</button>
     <div class="panel">
         <div id="divCategoryList" class="container">
@@ -208,7 +217,7 @@
     <script src="../js/ListFunc/ListItems.js"></script>
     <script src="../js/ListFunc/ListItemsDAO.js"></script>
     <script src="../js/AddCat/AddCategory.js"></script>
-    <!-- <script src="../js/ListCat/adminCatList.js"></script> -->
+    <script src="../js/ListCat/adminCatList.js"></script>
     <script src="../js/ListCat/listCat.js"></script>
     <script src="../js/accordian.js"></script>
     

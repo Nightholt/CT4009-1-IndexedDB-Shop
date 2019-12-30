@@ -2,20 +2,22 @@
 <html lang="en-gb">
 
 <head>
-    <meta name="description" content="catalogue and shopping website">
     <!--helps search engines define what the purpose of the site is-->
+    <meta name="description" content="catalogue and shopping website">
     <meta name="keywords" content="shopping, search, catalogue">
-    <meta charset="utf-8">
     <!--defines correct character set-->
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="utf-8">
     <!--ensures site will render correctly on all platforms, primarily mobile-->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     
     <link rel="stylesheet" href="../css/styles.css" />
     <!--links to the Boostrap CDN-->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <!-- jquery link -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <!-- indexeddb wrapper and main javascript file links -->
     <script src="../js/main.js"></script>
     <script src="../js/lib/indexeddb.js"></script>
 
@@ -25,18 +27,20 @@
 </head>
 
 <body>
-    <!--creates search bar form-->
+    <!--defines type of navbar and makes navbar dark and controls spacing of items-->
     <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
-        <!--makes navbar dark and controls spacing of items-->
-        <a class="navbar-brand" href="../home/home.html">Logo</a>
+        <!-- logo link to home page -->
+        <a class="navbar-brand" href="../home/HomePage.html">
+            <img src="../images/Misc/trolley.png" alt="Trolley Logo" width="50" height="50">
+        </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
+            <span class="navbar-toggler-icon"></span>
+        </button>
         <div class="collapse navbar-collapse" id="navbarNavDropdown">
             <ul class="navbar-nav">
-                <!--defines type of navbar-->
+                <!--creates search bar form-->
                 <li class="nav-item active">
-                    <div id="search" class="">
+                    <div id="search">
                         <form class="form-inline" action="../Search/results.html">
                             <input class="form-control mr-sm-2" type="text" placeholder="Search">
                             <button class="btn btn-success" type="submit">Search</button>
@@ -44,7 +48,7 @@
                     </div>
                 </li>
                 <li class="nav-item">
-                    <!--link to home page (null and void on this page but better than an empty button)-->
+                    <!--link to home page-->
                     <a class="nav-link" href="../home/HomePage.html">Home</a>
                 </li>
                 <li class="nav-item dropdown">
@@ -105,13 +109,13 @@
             <div class="carousel-inner">
                 <div class="carousel-item active">
                     <!--location of specific image with description for accessibility purposes and sizes-->
-                    <img src="../images/mountain1.jpg" alt="Lake" width="550" height="250">
+                    <img src="../images/Misc/mountain1.jpg" alt="Lake" width="550" height="250">
                 </div>
                 <div class="carousel-item">
-                    <img src="../images/mountain2.jpg" alt="Canyon" width="550" height="250">
+                    <img src="../images/Misc/mountain2.jpg" alt="Canyon" width="550" height="250">
                 </div>
                 <div class="carousel-item">
-                    <img src="../images/mountain3.jpg" alt="Alps" width="550" height="250">
+                    <img src="../images/Misc/mountain3.jpg" alt="Alps" width="550" height="250">
                 </div>
             </div>
 

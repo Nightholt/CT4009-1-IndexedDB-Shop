@@ -2,58 +2,48 @@
 <html lang="en-gb">
 
 <head>
-    <meta name="description" content="catalogue and shopping website">
     <!--helps search engines define what the purpose of the site is-->
+    <meta name="description" content="catalogue and shopping website">
     <meta name="keywords" content="shopping, search, catalogue">
-    <meta charset="utf-8">
     <!--defines correct character set-->
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="utf-8">
     <!--ensures site will render correctly on all platforms, primarily mobile-->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <!--links to the Boostrap CDN-->
     <link rel="stylesheet" href="../css/styles.css" />
+    <!--links to the Boostrap CDN-->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <!-- jquery link -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <!-- bootstrap js link -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-
-    <script src="../js/lib/indexeddb.js"></script>
+    <!-- indexeddb wrapper and main javascript file links -->
     <script src="../js/main.js"></script>
+    <script src="../js/lib/indexeddb.js"></script>
 
-
-    <title>Catalogue Website Categories</title>
     <!--title of site-->
-
-    <style>
-        .categoryDisplayText {
-            border: 1px solid silver;
-            height: 300px;
-            min-width: 500px;
-        }
-
-        .indent {
-            margin-left: 40px;
-        }
-    </style>
+    <title>Catalogue Website Shop</title>
 
 </head>
 
 <body>
-
-
+    <!--defines type of navbar and makes navbar dark and controls spacing of items-->
     <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
-        <!--makes navbar dark and controls spacing of items-->
-        <a class="navbar-brand" href="../home/home.html">Logo</a>
+        <!-- logo link to home page -->
+        <a class="navbar-brand" href="../home/HomePage.html">
+            <img src="../images/Misc/trolley.png" alt="Trolley Logo" width="50" height="50">
+        </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
             aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
-        <!--defines type of navbar-->
         <div class="collapse navbar-collapse" id="navbarNavDropdown">
             <ul class="navbar-nav">
                 <!--creates search bar form-->
                 <li class="nav-item active">
-                    <div id="search" class="">
+                    <div id="search">
+                        <!-- search form goes to search results page -->
                         <form class="form-inline" action="../Search/results.html">
                             <input class="form-control mr-sm-2" type="text" placeholder="Search">
                             <button class="btn btn-success" type="submit">Search</button>
@@ -61,7 +51,7 @@
                     </div>
                 </li>
                 <li class="nav-item">
-                    <!--link to home page (null and void on this page but better than an empty button)-->
+                    <!--link to home page-->
                     <a class="nav-link" href="../home/HomePage.html">Home</a>
                 </li>
                 <li class="nav-item dropdown">
@@ -76,7 +66,7 @@
                 </li>
                 <li class="nav-item">
                     <!--link to store locator page-->
-                    <a class="nav-link" href="../Store Locator/stores.html">Store Locator</a>
+                    <a class="nav-link" href="../Map/EventList/EventList.html">Store Locator</a>
                 </li>
                 <li class="nav-item">
                     <!--link to contact page-->
@@ -89,28 +79,25 @@
         </div>
     </nav>
 
-    </div>
     <!--creates login form-->
     <div id="login" class="container">
-        <!--<form action="../Login/login.html" id="loginForm"> -->
         <div class="form-group">
             <label for="email">Email:</label>
-            <input type="email" class="form-control" id="email" placeholder="Enter email" name="email" required>
             <!--defines type of input, id, placeholder and requires user to make input-->
+            <input type="email" class="form-control" id="email" placeholder="Enter email" name="email" required>
         </div>
         <div class="form-group">
             <label for="key">Password:</label>
-            <input type="password" class="form-control" id="key" placeholder="Enter password" name="key"
-                encrypt="bcrypt" salt="abc..." rounds="4" required>
             <!--defines type of input, id, placeholder and requires user to make input-->
+            <input type="password" class="form-control" id="key" placeholder="Enter password" name="key" required>
         </div>
-        <button type="submit" id="btnSubmitLogin" class="btn btn-primary">Submit</button>
         <!--submit button-->
+        <button type="submit" id="btnSubmitLogin" class="btn btn-primary">Submit</button>
         </form>
     </div>
 
     <div class="title">
-        <h1>Categories</h1>
+        <h1>Shop</h1>
     </div>
     <div id="divCatList" class="container">
     </div>
@@ -121,14 +108,12 @@
     <div id="divCompareList" class="container">
     </div>
 
-    <!-- <script src="../js/lib/indexeddb.js"></script> -->
     <script src="../js/ListFunc/ListItems.js"></script>
     <script src="../js/ListFunc/ListItemsDAO.js"></script>
     <script src="../js/ListCat/listCat.js"></script>
-    <!-- <script src="../js/AddCompare/addCompare.js"></script> -->
-    <script src="../js/main.js"></script>
 
     <script>
+        //script to add max two items to compare list at bottom of page
         var compareItemsList = [];
         var maxItemsToCompare = 2;
 
@@ -138,6 +123,7 @@
 
             $(document).on("change", "input[class='cellChkbox']", function () {
 
+                //guard for if checkbox value is empty
                 if ($(this).is(":checked")) {
                     var chkBoxId = this.id;
                     if (chkBoxId === undefined && chkBoxId === "") {
@@ -149,7 +135,7 @@
 
                     AddItemToCompare(itemId);
                 } else {
-                    HideCompareDiv();
+                    HideCompareDiv(); //hide compare div when not in use
                 }
             });
 
@@ -163,21 +149,24 @@
                 }
 
                 if (numberOfExistingItems < maxItemsToCompare) {
-                    // add the item
+                    // add the item if items in compare are less than 2
                     compareItemsList.push(itemId);
+                    //creates div for items to go in side by side
                     var itemDivhtml = "<div class='leftCellCompare' id='cellCompare_" + itemId + "'>" + $("#cellItem_" + itemId).html();
                     itemDivhtml += "<br />";
+                    //option to remove item
                     itemDivhtml += "<input type='button' id='removeCompareItem_" + itemId + "' class='removeCompareItem' value='Remove' /> "
                     itemDivhtml += "</div>";
 
-                    $("#divCompareList").append(itemDivhtml);
-                    ShowCompareDiv();
+                    $("#divCompareList").append(itemDivhtml); //defines which div to put compare items in
+                    ShowCompareDiv(); //show compare function now values are added
                 }
                 else {
                     alert("Only " + maxItemsToCompare + " items can be compared.");
                 }
             }
 
+            //event to called remove func
             $(document).on("click", "input[class='removeCompareItem']", function () {
                 var classId = this.id;
                 console.log("removeCompareItem click classId: " + classId);
@@ -187,14 +176,15 @@
                 RemoveItemToCompare(itemId);
             });
 
+            //function to remove item from compare
             function RemoveItemToCompare(itemId) {
                 compareItemsList.pop(itemId);
 
-                $("#compareCheckBox_" + itemId).prop("checked", false);
+                $("#compareCheckBox_" + itemId).prop("checked", false); //unchecks checkbox
 
-                $("#cellCompare_" + itemId).remove();
+                $("#cellCompare_" + itemId).remove(); //removes item with matching id
 
-                HideCompareDiv();
+                HideCompareDiv(); //hide compare div now not in use again
             }
 
         });
@@ -203,9 +193,9 @@
             setDatabaseName('dbCat', ['users', 'items', 'categories', 'events']);
             setCurrObjectStoreName('categories');
             startDB(function () { // async func
-                //var catIndex = objStoreCategories.index("idxCategories", "name");
-                //console.log("catIndex: " + catIndex);
-               // var getKeyRequest = catIndex.getKey(key);
+                // var catIndex = objStoreCategories.index("idxCategories", "name");
+                // console.log("catIndex: " + catIndex);
+                // var getKeyRequest = catIndex.getKey(key);
                 getAllCategories(FormatCategoriesAndItemsAsHtml);
 
             });

@@ -2,6 +2,7 @@ $(document).on('change', '#fileItemImage', function(event) {
     previewFile();
 });
 
+//func to view preview of image before submitting
 function previewFile(){
     var preview = document.querySelector('img');
     var file = document.querySelector('input[type=file]').files[0];

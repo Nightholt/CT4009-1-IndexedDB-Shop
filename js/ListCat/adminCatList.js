@@ -1,8 +1,8 @@
 setDatabaseName('dbCat', ['users', 'items', 'categories', 'events']);
 setCurrObjectStoreName('categories');
 startDB(function() {
-    showAllCategories();
-    //getAllCategories(FormatCategoriesAndItemsAsHtml);
+    //showAllCategories();
+    getAllCategories(FormatCategoriesAndItemsAsHtml);
 
 });
 
