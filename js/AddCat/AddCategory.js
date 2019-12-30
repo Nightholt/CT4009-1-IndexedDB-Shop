@@ -9,6 +9,7 @@ $('#formAddCat').submit(function(event) {
     startDB(function() {
         saveCatData();
         alert("Category has been saved successfully");
+        location.reload();
     });
 });
 

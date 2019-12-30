@@ -2,8 +2,7 @@
 var listOfItems = [];
 var listOfCategories = [];
 
-var catIndex = objStore.index('categories'); 
-var getKeyRequest = catIndex.getKey(selectAll(function(results){}));
+
 
 function getAllCategories(callBack) {
     selectAll(function (results) {

@@ -1,7 +1,7 @@
 //var dbName = "";
 //Global variables
 const events = [
-    // eventDate : 'eventDate',
+    // eventName : 'eventName',
     // eventLat : 'eventLat',
     // eventLng : 'eventLng'
 ];
@@ -227,14 +227,14 @@ function initDB() {
         let objStoreUsers = db.createObjectStore("users", { autoIncrement: true });
         objStoreUsers.createIndex("idxUsername", "username", { unique: true })
 
-        let objStoreCategories = db.createObjectStore("categories", { autoIncrement: true });
+        let objStoreCategories = db.createObjectStore("categories", { keyPath: "id", autoIncrement: true });
         objStoreCategories.createIndex("idxCategories", "name", { unique: true })
 
-        let objStoreItems = db.createObjectStore("items", { autoIncrement: true });
+        let objStoreItems = db.createObjectStore("items", { keyPath: "id", autoIncrement: true });
         objStoreItems.createIndex("idxItems", "itemName", { unique: true })
 
         let objStoreEvents = db.createObjectStore("events", { autoIncrement: true });
-        objStoreEvents.createIndex("idxEvents", "eventDate", { unique: true })
+        objStoreEvents.createIndex("idxEvents", "eventName", { unique: true })
 
         let objStoreWatchlist = db.createObjectStore("watchlist", { autoIncrement: true });
         //objStorewatchlist.createIndex("idxWatch", "itemName", { unique: true })

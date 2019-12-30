@@ -32,6 +32,8 @@ $('#formSellItem').submit(function(event)  {
     startDB(function () {
         saveItemData();
         alert("Item has been saved successfully");
+        location.reload();
         return true;
+        
     });
 });

@@ -126,6 +126,7 @@
     <script src="../js/ListFunc/ListItemsDAO.js"></script>
     <script src="../js/ListCat/listCat.js"></script>
     <!-- <script src="../js/AddCompare/addCompare.js"></script> -->
+    <script src="../js/main.js"></script>
 
     <script>
         var compareItemsList = [];
@@ -202,9 +203,11 @@
             setDatabaseName('dbCat', ['users', 'items', 'categories', 'events']);
             setCurrObjectStoreName('categories');
             startDB(function () { // async func
-                
+                var catIndex = objStoreCategories.index("idxCategories", "name");
+                console.log("catIndex: " + catIndex);
+                var getKeyRequest = catIndex.getKey(key);
                 getAllCategories(FormatCategoriesAndItemsAsHtml);
-                
+
             });
             HideCompareDiv();
         }

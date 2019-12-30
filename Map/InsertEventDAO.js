@@ -1,13 +1,13 @@
 function insertEvent(marker) {
     //get event data user input
-    var eventDate = $('#txtEvent').val();
+    var eventName = $('#txtEvent').val();
     //get lat and long of current marker position
     var eventLat = marker.getPosition().lat();
     var eventLng = marker.getPosition().lng();
 
     //create object combining inputs
     var data = {
-        'eventDate' : eventDate,
+        'eventName' : eventName,
         'eventLat' : eventLat,
         'eventLng' : eventLng
     }
