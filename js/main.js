@@ -224,19 +224,19 @@ function initDB() {
         console.log("onupgradeneeded: " + db);
         
         //each table is defined here, ready for values to be added
-        let objStoreUsers = db.createObjectStore("users", { autoIncrement: true });
-        objStoreUsers.createIndex("idxUsername", "username", { unique: true })
+        let objStoreUsers = db.createObjectStore("users", { keyPath: "id", autoIncrement: true });
+        //objStoreUsers.createIndex("idxUsername", "username", { unique: true })
 
         let objStoreCategories = db.createObjectStore("categories", { keyPath: "id", autoIncrement: true });
-        objStoreCategories.createIndex("idxCategories", "name", { unique: true })
+        //objStoreCategories.createIndex("idxCategories", "name", { unique: true })
 
         let objStoreItems = db.createObjectStore("items", { keyPath: "id", autoIncrement: true });
-        objStoreItems.createIndex("idxItems", "itemName", { unique: true })
+        //objStoreItems.createIndex("idxItems", "itemName", { unique: true })
 
-        let objStoreEvents = db.createObjectStore("events", { autoIncrement: true });
-        objStoreEvents.createIndex("idxEvents", "eventName", { unique: true })
+        let objStoreEvents = db.createObjectStore("events", { keyPath: "id", autoIncrement: true });
+        //objStoreEvents.createIndex("idxEvents", "eventName", { unique: true })
 
-        let objStoreWatchlist = db.createObjectStore("watchlist", { autoIncrement: true });
+        let objStoreWatchlist = db.createObjectStore("watchlist", { keyPath: "id", autoIncrement: true });
         //objStorewatchlist.createIndex("idxWatch", "itemName", { unique: true })
 
         // Because the "names" object store has the key generator, the key for the name value is generated automatically.

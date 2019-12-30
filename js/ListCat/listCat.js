@@ -12,7 +12,7 @@ function getAllCategories(callBack) {
             listOfCategories[i] = results[i];
         }
         //console.log("showAllCategories listOfCategories.length:" + listOfCategories.length);
-        setDatabaseName('dbCat', ['users', 'items', 'categories', 'events']);
+        setDatabaseName('dbCat', ['users', 'items', 'categories', 'events', 'watches']);
         setCurrObjectStoreName('items');
         // need to get all the items before building the html
         startDB(getAllItems(callBack)); // async func
@@ -37,7 +37,7 @@ function FormatCategoriesAndItemsAsHtml() {
     //categories
     var html = "";
     for (i = 0; i < len; i++) {
-        var categoryId = listOfCategories[i].key;
+        var categoryId = listOfCategories[i].id;
         html += '<div id="' + categoryId + '">';
         html += '<h1>' + listOfCategories[i].name + '</h1>';
         html += '<h6>' + listOfCategories[i].catDesc + '</h6>';

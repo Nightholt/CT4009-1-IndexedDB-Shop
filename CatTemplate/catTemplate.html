@@ -203,9 +203,9 @@
             setDatabaseName('dbCat', ['users', 'items', 'categories', 'events']);
             setCurrObjectStoreName('categories');
             startDB(function () { // async func
-                var catIndex = objStoreCategories.index("idxCategories", "name");
-                console.log("catIndex: " + catIndex);
-                var getKeyRequest = catIndex.getKey(key);
+                //var catIndex = objStoreCategories.index("idxCategories", "name");
+                //console.log("catIndex: " + catIndex);
+               // var getKeyRequest = catIndex.getKey(key);
                 getAllCategories(FormatCategoriesAndItemsAsHtml);
 
             });
