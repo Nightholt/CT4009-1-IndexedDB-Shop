@@ -108,9 +108,12 @@
     <div id="divCompareList" class="container">
     </div>
 
+    <!-- <script src="../js/accordion.js"></script> -->
     <script src="../js/ListFunc/ListItems.js"></script>
     <script src="../js/ListFunc/ListItemsDAO.js"></script>
     <script src="../js/ListCat/listCat.js"></script>
+    <script src="../js/AddWatchlist/addWatch.js"></script>
+
 
     <script>
         //script to add max two items to compare list at bottom of page
@@ -139,6 +142,8 @@
                 }
             });
 
+            
+
             function AddItemToCompare(itemId) {
 
                 var numberOfExistingItems = compareItemsList.length;
@@ -162,7 +167,7 @@
                     ShowCompareDiv(); //show compare function now values are added
                 }
                 else {
-                    alert("Only " + maxItemsToCompare + " items can be compared.");
+                    alert("Only " + maxItemsToCompare + " items can be compared."); //returns if max items are already in div
                 }
             }
 
@@ -197,10 +202,9 @@
                 // console.log("catIndex: " + catIndex);
                 // var getKeyRequest = catIndex.getKey(key);
                 getAllCategories(FormatCategoriesAndItemsAsHtml);
-
+                //initialiseSubcats();
             });
             HideCompareDiv();
-            initialiseSubcats();
         }
 
         //hide compare div when empty
@@ -214,18 +218,6 @@
         function ShowCompareDiv() {
             $("#divCompare").show();
             $("#divCompareList").show();
-        }
-
-        function initialiseSubcats() {
-            setDatabaseName('dbCat', ['users', 'items', 'categories', 'subcategories ', 'events', 'watchlist']);
-            setCurrObjectStoreName('subcategories');
-            startDB(function () { // async func
-                // var catIndex = objStoreCategories.index("idxCategories", "name");
-                // console.log("catIndex: " + catIndex);
-                // var getKeyRequest = catIndex.getKey(key);
-                getAllCategories(FormatCategoriesAndItemsAsHtml);
-
-            });
         }
 
     </script>
