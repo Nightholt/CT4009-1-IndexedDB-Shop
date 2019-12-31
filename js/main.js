@@ -1,17 +1,11 @@
 //var dbName = "";
 //Global variables
 const events = [
-    // eventName : 'eventName',
-    // eventLat : 'eventLat',
-    // eventLng : 'eventLng'
+   
 ];
 
 const items = [
-    // itemName: "laptop",
-    // itemDesc: "computing hardware",
-    // itemPrice: "£500",
-    // //itemImage: "<img src='../images/laptop.jpeg'></img>"
-    // category: "laptops"
+    
 ];
 
 const users = [{
@@ -29,43 +23,12 @@ const users = [{
 ];
 
 const categories = [
-    //         name: "Home",
-    //         parentcategory: "0"
-    //     },
-    //     {
-    //         name: "Kitchen",
-    //         parentcategory: "1"
-    //     },
-    //     {
-    //         name: "Bathroom",
-    //         parentcategory: "1"
-    //     },
-    //     {
-    //         name: "Technology",
-    //         parentcategory: "0",
-    //         subcategory: [{
-    //                 name: "Hard Drives",
-    //                 parentcategory: "4",
-    //             },
-    //             {
-    //                 name: "Laptops",
-    //                 parentcategory: "4",
-    //             }
-    //         ]
-    //     },
-    //     {
-    //         name: "Recreation",
-    //         parentcategory: "0"
-    //     },
-    //     {
-    //         name: "Games",
-    //         parentcategory: "7"
-    //     },
-    //     {
-    //         name: "Consoles",
-    //         parentcategory: "7"
-
+    
 ];
+
+const subcategories = [
+
+]
 
 const watchlist = [
 
@@ -95,6 +58,8 @@ $(document).ready(function() {
 
 
     listDepartments(DisplayDepartments);
+    listDepartments1(DisplayDepartments1);
+
 
 
     $("#loginToggle").click(function() {
@@ -158,7 +123,7 @@ $(document).ready(function() {
 
 function DisplayCategoryInDiv(catId) {
 
-    setDatabaseName('dbCat', ['users', 'items', 'categories', 'events']);
+    setDatabaseName('dbCat', ['users', 'items', 'categories', 'subcategories ', 'events', 'watchlist']);
     setCurrObjectStoreName('categories');
     var data;
     startDB(function() {
@@ -190,7 +155,7 @@ function init() {
 
 function initDB() {
 
-    setDatabaseName('dbCat', ['users', 'items', 'categories', 'events', 'watchlist']);
+    setDatabaseName('dbCat', ['users', 'items', 'categories', 'subcategories ', 'events', 'watchlist']);
     // Let us open our database
     // checks user's browser for indexeddb support
     window.indexedDB = window.indexedDB || window.mozIndexedDB || window.webkitIndexedDB || window.msIndexedDB;
@@ -230,6 +195,8 @@ function initDB() {
         let objStoreCategories = db.createObjectStore("categories", { keyPath: "id", autoIncrement: true });
         //objStoreCategories.createIndex("idxCategories", "name", { unique: true })
 
+        let objStoreSubcategories = db.createObjectStore("subcategories", { keyPath: "id", autoIncrement: true });
+
         let objStoreItems = db.createObjectStore("items", { keyPath: "id", autoIncrement: true });
         //objStoreItems.createIndex("idxItems", "itemName", { unique: true })
 
@@ -247,6 +214,10 @@ function initDB() {
 
         categories.forEach(function(category) {
             objStoreCategories.add(category);
+        });
+
+        subcategories.forEach(function(subcategory) {
+            objStoreSubcategories.add(subcategory);
         });
 
         items.forEach(function(item) {
@@ -346,25 +317,59 @@ function listDepartments(callBack) {
         let db1 = event.target.result;
         console.log("success")
 
-        let storeName = "categories";
+        let storeName = "subcategories";
         let tx = db1.transaction(storeName).objectStore(storeName);
 
         // initialise the depts dropdown
-        $("#categories").text("");
-        var option = "<option value='0'>Select Department Category</option>";
+        $("#subcategories").text("");
+        var option = "<option value='0'>Select Department Subcategory</option>";
         $("#AdminDrop").append(option);
 
         tx.openCursor().onsuccess = function(event) {
             var cursor = event.target.result;
 
             if (cursor) {
-                //console.log(storeName + ":key id: " + cursor.key + " Parent category name:" + cursor.value.name + ", parentcategory:" + cursor.value.parentcategory);
+                callBack(cursor.key, cursor.value.subcatName, cursor.value.parentcategory);
 
+                cursor.continue();
+            } else {
+                // console.log("No more entries");                
+            }
+
+        };
+    };
+}
+
+function listDepartments1(callBack) {
+    // new call from the page so need to get a connection to the DB
+    var request = window.indexedDB.open("dbCat", 2);
+    request.onerror = function(event) {
+        alert("Unable to retrieve data from the database at this time, please try later. 309");
+        console.log("error 294")
+    };
+
+    // connection was successful
+    request.onsuccess = function(event) {
+        let db1 = event.target.result;
+        console.log("success")
+
+        let storeName = "categories";
+        let tx = db1.transaction(storeName).objectStore(storeName);
+
+        // initialise the depts dropdown
+        $("#categories").text("");
+        var option = "<option value='0'>Select Department Category</option>";
+        $("#AdminDrop1").append(option);
+
+        tx.openCursor().onsuccess = function(event) {
+            var cursor = event.target.result;
+
+            if (cursor) {
                 callBack(cursor.key, cursor.value.name, cursor.value.parentcategory);
 
                 cursor.continue();
             } else {
-                // console.log("No more entries!");                
+                // console.log("No more entries");                
             }
 
         };
@@ -405,6 +410,17 @@ function DisplayDepartments(id, name, parentcategory) {
     $("#AdminDrop").append(option);
 }
 
+function DisplayDepartments1(id, name, parentcategory) {
+    var css = "";
+    if (parentcategory > 0) {
+        css = "indent";
+    }
+
+    var option = "<option class='" + css + "' value='" + id + "'>" + name + "</option>";
+
+    $("#AdminDrop1").append(option);
+}
+
 function IsAdminLoggedIn() {
     //check cookie and return t/f
     let adminCookie = true;
@@ -431,7 +447,7 @@ for (i = 0; i < acc.length; i++) {
 }
 
 $('#btnSubmitLogin').submit(function(event)  {
-    setDatabaseName('dbCat', ['users', 'items', 'categories', 'events']);
+    setDatabaseName('dbCat', ['users', 'items', 'categories', 'subcategories ', 'events', 'watchlist']);
     setCurrObjectStoreName('users');
     startDB(function() {
         SelectUser()

@@ -190,7 +190,7 @@
         });
         function initialisePage() {
             console.log("initialisePage called")
-            setDatabaseName('dbCat', ['users', 'items', 'categories', 'events']);
+            setDatabaseName('dbCat', ['users', 'items', 'categories', 'subcategories ', 'events', 'watchlist']);
             setCurrObjectStoreName('categories');
             startDB(function () { // async func
                 // var catIndex = objStoreCategories.index("idxCategories", "name");
@@ -200,6 +200,7 @@
 
             });
             HideCompareDiv();
+            initialiseSubcats();
         }
 
         //hide compare div when empty
@@ -213,6 +214,18 @@
         function ShowCompareDiv() {
             $("#divCompare").show();
             $("#divCompareList").show();
+        }
+
+        function initialiseSubcats() {
+            setDatabaseName('dbCat', ['users', 'items', 'categories', 'subcategories ', 'events', 'watchlist']);
+            setCurrObjectStoreName('subcategories');
+            startDB(function () { // async func
+                // var catIndex = objStoreCategories.index("idxCategories", "name");
+                // console.log("catIndex: " + catIndex);
+                // var getKeyRequest = catIndex.getKey(key);
+                getAllCategories(FormatCategoriesAndItemsAsHtml);
+
+            });
         }
 
     </script>

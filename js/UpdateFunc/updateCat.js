@@ -17,7 +17,7 @@ startDB(function () {
 $('#formUpdateCategory').submit(function(event)  {
     event.preventDefault();
 
-    setDatabaseName('dbCat', ['users', 'items', 'categories', 'events']);
+    setDatabaseName('dbCat', ['users', 'items', 'categories', 'subcategories ', 'events', 'watchlist']);
     setCurrObjectStoreName('categories');
     
     startDB(function () {

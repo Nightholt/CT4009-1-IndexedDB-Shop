@@ -36,9 +36,11 @@
     <!--defines type of navbar and makes navbar dark and controls spacing of items-->
     <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
         <!-- logo link to home page -->
-        <a class="navbar-brand" href="../home/HomePage.html">
-            <img src="../images/Misc/trolley.png" alt="Trolley Logo" width="50" height="50">
-        </a>
+        <div id="logo">
+            <a class="navbar-brand" href="../home/HomePage.html">
+                <image src="../images/Misc/trolley.png" id="logo" alt="Trolley Logo" width="50" height="50">
+            </a>
+        </div>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
             aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -101,7 +103,9 @@
         </form>
     </div>
 
-    <div class="title"><h1>Admin Controls</h1></div> 
+    <div class="title">
+        <h1>Admin Controls</h1>
+    </div>
 
     <!-- all functions are in separate accordion divs to look cleaner -->
     <button class="accordion">Add New Item</button>
@@ -147,14 +151,46 @@
         <div id="AddCatFunc" class="container">
             <h2> Add Category </h2>
             <form id="formAddCat">
-                <label> Category Name: </label> <br/>
-                <input type="text" id="txtCatName" name="catName" required="required"> <br/> <br/>
-                <label> Category Description: </label> <br/>
-                <input type="text" id="txtCatDesc" name="catDesc" required="required"> <br/> <br/>
+                <label> Category Name: </label> <br />
+                <input type="text" id="txtCatName" name="catName" required="required"> <br /> <br />
+                <label> Category Description: </label> <br />
+                <input type="text" id="txtCatDesc" name="catDesc" required="required"> <br /> <br />
                 <input type="submit" id="btnAddCat" value="Add">
             </form>
         </div>
         <div id="divCatList" class="container">
+        </div>
+
+        <!-- displays category list to delete/update -->
+        <button class="accordion accordionUpdate">Update & Delete Categories</button>
+        <div class="panel">
+            <div id="divCategoryList" class="container">
+                <h2>Category List</h2>
+            </div>
+        </div>
+    </div>
+
+    <!-- form for add subcategory func, links to AddSubcategory.js -->
+    <button class="accordion">Add New Subcategory</button>
+    <div class="panel">
+        <div id="AddSubcatFunc" class="container">
+            <h2> Add Subcategory </h2>
+            <form id="formAddSubcat">
+                <div>
+                    <!--creates dropdown fed with categories from db-->
+                    <select id="AdminDrop1" required="required"></select>
+                    <br />&nbsp;
+                    <br />
+                    <script>console.log("AdminDrop1 value: " + $("#AdminDrop1"))</script>
+                </div>
+                <label> Subcategory Name: </label> <br />
+                <input type="text" id="txtSubcatName" name="SubcatName" required="required"> <br /> <br />
+                <label> Subcategory Description: </label> <br />
+                <input type="text" id="txtSubcatDesc" name="SubcatDesc" required="required"> <br /> <br />
+                <input type="submit" id="btnAddSubcat" value="Add">
+            </form>
+        </div>
+        <div id="divSubcatList" class="container">
         </div>
     </div>
 
@@ -178,13 +214,11 @@
                 <script src="../Map/InsertEventDAO.js"></script>
             </form>
         </div>
-        <!-- displays map marker list to delete/update -->
-        <div id="markerList">
-            <h2>Store Markers List</h2>
-        </div>
     </div>
 
-    <div class="title"><h2>Update And Delete Controls</h2></div>
+    <div class="title">
+        <h2>Update And Delete Controls</h2>
+    </div>
     <!-- displays item list to delete/update -->
     <button class="accordion">Update & Delete Items</button>
     <div class="panel">
@@ -193,33 +227,27 @@
         </div>
     </div>
 
-    <!-- displays category list to delete/update -->
-    <button class="accordion">Update & Delete Categories</button>
-    <div class="panel">
-        <div id="divCategoryList" class="container">
-            <h2>Category List</h2>
-        </div>
-    </div>
+
 
     <button class="accordion">Update & Delete Locations</button>
     <div class="panel">
-        
-            <!-- <h2>Map</h2>
-            <div id="mapInput" style="width: 650px; height: 450px;"></div>
-        
-            <script src="../Map/EventList/EventList.js"></script>
-            <script src="../Map/EventList/EventListDAO.js"></script> -->
+        <!-- displays map marker list to delete/update -->
+        <div id="markerList" class="container">
+            <h2>Store Markers List</h2>
+        </div>
 
     </div>
-
+    
+    <script src="../js/accordion.js"></script>
     <script src="../js/AddFunc/AddItem.js"></script>
     <script src="../js/AddFunc/AddItemDAO.js"></script>
-    <script src="../js/ListFunc/ListItems.js"></script>
-    <script src="../js/ListFunc/ListItemsDAO.js"></script>
     <script src="../js/AddCat/AddCategory.js"></script>
     <script src="../js/ListCat/adminCatList.js"></script>
     <script src="../js/ListCat/listCat.js"></script>
-    <script src="../js/accordian.js"></script>
+    <script src="../js/AddSubcat/AddSubcategory.js"></script>
+    <script src="../js/ListFunc/ListItems.js"></script>
+    <script src="../js/ListFunc/ListItemsDAO.js"></script>
+    
 
     <script>
         $("#AdminDrop").change(function (event) {

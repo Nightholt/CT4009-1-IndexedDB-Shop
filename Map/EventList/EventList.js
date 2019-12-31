@@ -20,7 +20,7 @@ function initialise() {
     //retrieve saved event list from indexeddb dbCat
     //$('#formInsertEvent').submit(function () {
         //event.preventDefault();
-        setDatabaseName('dbCat', ['users', 'items', 'categories', 'events']);
+        setDatabaseName('dbCat', ['users', 'items', 'categories', 'subcategories ', 'events', 'watchlist']);
         setCurrObjectStoreName('events');
         startDB(function () {
             //call DAO showAllEvents() function to show save event data in map

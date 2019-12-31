@@ -19,8 +19,6 @@ function showAllItems() {
             html += '</div>';
         }
 
-        // $("#UpdateFunc").hide(); 
-
         $('#divItemList').html(html);
 
         for (i = 0; i < len; i++) {
