@@ -50,19 +50,19 @@ $(document).ready(function () {
     var url = window.location.href;
     console.log("you are on the " + url + "page");
 
-    listCategories(DisplayCategoriesMenu);
+    listCategories(displayCategoriesMenu);
 
     // if (url.indexOf("home") !== -1) {
     //     handleHomePageDisplay();
     // }
     if (url.indexOf("catTemplate") !== -1) {
         console.log("**********url: " + url);
-        listCategories(DisplayCategories);
+        listCategories(displayCategories);
     }
 
 
-    listDepartments(DisplayDepartments);
-    listDepartments1(DisplayDepartments1);
+    listDepartments(displayDepartments);
+    listSubDepts(displaySubDepts);
 
 
 
@@ -424,7 +424,7 @@ function listDepartments(callBack) {
     };
 }
 
-function listDepartments1(callBack) {
+function listSubDepts(callBack) {
     // new call from the page so need to get a connection to the DB
     var request = window.indexedDB.open("dbCat", 2);
     request.onerror = function (event) {
@@ -460,7 +460,7 @@ function listDepartments1(callBack) {
     };
 }
 
-function DisplayCategoriesMenu(id, name, parentcategory) {
+function displayCategoriesMenu(id, name, parentcategory) {
     var css = "";
     if (parentcategory > 0) {
         css = "indent";
@@ -471,7 +471,7 @@ function DisplayCategoriesMenu(id, name, parentcategory) {
     $("#dropdown").append(link);
 }
 
-function DisplayCategories(id, name, parentcategory) {
+function displayCategories(id, name, parentcategory) {
     var css = "";
     if (parentcategory > 0) {
         css = "indent";
@@ -483,7 +483,7 @@ function DisplayCategories(id, name, parentcategory) {
     $("#categoryPageCategoriesList").append(link);
 }
 
-function DisplayDepartments(id, name, parentcategory) {
+function displayDepartments(id, name, parentcategory) {
     var css = "";
     if (parentcategory > 0) {
         css = "indent";
@@ -494,7 +494,7 @@ function DisplayDepartments(id, name, parentcategory) {
     $("#AdminDrop").append(option);
 }
 
-function DisplayDepartments1(id, name, parentcategory) {
+function displaySubDepts(id, name, parentcategory) {
     var css = "";
     if (parentcategory > 0) {
         css = "indent";
@@ -552,10 +552,10 @@ DONE update existing item ?
 DONE Fix list items functions
 
 
-New Category makes new page
-add new subcategory
-Display items in category pages
+DONE New Category makes new div in cat template page
+DONE add new subcategory
+DONE Display items in category page
 Add items to a watchlist
-delete old categories
+DONE delete old categories/subcats
 login cookies
 */
