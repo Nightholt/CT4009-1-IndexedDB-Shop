@@ -141,7 +141,6 @@
                     HideCompareDiv(); //hide compare div when not in use
                 }
             });
-
             
 
             function AddItemToCompare(itemId) {
@@ -198,11 +197,7 @@
             setDatabaseName('dbCat', ['users', 'items', 'categories', 'subcategories ', 'events', 'watchlist']);
             setCurrObjectStoreName('categories');
             startDB(function () { // async func
-                // var catIndex = objStoreCategories.index("idxCategories", "name");
-                // console.log("catIndex: " + catIndex);
-                // var getKeyRequest = catIndex.getKey(key);
                 getAllCategories(FormatCategoriesAndItemsAsHtml);
-                //initialiseSubcats();
             });
             HideCompareDiv();
         }

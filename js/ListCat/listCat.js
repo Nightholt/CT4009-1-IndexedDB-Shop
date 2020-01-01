@@ -16,8 +16,8 @@ function getAllCategories(callBack) {
         setCurrObjectStoreName('items');
         // need to get all the subcats and items before building the html
         startDB(function () {
-            getAllSubcategories(callBack);
-            getAllItems(callBack)
+            getAllSubcategories(getAllItems(callBack));
+            
         }); // async func
     });
 }
