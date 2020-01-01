@@ -28,7 +28,7 @@
     <script src="../js/lib/indexeddb.js"></script>
 
     <!--title of site-->
-    <title>Catalogue Website Admin Controls</title>
+    <title>Catalogue Website Update Map Marker</title>
 
 </head>
 
@@ -101,31 +101,28 @@
         </form>
     </div>
 
-    <div class="title"><h1>Update Map</h1></div>
+    <div class="title">
+        <h1>Update Map</h1>
+    </div>
 
     <div id="UpdateMarkerFunc" class="container">
         <form id="formUpdateMarker">
-          <h3 id="markerID">Marker ID</h3>
-          <label> Marker Name: </label> <br/>
-          <input type="text" id="txtMarkerName" name="markerName" required="required"> <br/> <br/>
-    
-          <input type="submit" id="btnUpdateMarker" value="Update">
-    
+            <h3 id="markerID">Marker ID</h3>
+            <label> Marker Name: </label> <br />
+            <input type="text" id="txtMarkerName" name="markerName" required="required"> <br /> <br />
+
+            <input type="submit" id="btnUpdateMarker" value="Update">
+
         </form>
     </div>
 
     <div id="mapInput" style="width: 650px; height: 450px;"></br>
     </div>
-    
+
     <script src="../Map/InsertEvent.js"></script>
     <script src="../Map/InsertEventDAO.js"></script>
     <script src="../js/UpdateFunc/updateMap.js"></script>
     <script src="../js/UpdateFunc/updateMapDAO.js"></script>
-    
-    <!--defines footer-->
-    <div id="footer">
-        <footer>This is the footer</footer>
-    </div>
 
 </body>
 

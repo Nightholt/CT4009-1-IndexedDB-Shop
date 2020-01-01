@@ -2,20 +2,23 @@
 <html lang="en-gb">
 
 <head>
-    <meta name="description" content="catalogue and shopping website">
     <!--helps search engines define what the purpose of the site is-->
+    <meta name="description" content="catalogue and shopping website">
     <meta name="keywords" content="shopping, search, catalogue">
-    <meta charset="utf-8">
     <!--defines correct character set-->
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="utf-8">
     <!--ensures site will render correctly on all platforms, primarily mobile-->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <!--links to the Boostrap CDN-->
     <link rel="stylesheet" href="../css/styles.css" />
+    <!--links to the Boostrap CDN-->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <!-- jquery link -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <!-- bootstrap js link -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <!-- indexeddb wrapper and main javascript file links -->
     <script src="../js/main.js"></script>
     <script src="../js/lib/indexeddb.js"></script>
 
@@ -25,19 +28,22 @@
 </head>
 
 <body>
-
-    <!--defines type of navbar-->
+    <!--defines type of navbar and makes navbar dark and controls spacing of items-->
     <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
-        <!--makes navbar dark and controls spacing of items-->
-        <a class="navbar-brand" href="../home/home.html">Logo</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
+        <!-- logo link to home page -->
+        <a class="navbar-brand" href="../home/HomePage.html">
+            <img src="../images/Misc/trolley.png" alt="Trolley Logo" width="50" height="50">
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
+            aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
         <div class="collapse navbar-collapse" id="navbarNavDropdown">
             <ul class="navbar-nav">
                 <!--creates search bar form-->
                 <li class="nav-item active">
-                    <div id="search" class="">
+                    <div id="search">
+                        <!-- search form goes to search results page -->
                         <form class="form-inline" action="../Search/results.html">
                             <input class="form-control mr-sm-2" type="text" placeholder="Search">
                             <button class="btn btn-success" type="submit">Search</button>
@@ -45,7 +51,7 @@
                     </div>
                 </li>
                 <li class="nav-item">
-                    <!--link to home page (null and void on this page but better than an empty button)-->
+                    <!--link to home page-->
                     <a class="nav-link" href="../home/HomePage.html">Home</a>
                 </li>
                 <li class="nav-item dropdown">
@@ -77,51 +83,47 @@
     <div id="login" class="container">
         <div class="form-group">
             <label for="email">Email:</label>
-            <input type="email" class="form-control" id="email" placeholder="Enter email" name="email" required>
             <!--defines type of input, id, placeholder and requires user to make input-->
+            <input type="email" class="form-control" id="email" placeholder="Enter email" name="email" required>
         </div>
         <div class="form-group">
             <label for="key">Password:</label>
-            <input type="password" class="form-control" id="key" placeholder="Enter password" name="key" encrypt="bcrypt" salt="abc..." rounds="4" required>
             <!--defines type of input, id, placeholder and requires user to make input-->
+            <input type="password" class="form-control" id="key" placeholder="Enter password" name="key" required>
         </div>
-        <button type="submit" id="btnSubmitLogin" class="btn btn-primary">Submit</button>
         <!--submit button-->
+        <button type="submit" id="btnSubmitLogin" class="btn btn-primary">Submit</button>
         </form>
     </div>
 
-    <div class="title"><h1>Update Item </h1></div>
+    <div class="title">
+        <h1>Update Item </h1>
+    </div>
 
     <div id="UpdateFunc" class="container">
-      <form id="formUpdateItem">
-        <h3 id="itemID">Item ID</h3>
-        <label> Item Name: </label> <br>
-        <input type="text" id="txtItemName" name="itemName" required="required"> <br> <br>
-        
-        <label> Description: </label> <br>
-        <input type="text" id="txtDesc" name="Desc" required="required"> <br> <br>
-  
-        <label> Price: </label> <br>
-        <input type="int" id="intPrice" name="Price" required="required"> <br> <br>
-  
-        <label for="file">Choose item image to upload</label>
-        <input type="file" id="fileItemImage" name="file"> <br> <br>
-  
-        <img src="" alt="Image preview..." id="bannerImg"> <br> <br>
-  
-        <input type="submit" id="btnUpdateItem" value="Update">
-  
-      </form>
+        <form id="formUpdateItem">
+            <h3 id="itemID">Item ID</h3>
+            <label> Item Name: </label> <br>
+            <input type="text" id="txtItemName" name="itemName" required="required"> <br> <br>
+
+            <label> Description: </label> <br>
+            <input type="text" id="txtDesc" name="Desc" required="required"> <br> <br>
+
+            <label> Price: </label> <br>
+            <input type="int" id="intPrice" name="Price" required="required"> <br> <br>
+
+            <label for="file">Choose item image to upload</label>
+            <input type="file" id="fileItemImage" name="file"> <br> <br>
+
+            <img src="" alt="Image preview..." id="bannerImg"> <br> <br>
+
+            <input type="submit" id="btnUpdateItem" value="Update">
+
+        </form>
     </div>
-  
+
     <script src="../js/UpdateFunc/UpdateItem.js"></script>
     <script src="../js/UpdateFunc/UpdateItemDAO.js"></script>
-  
-    
-    <!--defines footer-->
-    <div id="footer">
-        <footer>This is the footer</footer>
-    </div>
 
 </body>
 

@@ -4,7 +4,7 @@ $(document).on('change', '#fileItemImage', function(event) {
 
 //func to view preview of image before submitting
 function previewFile(){
-    var preview = document.querySelector('img');
+    var preview = document.querySelector('img#bannerImg');
     var file = document.querySelector('input[type=file]').files[0];
     var reader = new FileReader();
 

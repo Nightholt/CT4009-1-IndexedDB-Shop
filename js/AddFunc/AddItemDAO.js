@@ -3,16 +3,18 @@ function saveItemData() {
     var itemName = $('#txtItemName').val();
     var itemDesc = $('#txtDesc').val();
     var itemPrice = $('#intPrice').val();
-    var itemCategory = $('#AdminDrop').val();
+    var itemSubcategory = $('#AdminDrop').val();
+    var itemWatchlist = 0;
     
-    console.log("saveItemData itemCategory: "+ itemCategory);
+    console.log("saveItemData itemSubcategory: "+ itemSubcategory);
 
     //format of db table
     var data = {
         'itemName': itemName,
         'itemDesc': itemDesc,
         'itemPrice': itemPrice,
-        'itemCategory': itemCategory
+        'itemSubcategory': itemSubcategory,
+        'itemWatchlist': itemWatchlist
     };
 
     //image upload input
