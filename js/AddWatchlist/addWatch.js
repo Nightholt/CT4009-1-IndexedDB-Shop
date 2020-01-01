@@ -2,7 +2,7 @@ $(document).on("change", "input[class='watchChkbox']", function () {
     var chkBoxId = this.id;
     var data;
     console.log("chkBoxId: " + chkBoxId)
-    setDatabaseName('dbCat', ['users', 'items', 'categories', 'subcategories ', 'events']);
+    setDatabaseName('dbCat', ['users', 'items', 'categories', 'subcategories ', 'events', 'watchlist']);
     setCurrObjectStoreName('items');
     startDB(function () {
         updateWatchItemData();
