@@ -1,23 +1,50 @@
+
+
 $(document).on("change", "input[class='watchChkbox']", function () {
     var chkBoxId = this.id;
     var data;
-    console.log("chkBoxId: " + chkBoxId)
-    setDatabaseName('dbCat', ['users', 'items', 'categories', 'subcategories ', 'events']);
+    console.log("watchChkbox: " + chkBoxId);
+    var idArray = chkBoxId.split("_");
+    var itemId = idArray[1];
+    var isChecked = 0;
+
+
+    if ($(this).prop("checked")) {
+        isChecked = 1;
+    }
+    console.log("checked : " + isChecked);
+
+    setDatabaseName('dbCat', ['users', 'items', 'categories', 'subcategories ', 'events', 'watchlist']);
     setCurrObjectStoreName('items');
-    startDB(function () {
-        updateWatchItemData();
-        console.log("itemWatchlist: " + itemWatchlist)
-        alert("Item has been successfully added to watchlist");
-    });
+    try {
+        startDB(function () {
+            selectOne(itemId, function (result) {
+                data = result;
+                console.log("data.itemWatchlist: " + data.itemWatchlist);
+            })
+            
+            console.log("itemWatchlist: " + itemId);
+            // alert("Item has been successfully added to watchlist");
+            updateWatchItemData(data, isChecked);
+        });
+        
+    } catch (error) {
+        console.log("error: " + error);
+    }
+
+
+    function updateWatchItemData(data, isChecked) {
+        setDatabaseName('dbCat', ['users', 'items', 'categories', 'subcategories ', 'events', 'watchlist']);
+        setCurrObjectStoreName('items');
+
+        startDB(function () {
+            data.itemWatchlist = 1; //parseInt(isChecked);
+
+            updateOne(data, function (lastID) {
+                event.preventDefault();
+                return false;
+            });
+        });
+    }
+
 });
-
-function updateWatchItemData(data) {
-    var itemWatchlist = 1;
-
-    data.itemWatchlist = itemWatchlist;
-
-    updateOne(data, function (lastID) {
-        event.preventDefault();
-        return false;
-    });
-}
