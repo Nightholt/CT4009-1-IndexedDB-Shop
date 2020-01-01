@@ -72,7 +72,7 @@ function FormatCategoriesAndItemsAsHtml() {
         //html += "<button class='accordion'>" + listOfCategories[i].name + "</button>";
         //html += "<div class='panel'>"
             html += "<div id='" + categoryId + "'>";
-            html += "<h1>" + listOfCategories[i].name + "</h1";
+            html += "<h1>" + listOfCategories[i].name + "</h1>";
             html += "<h6>" + listOfCategories[i].catDesc + "</h6>";
             // build html
             var k = 0;
