@@ -80,28 +80,28 @@ function FormatCategoriesAndItemsAsHtml() {
         var lenSubcategories = listOfSubcategories.length;
         //subcategories div loops for each result
         for (k = 0; k < lenSubcategories; k++) {
-            //if (parseInt(listOfSubcategories[k].category) === parseInt(listOfCategories[i].id)) {
-            // iterate over subcats array
-            var subcategoryId = listOfSubcategories[k].id;
-            html += "   <div class='indent'>";
-            html += "       <div id='" + subcategoryId + "'>";
-            html += "       <h1>" + listOfSubcategories[k].subcatName + "</h1>";
-            html += "       <h6>" + listOfSubcategories[k].subcatDesc + "</h6>";
-            var j = 0;
-            var lenItems = listOfItems.length;
-            //items div loops for each result
-            for (j = 0; j < lenItems; j++) {
-                // iterate over items array
-                var itemSubcategoryId = listOfItems[j].itemSubcategory;
-                console.log("FormatCategoriesAndItems called");
-                if (parseInt(subcategoryId) === parseInt(itemSubcategoryId)) {
-                    //build item div if subcategoryId matches itemSubcategoryId
-                    html += generateItemHTML(listOfItems[j]);
+            if (parseInt(listOfSubcategories[k].category) === parseInt(listOfCategories[i].id)) {
+                // iterate over subcats array
+                var subcategoryId = listOfSubcategories[k].id;
+                html += "   <div class='indent'>";
+                html += "       <div id='" + subcategoryId + "'>";
+                html += "       <h1>" + listOfSubcategories[k].subcatName + "</h1>";
+                html += "       <h6>" + listOfSubcategories[k].subcatDesc + "</h6>";
+                var j = 0;
+                var lenItems = listOfItems.length;
+                //items div loops for each result
+                for (j = 0; j < lenItems; j++) {
+                    // iterate over items array
+                    var itemSubcategoryId = listOfItems[j].itemSubcategory;
+                    console.log("FormatCategoriesAndItems called");
+                    if (parseInt(subcategoryId) === parseInt(itemSubcategoryId)) {
+                        //build item div if subcategoryId matches itemSubcategoryId
+                        html += generateItemHTML(listOfItems[j]);
+                    }
                 }
+                html += "   </div>";
+                html += "</div>";
             }
-            html += "   </div>";
-            html += "</div>";
-
         }
     }
     $("#divCatList").html(html); //div that html is built into
