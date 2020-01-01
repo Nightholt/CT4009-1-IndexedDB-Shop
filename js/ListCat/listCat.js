@@ -2,6 +2,7 @@
 var listOfItems = [];
 var listOfCategories = [];
 var listOfSubcategories = [];
+var finalCallback;
 
 //retrieves category list from categories table in db
 function getAllCategories(callBack) {
@@ -16,7 +17,8 @@ function getAllCategories(callBack) {
         setCurrObjectStoreName('items');
         // need to get all the subcats and items before building the html
         startDB(function () {
-            getAllSubcategories(getAllItems(callBack));
+            finalCallback = callBack;
+            getAllSubcategories(getAllItems);
             
         }); // async func
     });
@@ -33,7 +35,7 @@ function getAllSubcategories(callBack) {
             listOfSubcategories[i] = results[i];
         }
         console.log("getAllSubcategories.length:" + listOfSubcategories.length);
-        callBack();
+        callBack(finalCallback);
     });
 }
 
