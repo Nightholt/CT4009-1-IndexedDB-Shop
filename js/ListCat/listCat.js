@@ -8,7 +8,7 @@ function getAllCategories(callBack) {
     selectAll(function (results) {
         var len = results.length;
         var i;
-        
+
         //loop continues for every value in db table
         for (i = 0; i < len; i++) {
             listOfCategories[i] = results[i];
@@ -72,9 +72,9 @@ function FormatCategoriesAndItemsAsHtml() {
         var categoryId = listOfCategories[i].id;
         //html += "<button class='accordion'>" + listOfCategories[i].name + "</button>";
         //html += "<div class='panel'>"
-        html += "<div id='" + categoryId + "'>";
-        html += "<h1>" + listOfCategories[i].name + "</h1>";
-        html += "<h6>" + listOfCategories[i].catDesc + "</h6>";
+            html += "<div id='" + categoryId + "'>";
+            html += "   <h1>" + listOfCategories[i].name + "</h1>";
+            html += "   <h6>" + listOfCategories[i].catDesc + "</h6>";
         // build html
         var k = 0;
         var lenSubcategories = listOfSubcategories.length;
@@ -83,10 +83,10 @@ function FormatCategoriesAndItemsAsHtml() {
             //if (parseInt(listOfSubcategories[k].category) === parseInt(listOfCategories[i].id)) {
             // iterate over subcats array
             var subcategoryId = listOfSubcategories[k].id;
-            html += "<div class='indent'>";
-            html += "   <div id='" + subcategoryId + "'>";
-            html += "   <h1>" + listOfSubcategories[k].subcatName + "</h1>";
-            html += "   <h6>" + listOfSubcategories[k].subcatDesc + "</h6>";
+            html += "   <div class='indent'>";
+            html += "       <div id='" + subcategoryId + "'>";
+            html += "       <h1>" + listOfSubcategories[k].subcatName + "</h1>";
+            html += "       <h6>" + listOfSubcategories[k].subcatDesc + "</h6>";
             var j = 0;
             var lenItems = listOfItems.length;
             //items div loops for each result
@@ -96,37 +96,42 @@ function FormatCategoriesAndItemsAsHtml() {
                 console.log("FormatCategoriesAndItems called");
                 if (parseInt(subcategoryId) === parseInt(itemSubcategoryId)) {
                     //build item div if subcategoryId matches itemSubcategoryId
-                    var itemId = listOfItems[j].id;
-                    html += "   <div class='indent'>";
-                    html += "       <div class='leftCell' id='cellItem_" + itemId + "'>";
-                    html += "           <h3>" + listOfItems[j].itemName + "</h3><br/>";
-                    html += "           <img src='../images/" + listOfItems[j].itemImage.name + "' height='100' width='100'/><br/>";
-                    html += "           <label>" + listOfItems[j].itemDesc + "</label><br/>";
-                    html += "           <label><b>&pound;" + listOfItems[j].itemPrice + "</b></label><br/>";
-                    html += "           <label>CategoryId:" + listOfItems[j].itemSubcategory + "</label><br/>";
-                    html += "           <div class='adminView'>";
-                    html += "               <a href='#' class='deleteAction'>Delete</a><br/>";
-                    html += "               <a href='#' class='updateAction'>Update</a>";
-                    html += "           </div>";
-                    html += "       </div>";
-                    //checkbox to add to compare div
-                    html += "       <input class='cellChkbox' type='checkbox' name='compare' value='Add to Compare' id='compareCheckBox_" + itemId + "'/><label for='compareCheckBox_" + itemId + "'> Add to compare</label>"
-                    //checkbox to add to watchlist
-                    html += "       <input class='watchChkbox' type='checkbox' name='watch' value='Add to Watchlist' id='watchCheckBox_" + itemId + "'/><label for='watchCheckBox_" + itemId + "'> Add to watchlist</label>"
-                    html += "   </div>";
-                    //
+                    html += generateItemHTML(listOfItems[j]);
                 }
             }
-            html += "</div>";
+            html += "   </div>";
             html += "</div>";
             //}
         }
-        html += "</div>";
+        //html += "</div>";
         //html += "</div>";
     }
     $("#divCatList").html(html); //div that html is built into
     $('.adminView').hide(); //hides 
 }
+
+function generateItemHTML(item) {
+    var itemId = item.id;
+    var html = "<div class='indent'>";
+    html += "       <div class='leftCell' id='cellItem_" + itemId + "'>";
+    html += "           <h3>" + item.itemName + "</h3><br/>";
+    html += "           <img src='../images/" + item.itemImage.name + "' height='100' width='100'/><br/>";
+    html += "           <label>" + item.itemDesc + "</label><br/>";
+    html += "           <label><b>&pound;" + item.itemPrice + "</b></label><br/>";
+    html += "           <label>CategoryId:" + item.itemSubcategory + "</label><br/>";
+    html += "           <div class='adminView'>";
+    html += "               <a href='#' class='deleteAction'>Delete</a><br/>";
+    html += "               <a href='#' class='updateAction'>Update</a>";
+    html += "           </div>";
+    html += "       </div>";
+    //checkbox to add to compare div
+    html += "       <input class='cellChkbox' type='checkbox' name='compare' value='Add to Compare' id='compareCheckBox_" + itemId + "'/><label for='compareCheckBox_" + itemId + "'> Add to compare</label>"
+    //checkbox to add to watchlist
+    html += "       <input class='watchChkbox' type='checkbox' name='watch' value='Add to Watchlist' id='watchCheckBox_" + itemId + "'/><label for='watchCheckBox_" + itemId + "'> Add to watchlist</label>"
+    html += "   </div>";
+    return html;
+}
+
 
 function addToWatchlist() {
 
