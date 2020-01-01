@@ -52,7 +52,7 @@ function FormatCategoriesAndItemsAsHtml() {
             if (parseInt(categoryId) === parseInt(itemCategoryId)) {
                 //console.log(lenItems +" called")
                 var itemId = listOfItems[j].id;
-                html += "<div class='indent'>";
+                html += "<div class='indent' id='"+itemCategoryId+ "'>";
                 html += "   <div class='leftCell' id='cellItem_" + itemId + "'>";
                 html += "       <h3>" + listOfItems[j].itemName + "</h3><br/>";
                 html += "       <img src='../images/" + listOfItems[j].itemImage.name + "' height='100' width='100'/><br/>";
