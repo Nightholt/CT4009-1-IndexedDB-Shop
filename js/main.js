@@ -1,29 +1,33 @@
 //var dbName = "";
 //Global variables
+const loginAdminCookieName = "elephant";
+const loginCookieDays = 1;
+
+
 const events = [
-   
+
 ];
 
 const items = [
-    
+
 ];
 
 const users = [{
-        username: "public@test.com",
-        key: "321password",
-        role: "public",
-        isLoggedIn: false
-    },
-    {
-        username: "admin@test.com",
-        key: "password123",
-        role: "administrator",
-        isLoggedIn: false
-    }
+    username: "public@test.com",
+    key: "321password",
+    role: "public",
+    isLoggedIn: false
+},
+{
+    username: "admin@test.com",
+    key: "password123",
+    role: "administrator",
+    isLoggedIn: false
+}
 ];
 
 const categories = [
-    
+
 ];
 
 const subcategories = [
@@ -36,7 +40,7 @@ const watchlist = [
 
 var db, indexedDB, IDBTransaction, currObjectStoreName, databaseName, objectStores;
 
-$(document).ready(function() {
+$(document).ready(function () {
 
     // once the document has finished loading run this lot
     // initialise the UI
@@ -62,19 +66,99 @@ $(document).ready(function() {
 
 
 
-    $("#loginToggle").click(function() {
+    $("#loginToggle").click(function () {
         $("#login").toggle();
     });
 
-    $("#btnSubmitLogin").click(function(event) {
+
+    $("#btnSubmitLogin").click(function (event) {
         //event.preventDefault();
-        currObjectStoreName = "users";
+        console.log("btnSubmitLogin was fired");
 
-        SelectUser();
+        setDatabaseName('dbCat', ['users', 'items', 'categories', 'subcategories ', 'events', 'watchlist']);
+        setCurrObjectStoreName('users');
+        startDB(function () {
+            getAllUsers();
+        }); // async func
 
-        //console.log(formKey);
-        return false;
     });
+
+
+    function getAllUsers() {
+        var isValidUser = false;
+        var validUser;
+        selectAll(function (results) {
+            var len = results.length;
+            var i;
+            for (i = 0; i < len; i++) {// loop over the users
+                let dbUser = results[i];
+                isValidUser = ValidateUser(dbUser);
+                if (isValidUser) {
+                    validUser = dbUser;
+                    break;
+                }
+            }
+
+            if (!isValidUser) {
+                alert("Please login with valid credentials.");
+                // hide logout button 
+                return;
+            }
+
+            //TODO update user field in db : isloggedin as true
+            //TODO add logout button and "show" 
+
+            if (validUser.role === "administrator") {
+                //redirect to admin page where add/edit/delete functions are found 
+                url = "../Login/crud.html"
+            } else if (validUser.role === "public") {
+                //redirect to public page where watchlist and account functions are found
+                url = "../Login/myaccount.html"
+            }
+
+            //var value = "websiteusercookie_" + formUsername;// + Date.parse(new Date());
+            //createCookie(loginAdminCookieName, value, loginCookieDays); // needs tweaking see it's error
+            
+            console.log("would have redirected to window.location.href" + url);
+            window.location.href = url;
+        });
+
+    }
+
+    function ValidateUser(dbUser) {
+
+        console.log("ValidateUser was fired1");
+        // get form data
+        var redirectUrl = "";
+        let formUsername = $("#email").val();
+        let formKey = $("#key").val();
+
+        if (formUsername === undefined || formUsername === "") {
+            alert("Invalid credentials please try again un");
+            return false;
+        }
+        if (formKey === undefined || formKey === "") {
+            alert("Invalid credentials please try again pw");
+            return false;
+        }
+
+        if (dbUser) {
+            let username = dbUser.username;
+            let key = dbUser.key; // this will be the hashed password            
+            //compare credentials
+            if (formUsername === username && formKey === key) {
+                return true;
+            } else {
+                console.log("no user match found.");
+                return false;
+            }
+        } else {
+            console.log("no user found");
+            return false;
+        }
+    }
+
+
 
 
     // $("#btnListItems").click(function () {
@@ -102,7 +186,7 @@ $(document).ready(function() {
         // $("#btnListUsers").show();
     }
 
-    $(".liCat a").click(function(e) {
+    $(".liCat a").click(function (e) {
         e.preventDefault();
         var txt = $(this).text();
         console.log("click event: " + txt);
@@ -126,8 +210,8 @@ function DisplayCategoryInDiv(catId) {
     setDatabaseName('dbCat', ['users', 'items', 'categories', 'subcategories ', 'events', 'watchlist']);
     setCurrObjectStoreName('categories');
     var data;
-    startDB(function() {
-        selectOne(catId, function(result) {
+    startDB(function () {
+        selectOne(catId, function (result) {
             data = result;
             $("#categoryDiv").html("category: " + data.name);
         })
@@ -172,22 +256,22 @@ function initDB() {
     let request = window.indexedDB.open(databaseName, 2);
 
     // handle any connection error
-    request.onerror = function(event) {
+    request.onerror = function (event) {
         console.log("request error: unknown 84");
     };
 
     //handle connection success
-    request.onsuccess = function(event) {
+    request.onsuccess = function (event) {
         db = event.target.result;
         console.log("success: " + db);
         console.log('Database : ', databaseName);
     };
 
     // this only happens once to create the db is a new version update is required or the db is deleted manually
-    request.onupgradeneeded = function(event) {
+    request.onupgradeneeded = function (event) {
         db = event.target.result;
         console.log("onupgradeneeded: " + db);
-        
+
         //each table is defined here, ready for values to be added
         let objStoreUsers = db.createObjectStore("users", { keyPath: "id", autoIncrement: true });
         //objStoreUsers.createIndex("idxUsername", "username", { unique: true })
@@ -208,31 +292,31 @@ function initDB() {
 
         // Because the "names" object store has the key generator, the key for the name value is generated automatically.
 
-        users.forEach(function(user) {
+        users.forEach(function (user) {
             objStoreUsers.add(user);
         });
 
-        categories.forEach(function(category) {
+        categories.forEach(function (category) {
             objStoreCategories.add(category);
         });
 
-        subcategories.forEach(function(subcategory) {
+        subcategories.forEach(function (subcategory) {
             objStoreSubcategories.add(subcategory);
         });
 
-        items.forEach(function(item) {
+        items.forEach(function (item) {
             objStoreItems.add(item);
         });
 
-        events.forEach(function(event) {
+        events.forEach(function (event) {
             objStoreEvents.add(event);
         });
 
-        watchlist.forEach(function(item) {
+        watchlist.forEach(function (item) {
             objStoreWatchlist.add(item);
         });
 
-        db.onerror = function(event) {
+        db.onerror = function (event) {
             // Generic error handler for all errors targeted at this database's requests
             console.error("Database error: " + event.target.error + ", " + event.target.errorCode);
         };
@@ -245,19 +329,19 @@ function initDB() {
 function listItems(callBack) {
     // new call from the page so need to get a connection to the DB
     var request = window.indexedDB.open("dbCat", 2);
-    request.onerror = function(event) {
+    request.onerror = function (event) {
         alert("Unable to retrieve data from the database at this time, please try later.");
     };
 
     // connection was successful
-    request.onsuccess = function(event) {
+    request.onsuccess = function (event) {
         let db1 = event.target.result;
 
         let storeName = "items";
         $("#items").text("");
         let tx = db1.transaction(storeName).objectStore(storeName);
 
-        tx.openCursor().onsuccess = function(event) {
+        tx.openCursor().onsuccess = function (event) {
             var cursor = event.target.result;
 
             if (cursor) {
@@ -275,20 +359,20 @@ function listItems(callBack) {
 function listCategories(callBack) {
     // new call from the page so need to get a connection to the DB
     var request = window.indexedDB.open("dbCat", 2);
-    request.onerror = function(event) {
+    request.onerror = function (event) {
         alert("Unable to retrieve data from the database at this time, please try later. 261");
         console.log("error 262")
     };
 
     // connection was successful
-    request.onsuccess = function(event) {
+    request.onsuccess = function (event) {
         let db1 = event.target.result;
         console.log("success")
 
         let storeName = "categories";
         let tx = db1.transaction(storeName).objectStore(storeName);
         $("#categories").text("");
-        tx.openCursor().onsuccess = function(event) {
+        tx.openCursor().onsuccess = function (event) {
             var cursor = event.target.result;
 
             if (cursor) {
@@ -307,13 +391,13 @@ function listCategories(callBack) {
 function listDepartments(callBack) {
     // new call from the page so need to get a connection to the DB
     var request = window.indexedDB.open("dbCat", 2);
-    request.onerror = function(event) {
+    request.onerror = function (event) {
         alert("Unable to retrieve data from the database at this time, please try later. 309");
         console.log("error 294")
     };
 
     // connection was successful
-    request.onsuccess = function(event) {
+    request.onsuccess = function (event) {
         let db1 = event.target.result;
         console.log("success")
 
@@ -325,7 +409,7 @@ function listDepartments(callBack) {
         var option = "<option value='0'>Select Department Subcategory</option>";
         $("#AdminDrop").append(option);
 
-        tx.openCursor().onsuccess = function(event) {
+        tx.openCursor().onsuccess = function (event) {
             var cursor = event.target.result;
 
             if (cursor) {
@@ -343,13 +427,13 @@ function listDepartments(callBack) {
 function listDepartments1(callBack) {
     // new call from the page so need to get a connection to the DB
     var request = window.indexedDB.open("dbCat", 2);
-    request.onerror = function(event) {
+    request.onerror = function (event) {
         alert("Unable to retrieve data from the database at this time, please try later. 309");
         console.log("error 294")
     };
 
     // connection was successful
-    request.onsuccess = function(event) {
+    request.onsuccess = function (event) {
         let db1 = event.target.result;
         console.log("success")
 
@@ -361,7 +445,7 @@ function listDepartments1(callBack) {
         var option = "<option value='0'>Select Department Category</option>";
         $("#AdminDrop1").append(option);
 
-        tx.openCursor().onsuccess = function(event) {
+        tx.openCursor().onsuccess = function (event) {
             var cursor = event.target.result;
 
             if (cursor) {
@@ -435,7 +519,7 @@ var acc = document.getElementsByClassName("accordion");
 var i;
 
 for (i = 0; i < acc.length; i++) {
-    acc[i].addEventListener("click", function() {
+    acc[i].addEventListener("click", function () {
         this.classList.toggle("active");
         var panel = this.nextElementSibling;
         if (panel.style.display === "block") {
@@ -446,86 +530,6 @@ for (i = 0; i < acc.length; i++) {
     });
 }
 
-$('#btnSubmitLogin').submit(function(event)  {
-    setDatabaseName('dbCat', ['users', 'items', 'categories', 'subcategories ', 'events', 'watchlist']);
-    setCurrObjectStoreName('users');
-    startDB(function() {
-        SelectUser()
-        console.log("SelectUser was fired")
-    });
-});
-
-function SelectUser() {
-
-    
-    // startDB("", DisplayError);
-
-    // get form data
-    let formUsername = $("#email").val();
-    let formKey = $("#key").val();
-    if (formUsername === undefined || formUsername === "") {
-        alert("Invalid credentials please try again un");
-        return;
-    }
-    if (formKey === undefined || formKey === "") {
-        alert("Invalid credentials please try again pw");
-        return;
-    }
-
-    var transaction = db.transaction([currObjectStoreName], IDBTransaction.READ_ONLY || 'readonly'),
-        objectStore, request;
-
-    transaction.onerror = indexedDBError;
-    
-    let result = (formUsername); // query the index using get
-
-
-    result.onerror = indexedDBError;
-    result.onsuccess = function(event) {
-        // event.target means request
-
-        var record = result.result;
-
-        if (record) {
-
-            ValidateSelectedUser(formUsername, formKey, record);
-
-            return;
-        }
-    };
-}
-
-
-function ValidateSelectedUser(formUsername, formKey, match) {
-
-    if (match) {
-        let username = match.username;
-        let key = match.key; // this will be the hashed password
-        let role = match.role;
-        //compare credentials
-        if (formUsername === username && formKey === key) {
-            // valid credentials
-            console.log("db formUsername: " + formUsername);
-            console.log("db role: " + role);
-
-            if (role === "administrator") {
-                let url = "../Login/crud.html"
-                    //redirect to admin page where add/edit/delete functions are found
-                window.location.href = url;
-            } else if (role === "public") {
-                let url = "../Login/myaccount.html"
-                    //redirect to public page where watchlist and account functions are found
-                window.location.href = url;
-                console.log(formKey);
-            }
-        } else {
-            alert("Invalid credentials please try again.");
-        }
-    } else {
-        alert("Invalid credentials please try again");
-    }
-
-}
 
 /* todo:
 DONE list items
