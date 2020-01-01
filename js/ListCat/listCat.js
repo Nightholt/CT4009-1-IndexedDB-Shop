@@ -2,7 +2,6 @@
 var listOfItems = [];
 var listOfCategories = [];
 var listOfSubcategories = [];
-var finalCallback;
 
 //retrieves category list from categories table in db
 function getAllCategories(callBack) {
@@ -13,16 +12,16 @@ function getAllCategories(callBack) {
         for (i = 0; i < len; i++) {
             listOfCategories[i] = results[i];
         }
-        setDatabaseName('dbCat', ['users', 'items', 'categories', 'events', 'watches']);
-        setCurrObjectStoreName('items');
+        setDatabaseName('dbCat', ['users', 'items', 'categories', 'subcategories ', 'events', 'watchlist']);
+        setCurrObjectStoreName('subcategories');
         // need to get all the subcats and items before building the html
-        startDB(function () {
-            finalCallback = callBack;
-            getAllSubcategories(getAllItems);
-            
+        startDB(function () {       
+            getAllSubcategories(callBack);            
         }); // async func
     });
 }
+
+//getAllCategories().getAllSubcategories().getAllItems(callBack)
 
 //retrieve all values from subcategories table in db
 //items need to be obtained before html can be built
@@ -34,19 +33,25 @@ function getAllSubcategories(callBack) {
         for (i = 0; i < len; i++) {
             listOfSubcategories[i] = results[i];
         }
+
         console.log("getAllSubcategories.length:" + listOfSubcategories.length);
-        callBack(finalCallback);
+        setDatabaseName('dbCat', ['users', 'items', 'categories', 'subcategories ', 'events', 'watchlist']);
+        setCurrObjectStoreName('items');
+        startDB(function () {            
+            getAllItems(callBack);            
+        }); // async func
+       
     });
 }
 
-//connect to subcategories db table
-function initialiseSubcats(callBack) {
-    setDatabaseName('dbCat', ['users', 'items', 'categories', 'subcategories ', 'events', 'watchlist']);
-    setCurrObjectStoreName('subcategories');
-    startDB(function () { // async func
-        getAllSubcategories(callBack);
-    });
-}
+// //connect to subcategories db table
+// function initialiseSubcats(callBack) {
+//     setDatabaseName('dbCat', ['users', 'items', 'categories', 'subcategories ', 'events', 'watchlist']);
+//     setCurrObjectStoreName('subcategories');
+//     startDB(function () { // async func
+//         getAllSubcategories(callBack);
+//     });
+// }
 
 //retrieves all values from items table in db
 //html can't be built until values are obtained
@@ -58,7 +63,8 @@ function getAllItems(callBack) {
             listOfItems[i] = results[i];
         }
         console.log("getAllItems listOfItems.length:" + listOfItems.length);
-        callBack();// now build the html at the end of the call stack
+        //callBack();// now build the html at the end of the call stack
+        callBack();
     });
 }
 
