@@ -2,10 +2,12 @@ function updateItemData(data) {
     var itemName = $('#txtItemName').val();
     var itemDesc = $('#txtDesc').val();
     var itemPrice = $('#intPrice').val();
+    var itemSubcategory = $('#AdminDrop').val();
 
     data.itemName = itemName;
     data.itemDesc = itemDesc;
     data.itemPrice = itemPrice;
+    data.itemSubcategory = itemSubcategory;
 
 
     var fileInput = $('#fileItemImage');

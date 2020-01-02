@@ -8,11 +8,11 @@ function showAllItems() {
         for (i = 0; i < len; i++) {
             var item_id = results[i].id;
             html += '<div id="' + item_id + '">';
-            html += '<h3>' + results[i].itemName + '</h3>';
+            html += '<h3> Name: ' + results[i].itemName + '</h3>';
             var img_id = "image-" + item_id;
-            html += '<h5>' + results[i].itemPrice + '</h5>';
-            html += '<h5>' + results[i].itemDesc + '</h5>';
-            //alert(img_id);
+            html += '<h5> Price: £' + results[i].itemPrice + '</h5>';
+            html += '<h5> Description: ' + results[i].itemDesc + '</h5>';
+            html += '<h5> Subcategory: ' + results[i].itemSubcategory + '</h5>';
             html += '<img id=' + img_id + ' height="100" width="100"/><br/>';
             html += '<a href="#" class="actionDelete">Delete</a><br/>';
             html += '<a href="#" class="actionUpdate">Update</a>';

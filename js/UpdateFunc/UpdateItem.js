@@ -10,6 +10,7 @@ startDB(function () {
         $('#txtItemName').val(result.itemName);
         $('#txtDesc').val(result.itemDesc);
         $('#intPrice').val(result.itemPrice);
+        $('#AdminDrop').val(result.itemSubcategory);
         data = result;
 
     })
@@ -20,7 +21,7 @@ $(document).on('change', '#fileItemImage', function(event) {
 });
 
 function previewFile(){
-    var preview = document.querySelector('img');
+    var preview = document.querySelector('img#bannerImg');
     var file = document.querySelector('input[type=file]').files[0];
     var reader = new FileReader();
 
