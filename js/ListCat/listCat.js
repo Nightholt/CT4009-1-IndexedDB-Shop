@@ -71,10 +71,14 @@ function FormatCategoriesAndItemsAsHtml() {
     for (i = 0; i < len; i++) {
         var categoryId = listOfCategories[i].id;
         //html += "<button class='accordion'>" + listOfCategories[i].name + "</button>";
-        //html += "<div class='panel'>"
+        html += "<div class='display'>"
         html += "<div id='" + categoryId + "'>";
         html += "   <h1>" + listOfCategories[i].name + "</h1>";
         html += "   <h6>" + listOfCategories[i].catDesc + "</h6>";
+        html += "   <div class='adminView'>";
+        html += "       <a href='#' class='deleteAction'>Delete</a><br/>";
+        html += "       <a href='#' class='updateAction'>Update</a>";
+        html += "   </div>";
         // build html
         var k = 0;
         var lenSubcategories = listOfSubcategories.length;
@@ -87,6 +91,10 @@ function FormatCategoriesAndItemsAsHtml() {
                 html += "       <div id='" + subcategoryId + "'>";
                 html += "       <h1>" + listOfSubcategories[k].subcatName + "</h1>";
                 html += "       <h6>" + listOfSubcategories[k].subcatDesc + "</h6>";
+                html += "       <div class='adminView'>";
+                html += "           <a href='#' class='deleteActionSubcat'>Delete</a><br/>";
+                html += "           <a href='#' class='updateActionSubcat'>Update</a>";
+                html += "       </div>";
                 var j = 0;
                 var lenItems = listOfItems.length;
                 //items div loops for each result
@@ -101,45 +109,76 @@ function FormatCategoriesAndItemsAsHtml() {
                 }
                 html += "   </div>";
                 html += "</div>";
+                html += "</div>";
             }
         }
     }
     $("#divCatList").html(html); //div that html is built into
-    $('.adminView').hide(); //hides 
+
+    $('.adminView').hide(); //hides admin functions while on shop page
+    //if url includes name of admin page then admin functions appear
+    //checkboxes and buy button hidden as not needed
+    var url = window.location.href;
+    var adminCheck = url.includes("crud");
+    if (adminCheck === true) {
+        $('.adminView').show(); 
+        $('.checkbox').hide();
+    }
+    else {
+        return;
+    }
+
+    $('.deleteAction').click(function () {
+        var catID = parseInt($(this).parent().attr('id'));
+        if (!confirm("Are you sure you want to delete this Category with its items?")){
+            return;
+        };
+
+        deleteOne(catID, function () {
+            alert("Category " + catID + " was deleted successfully");
+            location.reload();
+        })
+        return false;
+    });
 }
 
 function generateItemHTML(item) {
     var itemId = item.id;
-    var html = "<div class='indent'>";
+    var html = "<div class='indentItems'>";
     html += "       <div class='leftCell' id='cellItem_" + itemId + "'>";
     html += "           <h3>" + item.itemName + "</h3><br/>";
     html += "           <img src='../images/" + item.itemImage.name + "' height='100' width='100'/><br/>";
     html += "           <label>" + item.itemDesc + "</label><br/>";
     html += "           <label><b>&pound;" + item.itemPrice + "</b></label><br/>";
-    html += "           <label>CategoryId:" + item.itemSubcategory + "</label><br/>";
-    html += "           <div class='adminView'>";
-    html += "               <a href='#' class='deleteAction'>Delete</a><br/>";
-    html += "               <a href='#' class='updateAction'>Update</a>";
-    html += "           </div>";
+    html += "       </div>";
+    //admin controls, only available on crud page
+    html += "       <div class='adminView'>";
+    html += "           <a href='#' class='deleteActionItem'>Delete</a><br/>";
+    html += "           <a href='#' class='updateActionItem'>Update</a>";
     html += "       </div>";
     //checkbox to add to compare div
-    html += "       <input class='cellChkbox' type='checkbox' name='compare' value='Add to Compare' id='compareCheckBox_" + itemId + "'/><label for='compareCheckBox_" + itemId + "'> Add to compare</label>"
+    html += "       <div class='checkbox'><input class='cellChkbox' type='checkbox' name='compare' value='Add to Compare' id='compareCheckBox_" + itemId + "'/><label for='compareCheckBox_" + itemId + "'> Add to compare</label></div>";
     //checkbox to add to watchlist
-    html += "       <input class='watchChkbox' type='checkbox' name='watch' value='Add to Watchlist' id='watchCheckBox_" + itemId + "'/><label for='watchCheckBox_" + itemId + "'> Add to watchlist</label>"
+    html += "       <div class='checkbox'><input class='watchChkbox' type='checkbox' name='watch' value='Add to Watchlist' id='watchCheckBox_" + itemId + "'/><label for='watchCheckBox_" + itemId + "'> Add to watchlist</label></div>";
+    html += "       <button id='buy' class='btn btn-success' value='Buy'>Buy</button>";
     html += "   </div>";
     return html;
 }
 
+$("#buy").click(function(){
+    buyClick();
+})
 
-function addToWatchlist() {
-
+function buyClick() {
+    var html = html;
+    html += "<a href='../../Search/results.html'></a>";
 }
 
 // var acc = $(".accordion");
 // var t;
 
 // for (t = 0; t < acc.length; t++) {
-//     acc[t].addEventListener("click", function () {
+//     acc[0t].addEventListener("click", function () {
 //         this.classList.toggle("active");
 //         var panel = this.nextElementSibling;
 //         if (panel.style.display === "block") {
