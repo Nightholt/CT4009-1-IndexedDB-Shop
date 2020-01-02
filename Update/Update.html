@@ -32,7 +32,7 @@
     <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
         <!-- logo link to home page -->
         <a class="navbar-brand" href="../home/HomePage.html">
-            <img src="../images/Misc/trolley.png" alt="Trolley Logo" width="50" height="50">
+            <img src="../images/Misc/trolley.png" id="logo" alt="Trolley Logo" width="50" height="50">
         </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
             aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
@@ -91,7 +91,6 @@
             <!--defines type of input, id, placeholder and requires user to make input-->
             <input type="password" class="form-control" id="key" placeholder="Enter password" name="key" required>
         </div>
-        <!--submit button-->
         <button type="submit" id="btnSubmitLogin" class="btn btn-primary">Submit</button>
         </form>
     </div>
@@ -111,6 +110,10 @@
 
             <label> Price: </label> <br>
             <input type="int" id="intPrice" name="Price" required="required"> <br> <br>
+
+            <select id="AdminDrop" required="required"></select>
+            <br />&nbsp;
+            <br />
 
             <label for="file">Choose item image to upload</label>
             <input type="file" id="fileItemImage" name="file"> <br> <br>

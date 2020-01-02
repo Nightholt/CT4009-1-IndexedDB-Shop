@@ -75,10 +75,12 @@ li .indent {
     padding-left: 3em;
 }
 
+/* accordion hover colour */
 a:hover {
     background-color: rgb(94, 94, 94);
 }
 
+/* accordian style */
 .accordion {
     background-color: #eee;
     color: #444;
