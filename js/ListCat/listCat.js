@@ -75,7 +75,7 @@ function FormatCategoriesAndItemsAsHtml() {
         html += "<div id='" + categoryId + "'>";
         html += "   <h1>" + listOfCategories[i].name + "</h1>";
         html += "   <h6>" + listOfCategories[i].catDesc + "</h6>";
-        html += "   <div class='adminView'>";
+        html += "   <div class='adminView' id='adminCellCategory_" + categoryId + "'>";        
         html += "       <button type='button' class='btn btn-danger deleteAction'>Delete</button><br/>";
         html += "       <button type='button' class='btn btn-info updateAction'>Update</button><br/>";
         html += "   </div>";
@@ -90,9 +90,9 @@ function FormatCategoriesAndItemsAsHtml() {
                 html += "   <div class='indent'>";
                 html += "       <div id='" + subcategoryId + "'>";
                 html += "       <h1>" + listOfSubcategories[k].subcatName + "</h1>";
-                html += "       <h6>" + listOfSubcategories[k].subcatDesc + "</h6>";
-                html += "       <div class='adminView'>";
-                html += "           <button type='button' class='btn btn-danger deleteActionSubcat'>Delete</button><br/>";
+                html += "       <h6>" + listOfSubcategories[k].subcatDesc + "</h6>";                
+                html += "       <div class='adminView' id='adminCellSubCategory_" + subcategoryId + "'>";        
+                html += "           <button type='button' class='btn btn-danger deleteAction'>Delete</button><br/>";
                 html += "           <button type='button' class='btn btn-info updateActionSubcat'>Update</button><br/>";
                 html += "       </div>";
                 var j = 0;
@@ -130,31 +130,67 @@ function FormatCategoriesAndItemsAsHtml() {
     }
 
     $('.deleteAction').click(function () {
-        var catID = parseInt($(this).parent().attr('id'));
-        if (!confirm("Are you sure you want to delete this Category with its items?")){
-            return;
-        };
-
-        deleteOne(catID, function () {
-            alert("Category " + catID + " was deleted successfully");
-            location.reload();
-        })
-        return false;
-    });
-
-    $('.deleteActionItem').click(function () {
+    
         var idArray = $(this).parent().attr('id').split("_");
-        var itemID = parseInt(idArray[1]);
-        if (!confirm("Are you sure you want to delete this item?")){
+        var parentId = idArray[0];
+        var id = parseInt(idArray[1]);        
+        if (!confirm("Are you sure you want to delete this - any dependencies will also be deleted?")){
             return;
         };
-
-        deleteOne(itemID, function () {
-            alert("item " + itemID + " was deleted successfully");
-            location.reload();
-        })
+        
+        var storename = "";
+        if (parentId.indexOf("adminCellSubCategory") !== -1){
+            storename = "subcategories";
+        }
+        if (parentId.indexOf("adminCellCategory") !== -1){
+            storename = "categories";
+        }
+        if (parentId.indexOf("adminCellItem") !== -1){
+            storename = "items";
+        }
+        console.log("deleteAction: storename: " + storename);
+        
+        setDatabaseName('dbCat', ['users', 'items', 'categories', 'subcategories', 'events']);
+        setCurrObjectStoreName(storename);
+        startDB(function () {
+            deleteOne(id, function () {
+                alert("deleted!");
+                location.reload();
+            });
+        }); // async func
+        
         return false;
     });
+
+    // $('.deleteActionItem').click(function () {
+    //     var idArray = $(this).parent().attr('id').split("_");
+    //     var itemID = parseInt(idArray[1]);
+    //     if (!confirm("Are you sure you want to delete this item?")){
+    //         return;
+    //     };
+
+    //     deleteOne(itemID, function () {
+    //         alert("item " + itemID + " was deleted successfully");
+    //         location.reload();
+    //     })
+    //     return false;
+    // });
+
+    // $('.deleteActionItem').click(function () {
+    //     var idArray = $(this).parent().attr('id').split("_");
+    //     var itemID = parseInt(idArray[1]);
+    //     if (!confirm("Are you sure you want to delete this item?")){
+    //         return;
+    //     };
+
+    //     deleteOne(itemID, function () {
+    //         alert("item " + itemID + " was deleted successfully");
+    //         location.reload();
+    //     })
+    //     return false;
+    // });
+
+    
 }
 
 function generateItemHTML(item) {
@@ -167,7 +203,7 @@ function generateItemHTML(item) {
     html += "           <label><b>&pound;" + item.itemPrice + "</b></label><br/>";
     html += "       </div>";
     //admin controls, only available on crud page
-    html += "       <div class='adminView'>";
+    html += "       <div class='adminView' id='adminCellItem_" + itemId + "'>";
     html += "           <button type='button' class='btn btn-danger deleteActionItem'>Delete</button><br/>";
     html += "           <button type='button' class='btn btn-info updateActionItem'>Update</button><br/>";
     html += "       </div>";
