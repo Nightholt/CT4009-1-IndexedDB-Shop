@@ -140,7 +140,7 @@ function FormatCategoriesAndItemsAsHtml() {
         var storename = "";
         if (parentId.indexOf("adminCellCategory") !== -1) {
             storename = "categories";
-            if (!confirm("Are you sure you want to delete this category?- ALL related subcategories AND their related items will also be deleted?")) {
+            if (!confirm("Are you sure you want to delete this category?\nWARNING: ALL related subcategories AND their related items will also be deleted?")) {
                 return;
             };
             // get all subcategories for this category and items and delete            
@@ -156,7 +156,7 @@ function FormatCategoriesAndItemsAsHtml() {
 
         if (parentId.indexOf("adminCellSubCategory") !== -1) {
             storename = "subcategories";
-            if (!confirm("Are you sure you want to delete this - any dependencies will also be deleted?")) {
+            if (!confirm("Are you sure you want to delete this subcategory\nWARNING: ALL related items will also be deleted?")) {
                 return;
             };
             deleteItemsBySubCategory(id);
@@ -230,7 +230,6 @@ function buyClick() {
 
 // var acc = $(".accordion");
 // var t;
-
 // for (t = 0; t < acc.length; t++) {
 //     acc[0t].addEventListener("click", function () {
 //         this.classList.toggle("active");

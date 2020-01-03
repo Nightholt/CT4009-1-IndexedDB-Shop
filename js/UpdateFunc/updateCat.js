@@ -12,7 +12,7 @@ startDB(function () {
         data = result;
 
     })
-})
+});
 
 $('#formUpdateCategory').submit(function(event)  {
     event.preventDefault();
