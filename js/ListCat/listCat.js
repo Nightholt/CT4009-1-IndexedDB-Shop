@@ -196,6 +196,8 @@ function FormatCategoriesAndItemsAsHtml() {
     }
 }
 
+
+
 function generateItemHTML(item) {
     var itemId = item.id;
     var html = "<div class='indentItems'>";
@@ -216,6 +218,14 @@ function generateItemHTML(item) {
     html += "       <div id='watchItem_" + itemId + "' class='checkbox'><input class='watchChkbox' type='checkbox' name='watch' value='Add to Watchlist' id='watchCheckBox_" + itemId + "'/><label for='watchCheckBox_" + itemId + "'> Add to watchlist</label></div>";
     html += "       <div class='buy'><button id='buy' class='btn btn-success' value='Buy'>Buy</button></div>";
     html += "   </div>";
+    
+    $('.updateActionItem').click(function () {
+    var itemID = parseInt($(this).parent().attr('id'));
+    window.open("../Update/Update.html?itemID=" + itemID, "_self");
+
+    return false;
+    });
+    
     return html;
 }
 
@@ -236,7 +246,6 @@ function buyClick() {
 
 
 
-var data;
 var isChecked = 0;
 
 $(document).on("change", "input[class='watchChkbox']", function () {
@@ -268,11 +277,11 @@ $(document).on("change", "input[class='watchChkbox']", function () {
     
 function AddtoWatchlist(watchItemID) {
     setDatabaseName('dbCat', ['users', 'items', 'categories', 'subcategories ', 'events', 'watchlist']);
-    setCurrObjectStoreName('watchlist');
+    setCurrObjectStoreName('items');
     startDB(function() {
         //selectOne(itemId, updateWatchItemData);
         selectOne(watchItemID, function (result) {
-            console.log("WatchItemName: " + data.itemName);
+            console.log("WatchItemName: " + watchItemID.itemName);
             data = result;
             saveWatchlistData();
             alert("Item has been successfully saved to watchlist");
@@ -286,12 +295,12 @@ var newWatchItemID = 0;
 //saves form data into categories table
 function saveWatchlistData() {
     setDatabaseName('dbCat', ['users', 'items', 'categories', 'subcategories ', 'events', 'watchlist']);
-    setCurrObjectStoreName('items');
+    setCurrObjectStoreName('watchlist');
     startDB(function() {
-        var itemName = data.itemName;
-        var itemDesc = data.itemDesc;
-        var itemPrice = data.itemPrice;
-        var itemSubcategory = data.itemSubcategory;;
+        var itemName = watchItemID.itemName;
+        var itemDesc = watchItemID.itemDesc;
+        var itemPrice = watchItemID.itemPrice;
+        var itemSubcategory = watchItemID.itemSubcategory;;
 
         //format of table
         var data = {

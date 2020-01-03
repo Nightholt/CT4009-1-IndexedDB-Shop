@@ -1,5 +1,5 @@
 setDatabaseName('dbCat', ['users', 'items', 'categories', 'subcategories ', 'events', 'watchlist']);
-setCurrObjectStoreName('items');
+setCurrObjectStoreName('watchlist');
 startDB(function() {
     showAllItems();
 });

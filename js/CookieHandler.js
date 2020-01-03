@@ -1,5 +1,5 @@
 //source https://www.quirksmode.org/js/cookies.html
-function createCookie(name,value,days) {
+function createCookie(name,value,days) { //creates cookie with expiry
 	if (days) {
 		var date = new Date();
 		date.setTime(date.getTime()+(days*24*60*60*1000));
@@ -9,7 +9,7 @@ function createCookie(name,value,days) {
 	document.cookie = name+"="+value+expires+"; path=/";
 }
 
-function readCookie(name) {
+function readCookie(name) { 
 	var nameEQ = name + "=";
 	var ca = document.cookie.split(';');
 	for(var i=0;i < ca.length;i++) {

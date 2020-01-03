@@ -14,8 +14,8 @@ function showAllItems() {
             html += '<h5> Description: ' + results[i].itemDesc + '</h5>';
             html += '<h5> Subcategory: ' + results[i].itemSubcategory + '</h5>';
             html += '<img id=' + img_id + ' height="100" width="100"/><br/>';
-            html += '<a href="#" class="actionDelete">Delete</a><br/>';
-            html += '<a href="#" class="actionUpdate">Update</a>';
+            html += '<a href="#" class="btn btn-danger actionDelete">Delete</a><br/>';
+            //html += '<a href="#" class="btn btn-info actionUpdate">Update</a>';
             html += '</div>';
         }
 
@@ -32,7 +32,7 @@ function showAllItems() {
             var itemID = parseInt($(this).parent().attr('id'));
 
             deleteOne(itemID, function () {
-                alert("Item " + itemID + " was deleted successfully");
+                alert("Item " + itemID + " was deleted from your watchlist");
                 location.reload();
             })
             return false;
