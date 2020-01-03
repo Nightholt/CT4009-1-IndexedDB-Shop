@@ -143,13 +143,14 @@ function FormatCategoriesAndItemsAsHtml() {
     });
 
     $('.deleteActionItem').click(function () {
-        var itemID = parseInt($(this).parent().attr('id'));
-        if (!confirm("Are you sure you want to delete this Category with its items?")){
+        var idArray = $(this).parent().attr('id').split("_");
+        var itemID = parseInt(idArray[1]);
+        if (!confirm("Are you sure you want to delete this item?")){
             return;
         };
 
         deleteOne(itemID, function () {
-            alert("Category " + itemID + " was deleted successfully");
+            alert("item " + itemID + " was deleted successfully");
             location.reload();
         })
         return false;
