@@ -13,7 +13,7 @@ function getAllCategories(callBack) {
         for (i = 0; i < len; i++) {
             listOfCategories[i] = results[i];
         }
-        setDatabaseName('dbCat', ['users', 'items', 'categories', 'subcategories', 'events']);
+        setDatabaseName('dbCat', ['users', 'items', 'categories', 'subcategories ', 'events', 'watchlist']);
         setCurrObjectStoreName('subcategories');
         // need to get all the subcats and items before building the html
         startDB(function () {
@@ -36,7 +36,7 @@ function getAllSubcategories(callBack) {
         }
 
         console.log("getAllSubcategories.length:" + listOfSubcategories.length);
-        setDatabaseName('dbCat', ['users', 'items', 'categories', 'subcategories', 'events']);
+        setDatabaseName('dbCat', ['users', 'items', 'categories', 'subcategories ', 'events', 'watchlist']);
         setCurrObjectStoreName('items');
         startDB(function () {
             getAllItems(callBack);
@@ -185,7 +185,7 @@ function FormatCategoriesAndItemsAsHtml() {
     function deleteById(storename, id) {
         console.log("deleteAction: storename: " + storename);
 
-        setDatabaseName('dbCat', ['users', 'items', 'categories', 'subcategories', 'events']);
+        setDatabaseName('dbCat', ['users', 'items', 'categories', 'subcategories ', 'events', 'watchlist']);
         setCurrObjectStoreName(storename);
         startDB(function () {
             deleteOne(id, function () {
@@ -213,7 +213,7 @@ function generateItemHTML(item) {
     //checkbox to add to compare div
     html += "       <div class='checkbox'><input class='cellChkbox' type='checkbox' name='compare' value='Add to Compare' id='compareCheckBox_" + itemId + "'/><label for='compareCheckBox_" + itemId + "'> Add to compare</label></div>";
     //checkbox to add to watchlist
-    html += "       <div class='checkbox'><input class='watchChkbox' type='checkbox' name='watch' value='Add to Watchlist' id='watchCheckBox_" + itemId + "'/><label for='watchCheckBox_" + itemId + "'> Add to watchlist</label></div>";
+    html += "       <div id='watchItem_" + itemId + "' class='checkbox'><input class='watchChkbox' type='checkbox' name='watch' value='Add to Watchlist' id='watchCheckBox_" + itemId + "'/><label for='watchCheckBox_" + itemId + "'> Add to watchlist</label></div>";
     html += "       <div class='buy'><button id='buy' class='btn btn-success' value='Buy'>Buy</button></div>";
     html += "   </div>";
     return html;
@@ -228,16 +228,124 @@ function buyClick() {
     html += "<a href='../../Search/results.html'></a>";
 }
 
-// var acc = $(".accordion");
-// var t;
-// for (t = 0; t < acc.length; t++) {
-//     acc[0t].addEventListener("click", function () {
-//         this.classList.toggle("active");
-//         var panel = this.nextElementSibling;
-//         if (panel.style.display === "block") {
-//             panel.style.display = "none";
-//         } else {
-//             panel.style.display = "block";
-//         }
+
+
+
+
+
+
+
+
+var data;
+var isChecked = 0;
+
+$(document).on("change", "input[class='watchChkbox']", function () {
+    // var chkBoxId = this.id;
+    // var idArray = chkBoxId.split("_");
+    // var itemId = idArray[1];
+    getAllSubcategories();
+    
+    var idArray = $(this).parent().attr('id').split("_");
+    var parentId = idArray[0];
+    var watchItemID = parseInt(idArray[1]);
+    
+
+    if ($(this).prop("checked")) {
+        if (parentId.indexOf("watchItem") !== -1) {
+            console.log("on change: watchItemID: " + $('#watchItem_'));
+            console.log("AddtoWatchlist fired")
+        AddtoWatchlist(watchItemID);
+        }
+    }
+    return;
+    
+    // try {
+    //     AddtoWatchlist();
+    // } catch (err) {
+    //     console.log("error: " + err);
+    // }
+});
+    
+function AddtoWatchlist(watchItemID) {
+    setDatabaseName('dbCat', ['users', 'items', 'categories', 'subcategories ', 'events', 'watchlist']);
+    setCurrObjectStoreName('items');
+    startDB(function() {
+        //selectOne(itemId, updateWatchItemData);
+        selectOne(watchItemID, function (result) {
+            console.log("WatchItemName: " + data.itemName);
+            data = result;
+            saveWatchlistData();
+            alert("Item has been successfully saved to watchlist");
+            location.reload();
+        });
+    });
+}
+
+var newWatchItemID = 0;
+
+//saves form data into categories table
+function saveWatchlistData() {
+    setDatabaseName('dbCat', ['users', 'items', 'categories', 'subcategories ', 'events', 'watchlist']);
+    setCurrObjectStoreName('watchlist');
+    startDB(function() {
+        var itemName = data.itemName;
+        var itemDesc = data.itemDesc;
+        var itemPrice = data.itemPrice;
+        var itemSubcategory = data.itemSubcategory;;
+
+        //format of table
+        var data = {
+            'itemName': itemName,
+            'itemDesc': itemDesc,
+            'itemPrice': itemPrice,
+            'itemSubcategory': itemSubcategory,
+        };
+
+        //saves new category in db
+        insertOne(data, function(lastID) {
+            event.preventDefault();
+            console.log("saveWatchlistData lastID:" + lastID);
+            return false;
+        });
+    });
+}
+    
+
+
+
+
+// function getItemWatchListValue(itemId) {
+//     setDatabaseName('dbCat', ['users', 'items', 'categories', 'subcategories ', 'events', 'watchlist']);
+//     setCurrObjectStoreName('items');
+//     startDB(function () {
+//         selectOne(itemId, updateWatchItemData);
+//         // selectOne(itemId, function (result) {
+//         //     console.log("SECOND updateWatchItemData item: " + result.itemName);
+//         //     console.log("SECOND updateWatchItemData item: " + result.itemWatchlist);
+//         //     dataBlob = result;
+//         // });
+//         //callback();
+//         // alert("Item has been successfully added to watchlist");            
 //     });
+// }
+
+// function updateWatchItemData(result) {
+//     setDatabaseName('dbCat', ['users', 'items', 'categories', 'subcategories ', 'events', 'watchlist']);
+//     setCurrObjectStoreName('items');
+
+//     console.log("THIRD updateWatchItemData item: " + result);
+    
+//     startDB(function () {
+//         result.itemWatchlist = 1; //parseInt(isChecked);
+
+//         updateOne(result, function (lastID) {
+//             event.preventDefault();
+//             return false;
+//         });
+//     });
+// }
+
+
+// function errorCallback(err) {
+//     console.log("FIRING errorCallback: " + err);
 // }

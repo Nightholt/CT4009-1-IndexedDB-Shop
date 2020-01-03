@@ -1,27 +1,27 @@
 var urlParams = new URLSearchParams(window.location.search);
-var catID = urlParams.get('catID');
-$('#catID').html("Category ID: " + catID);
+var subcatID = urlParams.get('subcatID');
+$('#subcatID').html("Subcategory ID: " + subcatID);
 
-setDatabaseName('dbCat', ['users', 'items', 'categories', 'subcategories', 'events']);
-setCurrObjectStoreName('categories');
+setDatabaseName('dbCat', ['users', 'items', 'categories', 'subcategories ', 'events', 'watchlist']);
+setCurrObjectStoreName('subcategories');
 var data;
 startDB(function () {
-    selectOne(catID, function(result) {
-        $('#txtCatName').val(result.name);
-        $('#txtCatDesc').val(result.catDesc);
+    selectOne(subcatID, function(result) {
+        $('#txtSubcatName').val(result.subcatName);
+        $('#txtSubcatDesc').val(result.subcatDesc);
         data = result;
 
     })
 })
 
-$('#formUpdateCategory').submit(function(event)  {
+$('#formUpdateSubcategory').submit(function(event)  {
     event.preventDefault();
 
-    setDatabaseName('dbCat', ['users', 'items', 'categories', 'subcategories', 'events']);
+    setDatabaseName('dbCat', ['users', 'items', 'categories', 'subcategories ', 'events', 'watchlist']);
     setCurrObjectStoreName('categories');
     
     startDB(function () {
-        updateCatData(data);
+        updateSubcatData(data);
         alert("Category has been updated successfully");
     });
 });

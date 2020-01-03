@@ -34,6 +34,10 @@ const subcategories = [
 
 ]
 
+const watchlist = [
+
+]
+
 var db, indexedDB, IDBTransaction, currObjectStoreName, databaseName, objectStores;
 
 $(document).ready(function () {
@@ -71,7 +75,7 @@ $(document).ready(function () {
         //event.preventDefault();
         console.log("btnSubmitLogin was fired");
 
-        setDatabaseName('dbCat', ['users', 'items', 'categories', 'subcategories', 'events']);
+        setDatabaseName('dbCat', ['users', 'items', 'categories', 'subcategories ', 'events', 'watchlist']);
         setCurrObjectStoreName('users');
         startDB(function () {
             getAllUsers();
@@ -203,7 +207,7 @@ $(document).ready(function () {
 
 function DisplayCategoryInDiv(catId) {
 
-    setDatabaseName('dbCat', ['users', 'items', 'categories', 'subcategories', 'events']);
+    setDatabaseName('dbCat', ['users', 'items', 'categories', 'subcategories ', 'events', 'watchlist']);
     setCurrObjectStoreName('categories');
     var data;
     startDB(function () {
@@ -235,7 +239,7 @@ function init() {
 
 function initDB() {
 
-    setDatabaseName('dbCat', ['users', 'items', 'categories', 'subcategories', 'events']);
+    setDatabaseName('dbCat', ['users', 'items', 'categories', 'subcategories', 'events', 'watchlist']);
     // Let us open our database
     // checks user's browser for indexeddb support
     window.indexedDB = window.indexedDB || window.mozIndexedDB || window.webkitIndexedDB || window.msIndexedDB;
@@ -279,7 +283,7 @@ function initDB() {
 
         let objStoreEvents = db.createObjectStore("events", { keyPath: "id", autoIncrement: true });
 
-        //let objStoreWatchlist = db.createObjectStore("watchlist", { keyPath: "id", autoIncrement: true });
+        let objStoreWatchlist = db.createObjectStore("watchlist", { keyPath: "id", autoIncrement: true });
 
         // Because the "names" object store has the key generator, the key for the name value is generated automatically.
 
@@ -303,9 +307,9 @@ function initDB() {
             objStoreEvents.add(event);
         });
 
-        // watchlist.forEach(function (item) {
-        //     objStoreWatchlist.add(item);
-        // });
+        watchlist.forEach(function (item) {
+            objStoreWatchlist.add(item);
+        });
 
         db.onerror = function (event) {
             // Generic error handler for all errors targeted at this database's requests

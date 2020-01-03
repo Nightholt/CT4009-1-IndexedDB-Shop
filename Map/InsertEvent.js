@@ -39,7 +39,7 @@ google.maps.event.addDomListener(window, 'load', initialise);
 //stores data into indexeddb
 $('#formInsertEvent').submit(function() {
     event.preventDefault();
-    setDatabaseName('dbCat', ['users', 'items', 'categories', 'subcategories', 'events']);
+    setDatabaseName('dbCat', ['users', 'items', 'categories', 'subcategories ', 'events', 'watchlist']);
     setCurrObjectStoreName('events');
     startDB(function() {
         insertEvent(marker);
@@ -53,14 +53,14 @@ $('#formInsertEvent').submit(function() {
 
 // function loadMarkerValues() {
 //     //set db table to get data from for showAllMarkers func
-//     setDatabaseName('dbCat', ['users', 'items', 'categories', 'subcategories', 'events']);
+//     setDatabaseName('dbCat', ['users', 'items', 'categories', 'subcategories ', 'events', 'watchlist']);
 //     setCurrObjectStoreName('events');
 //     startDB(function() {
 //         showAllMarkers();
 //     });
 // }
 
-setDatabaseName('dbCat', ['users', 'items', 'categories', 'subcategories', 'events']);
+setDatabaseName('dbCat', ['users', 'items', 'categories', 'subcategories ', 'events', 'watchlist']);
     setCurrObjectStoreName('events');
     startDB(function() {
         showAllMarkers();
