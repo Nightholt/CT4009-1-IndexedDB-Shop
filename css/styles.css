@@ -124,7 +124,7 @@ a:hover.dropdown-item {
     overflow: hidden;
 }
 
-#mapInput {
+#mapInput, #mapView {
     width: auto;
     height: 450px;
     border-bottom-left-radius: 5px;
