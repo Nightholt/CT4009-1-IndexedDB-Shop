@@ -22,7 +22,7 @@ function saveItemData() {
     var selectedFile = fileInput.get(0).files[0];
 
     if (typeof selectedFile != 'undefined')
-        data.itemImage = selectedFile;
+        data.itemImage = selectedFile; //image stored in db
 
     //insert into db
     insertOne(data, function(lastID) {

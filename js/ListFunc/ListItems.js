@@ -1,5 +1,5 @@
 setDatabaseName('dbCat', ['users', 'items', 'categories', 'subcategories ', 'events', 'watchlist']);
-setCurrObjectStoreName('watchlist');
+setCurrObjectStoreName('watchlist'); //pulls data from watchlist store
 startDB(function() {
-    showAllItems();
+    showAllItems(); //calls func in ListItemsDAO.js
 });

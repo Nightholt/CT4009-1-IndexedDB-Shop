@@ -1,7 +1,7 @@
 $('#formAddSubcat').submit(function(event) { //function fires when form is submitted
     console.log("AdminDrop1: " + $('#AdminDrop1').val());
     event.preventDefault();
-    if ($('#AdminDrop1').val() === '0'){
+    if ($('#AdminDrop1').val() === '0'){ //requires input in dropdown
         alert("Please Select a Category");
         return false;
     }

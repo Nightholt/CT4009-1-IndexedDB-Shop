@@ -38,7 +38,7 @@
         <!-- logo link to home page -->
         <div id="logo">
             <a class="navbar-brand" href="../home/HomePage.html">
-                <image src="../images/Misc/trolley.png" id="logo" alt="Trolley Logo" width="50" height="50">
+                <img src="../images/Misc/trolley.png" id="logo" alt="Trolley Logo" width="50" height="50">
             </a>
         </div>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
@@ -135,7 +135,6 @@
                     <select id="AdminDrop1" class="browser-default custom-select" required="required"></select>
                     <br />&nbsp;
                     <br />
-                    <script>console.log("AdminDrop1 value: " + $("#AdminDrop1"))</script>
                 </div>
                 <label> Subcategory Name </label> <br />
                 <input type="text" class="form-control text" id="txtSubcatName" name="SubcatName"
@@ -220,16 +219,6 @@
         </div>
     </div>
 
-    <!-- displays item list to delete/update -->
-    <!-- <button class="accordion">Update & Delete Items</button>
-    <div class="panel">
-        <div id="divItemList" class="container">
-            <h2> Item List </h2>
-        </div>
-    </div> -->
-
-
-
     <button class="accordion">Update & Delete Locations</button>
     <div class="panel">
         <!-- displays map marker list to delete/update -->
@@ -250,12 +239,6 @@
     <script src="../js/ListCat/initCompare.js"></script>
     <script src="../Map/InsertEvent.js"></script>
     <script src="../Map/InsertEventDAO.js"></script>
-    <!-- <script src="../Map/EventList/EventList.js"></script>
-    <script src="../Map/EventList/EventListDAO.js"></script> -->
-    <!-- <script src="../js/ListCat/adminCatList.js"></script> -->
-    <!--<script src="../js/ListFunc/ListItems.js"></script>
-    <script src="../js/ListFunc/ListItemsDAO.js"></script> -->
-
 
     <script>
         $("#AdminDrop").change(function (event) {

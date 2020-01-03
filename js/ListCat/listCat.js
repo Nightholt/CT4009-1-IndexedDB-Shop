@@ -129,11 +129,12 @@ function FormatCategoriesAndItemsAsHtml() {
         return;
     }
 
+    //func to delete child elements
     $('.deleteAction').click(function () {
 
         getAllSubcategories();// cascade build all 3 arrays
 
-        var idArray = $(this).parent().attr('id').split("_");
+        var idArray = $(this).parent().attr('id').split("_"); //gets array of categories
         var parentId = idArray[0];
         var id = parseInt(idArray[1]);
 
@@ -219,25 +220,21 @@ function generateItemHTML(item) {
     html += "       <div class='buy'><button id='buy' class='btn btn-success' value='Buy'>Buy</button></div>";
     html += "   </div>";
     
-    $('.updateActionItem').click(function () {
-    var itemID = parseInt($(this).parent().attr('id'));
-    window.open("../Update/Update.html?itemID=" + itemID, "_self");
-
-    return false;
-    });
+    
     
     return html;
 }
 
-$("#buy").click(function () {
-    buyClick();
+$('.updateActionItem').click(function () { //redirects to update page with item id
+    var itemID = itemId;
+    window.open("../Update/Update.html?itemID=" + itemID, "_self");
+
+    return false;
+    });
+
+$("#buy").click(function () { //redirects to under construction page when buy button clicked
+    window.open('../../Search/results.html');
 })
-
-function buyClick() {
-    var html = html;
-    html += "<a href='../../Search/results.html'></a>";
-}
-
 
 
 
@@ -247,18 +244,19 @@ function buyClick() {
 
 
 var isChecked = 0;
-
+//watchlist func
 $(document).on("change", "input[class='watchChkbox']", function () {
     // var chkBoxId = this.id;
     // var idArray = chkBoxId.split("_");
     // var itemId = idArray[1];
-    getAllItems();
+    getAllItems(); //uses existing arrays
     
+    //gets item id from parent div
     var idArray = $(this).parent().attr('id').split("_");
     var parentId = idArray[0];
     var watchItemID = parseInt(idArray[1]);
     
-
+    //fires function when checkbox ticked and if item id matches
     if ($(this).prop("checked")) {
         if (parentId.indexOf("watchItem") !== -1) {
             console.log("on change: watchItemID: " + $('#watchItem_'));
@@ -275,9 +273,10 @@ $(document).on("change", "input[class='watchChkbox']", function () {
     // }
 });
     
+//inserts data into db watchlist
 function AddtoWatchlist(watchItemID) {
     setDatabaseName('dbCat', ['users', 'items', 'categories', 'subcategories ', 'events', 'watchlist']);
-    setCurrObjectStoreName('items');
+    setCurrObjectStoreName('watchlist');
     startDB(function() {
         //selectOne(itemId, updateWatchItemData);
         selectOne(watchItemID, function (result) {
