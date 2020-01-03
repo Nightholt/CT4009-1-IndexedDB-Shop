@@ -14,7 +14,7 @@ $(document).on("change", "input[class='watchChkbox']", function () {
     }
     console.log("checked : " + isChecked);
 
-    setDatabaseName('dbCat', ['users', 'items', 'categories', 'subcategories ', 'events', 'watchlist']);
+    setDatabaseName('dbCat', ['users', 'items', 'categories', 'subcategories', 'events']);
     setCurrObjectStoreName('items');
     try {
         startDB(function () {
@@ -34,7 +34,7 @@ $(document).on("change", "input[class='watchChkbox']", function () {
 
 
     function updateWatchItemData(data, isChecked) {
-        setDatabaseName('dbCat', ['users', 'items', 'categories', 'subcategories ', 'events', 'watchlist']);
+        setDatabaseName('dbCat', ['users', 'items', 'categories', 'subcategories', 'events']);
         setCurrObjectStoreName('items');
 
         startDB(function () {

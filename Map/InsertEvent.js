@@ -33,7 +33,7 @@ google.maps.event.addDomListener(window, 'load', initialise);
 //stores data into indexeddb
 $('#formInsertEvent').submit(function() {
     event.preventDefault();
-    setDatabaseName('dbCat', ['users', 'items', 'categories', 'subcategories ', 'events', 'watchlist']);
+    setDatabaseName('dbCat', ['users', 'items', 'categories', 'subcategories', 'events']);
     setCurrObjectStoreName('events');
     startDB(function() {
         insertEvent(marker);
@@ -43,7 +43,7 @@ $('#formInsertEvent').submit(function() {
 })
 
 //set db table to get data from for showAllMarkers func
-setDatabaseName('dbCat', ['users', 'items', 'categories', 'events']);
+setDatabaseName('dbCat', ['users', 'items', 'categories', 'subcategories', 'events']);
 setCurrObjectStoreName('events');
 startDB(function() {
     showAllMarkers();

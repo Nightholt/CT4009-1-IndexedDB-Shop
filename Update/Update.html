@@ -102,25 +102,25 @@
     <div id="UpdateFunc" class="container">
         <form id="formUpdateItem">
             <h3 id="itemID">Item ID</h3>
-            <label> Item Name: </label> <br>
-            <input type="text" id="txtItemName" name="itemName" required="required"> <br> <br>
+            <label> Item Name </label> <br>
+            <input type="text" class="form-control text" id="txtItemName" name="itemName" placeholder="Enter Item" required="required"> <br/>
 
-            <label> Description: </label> <br>
-            <input type="text" id="txtDesc" name="Desc" required="required"> <br> <br>
+            <label> Description </label> <br>
+            <input type="text" class="form-control text" id="txtDesc" name="Desc" placeholder="Description" required="required"> <br/> 
 
-            <label> Price: </label> <br>
-            <input type="int" id="intPrice" name="Price" required="required"> <br> <br>
+            <label> Price </label> <br>
+            <input type="int" class="form-control text" id="intPrice" name="Price" placeholder="Price" required="required"> <br/>
 
-            <select id="AdminDrop" required="required"></select>
+            <select id="AdminDrop" class="browser-default custom-select" required="required"></select>
             <br />&nbsp;
             <br />
 
             <label for="file">Choose item image to upload</label>
-            <input type="file" id="fileItemImage" name="file"> <br> <br>
+            <input type="file" class="form-control-file" id="fileItemImage" name="file"> <br> <br>
 
             <img src="" alt="Image preview..." id="bannerImg"> <br> <br>
 
-            <input type="submit" id="btnUpdateItem" value="Update">
+            <input type="submit" class="btn btn-primary" id="btnUpdateItem" value="Update">
 
         </form>
     </div>

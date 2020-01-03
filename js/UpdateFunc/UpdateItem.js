@@ -2,7 +2,7 @@ var urlParams = new URLSearchParams(window.location.search);
 var itemID = urlParams.get('itemID');
 $('#itemID').html("Item ID: " + itemID);
 
-setDatabaseName('dbCat', ['users', 'items', 'categories', 'events']);
+setDatabaseName('dbCat', ['users', 'items', 'categories', 'subcategories', 'events']);
 setCurrObjectStoreName('items');
 var data;
 startDB(function () {
@@ -40,7 +40,7 @@ function previewFile(){
 $('#formUpdateItem').submit(function(event)  {
     event.preventDefault();
 
-    setDatabaseName('dbCat', ['users', 'items', 'categories', 'subcategories ', 'events', 'watchlist']);
+    setDatabaseName('dbCat', ['users', 'items', 'categories', 'subcategories', 'events']);
     setCurrObjectStoreName('items');
     
     startDB(function () {

@@ -76,7 +76,7 @@
         });
         function initialisePage() {
             console.log("initialisePage called")
-            setDatabaseName('dbCat', ['users', 'items', 'categories', 'subcategories ', 'events', 'watchlist']);
+            setDatabaseName('dbCat', ['users', 'items', 'categories', 'subcategories', 'events']);
             setCurrObjectStoreName('categories');
             startDB(function () { // async func
                 getAllCategories(FormatCategoriesAndItemsAsHtml);

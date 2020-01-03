@@ -87,14 +87,14 @@
     </nav>
 
     <!--creates login form-->
-    <div id="login" class="container">
+    <div id="login" class="formContainer">
         <div class="form-group">
-            <label for="email">Email:</label>
+            <label for="email">Email</label>
             <!--defines type of input, id, placeholder and requires user to make input-->
             <input type="email" class="form-control" id="email" placeholder="Enter email" name="email" required>
         </div>
         <div class="form-group">
-            <label for="key">Password:</label>
+            <label for="key">Password</label>
             <!--defines type of input, id, placeholder and requires user to make input-->
             <input type="password" class="form-control" id="key" placeholder="Enter password" name="key" required>
         </div>
@@ -107,66 +107,21 @@
     </div>
 
     <!-- all functions are in separate accordion divs to look cleaner -->
-    <button class="accordion">Add New Item</button>
-    <div class="panel">
-        <!-- Add item function -->
-        <div id='FuncAdd' class="container">
-            <h2> Add item </h2>
-            <form id="formSellItem">
-                <div>
-                    <label> Item Name: </label> <br />
-                    <input type="text" id="txtItemName" name="itemName" required="required"> <br /> <br />
-                </div>
-                <div>
-                    <label> Description: </label> <br />
-                    <input type="text" id="txtDesc" name="Desc" required="required"> <br /> <br />
-                </div>
-                <div>
-                    <label> Price: </label> <br />
-                    <input type="int" id="intPrice" name="Price" required="required"> <br /> <br />
-                </div>
-                <div>
-                    <!--creates dropdown fed with categories from db-->
-                    <select id="AdminDrop" required="required"></select>
-                    <br />&nbsp;
-                    <br />
-                </div>
-                <!-- image upload -->
-                <div>
-                    <label for="file">Choose item image to upload</label>
-                    <input type="file" id="fileItemImage" name="file"> <br /> <br />
-
-                    <img src="" alt="Image preview..." id="bannerImg"> <br /> <br />
-                </div>
-                <input type="submit" id="btnSaveItem" value="Save" >
-
-            </form>
-        </div>
-    </div>
-
     <!-- form for add category func, links to AddCategory.js -->
     <button class="accordion">Add New Category</button>
     <div class="panel">
         <div id="AddCatFunc" class="container">
             <h2> Add Category </h2>
             <form id="formAddCat">
-                <label> Category Name: </label> <br />
-                <input type="text" id="txtCatName" name="catName" required="required"> <br /> <br />
-                <label> Category Description: </label> <br />
-                <input type="text" id="txtCatDesc" name="catDesc" required="required"> <br /> <br />
-                <input type="submit" id="btnAddCat" value="Add" >
+                <label> Category Name </label> <br />
+                <input type="text" class="form-control text" id="txtCatName" name="catName" placeholder="Enter Category"
+                    required="required"> <br />
+                <label> Category Description </label> <br />
+                <input type="text" class="form-control text" id="txtCatDesc" name="catDesc" placeholder="Description"
+                    required="required"> 
+                <input type="submit" class="btn btn-primary" id="btnAddCat" value="Add">
             </form>
         </div>
-        <div id="divCatList" class="container">
-        </div>
-
-        <!-- displays category list to delete/update -->
-        <!-- <button class="accordion accordionUpdate">Update & Delete Categories</button>
-        <div class="panel">
-            <div id="divCategoryList" class="container">
-                <h2>Category List</h2>
-            </div>
-        </div> -->
     </div>
 
     <!-- form for add subcategory func, links to AddSubcategory.js -->
@@ -182,17 +137,58 @@
                     <br />
                     <script>console.log("AdminDrop1 value: " + $("#AdminDrop1"))</script>
                 </div>
-                <label> Subcategory Name: </label> <br />
-                <input type="text" id="txtSubcatName" name="SubcatName" required="required"> <br /> <br />
-                <label> Subcategory Description: </label> <br />
-                <input type="text" id="txtSubcatDesc" name="SubcatDesc" required="required"> <br /> <br />
-                <input type="submit" id="btnAddSubcat" value="Add">
+                <label> Subcategory Name </label> <br />
+                <input type="text" class="form-control text" id="txtSubcatName" name="SubcatName"
+                    placeholder="Enter Subcategory" required="required">
+                <br />
+                <label> Subcategory Description </label> <br />
+                <input type="text" class="form-control text" id="txtSubcatDesc" name="SubcatDesc"
+                    placeholder="Description" required="required">
+                <input type="submit" class="btn btn-primary" id="btnAddSubcat" value="Add">
             </form>
-        </div>
-        <div id="divSubcatList" class="container">
         </div>
     </div>
 
+    <!-- add new item, links to AddItem/DAO.js -->
+    <button class="accordion">Add New Item</button>
+    <div class="panel">
+        <!-- Add item function -->
+        <div id='FuncAdd' class="container">
+            <h2> Add item </h2>
+            <form id="formSellItem">
+                <div>
+                    <label> Item Name </label> <br />
+                    <input type="text" class="form-control text" id="txtItemName" name="itemName"
+                        placeholder="Enter Item" required="required"> <br />
+                </div>
+                <div>
+                    <label> Description </label> <br />
+                    <input type="text" class="form-control text" id="txtDesc" name="Desc" placeholder="Description"
+                        required="required"> <br />
+                </div>
+                <div>
+                    <label> Price </label> <br />
+                    <input type="int" class="form-control text" id="intPrice" name="Price" placeholder="Price"
+                        required="required"> <br />
+                </div>
+                <div>
+                    <!--creates dropdown fed with categories from db-->
+                    <select id="AdminDrop" class="browser-default custom-select"></select>
+                    <br />&nbsp;
+                    <br />
+                </div>
+                <!-- image upload -->
+                <div>
+                    <label for="file">Choose item image to upload</label>
+                    <input type="file" class="form-control-file" id="fileItemImage" name="file"> <br />
+
+                    <img src="" alt="Image preview..." id="bannerImg"> <br />
+                </div>
+                <input type="submit" class="btn btn-primary" id="btnSaveItem" value="Save">
+
+            </form>
+        </div>
+    </div>
     <!-- input for new location, links to InsertEvent/DAO.js 
     uses google map api -->
     <button class="accordion">Add New Location</button>
@@ -200,14 +196,13 @@
         <div id="addLoc" class="container">
             <h2>Add New Location</h2>
             <form id="formInsertEvent">
-                Store Name:
-                <input type="text" id="txtEvent"> </br>
-                </br>
-                Select new location in Map:</br></br>
+                Store Name <br/> <br/>
+                <input type="text" class="form-control text" id="txtEvent" placeholder="Enter Store"
+                    required="required"> <br />
+                Select new location in Map<br /> <br />
                 <!--placeholder for Google Map, javascript loads map-->
-                <div id="mapInput" style="width: 650px; height: 450px;"></div>
-                </br>
-                <input type="submit" id="btnSubmit">
+                <div id="mapInput" style="width: 750px; height: 450px;"></div><br />
+                <input type="submit" class="btn btn-primary" id="btnSubmit">
 
                 <script src="../Map/InsertEvent.js"></script>
                 <script src="../Map/InsertEventDAO.js"></script>
@@ -218,6 +213,15 @@
     <div class="title">
         <h2>Update And Delete Controls</h2>
     </div>
+
+    <!-- displays category list to delete/update -->
+    <button class="accordion">Update & Delete Categories</button>
+    <div class="panel">
+        <div id="divCatList" class="container">
+            <h2>Category List</h2>
+        </div>
+    </div>
+
     <!-- displays item list to delete/update -->
     <button class="accordion">Update & Delete Items</button>
     <div class="panel">
@@ -235,17 +239,18 @@
             <h2>Store Markers List</h2>
         </div>
     </div>
-    
+
     <script src="../js/accordion.js"></script>
+    <script src="../js/AddCat/AddCategory.js"></script>    
+    <script src="../js/AddSubcat/AddSubcategory.js"></script>
     <script src="../js/AddFunc/AddItem.js"></script>
     <script src="../js/AddFunc/AddItemDAO.js"></script>
-    <script src="../js/AddCat/AddCategory.js"></script>
-    <script src="../js/ListCat/adminCatList.js"></script>
     <script src="../js/ListCat/listCat.js"></script>
-    <script src="../js/AddSubcat/AddSubcategory.js"></script>
-    <script src="../js/ListFunc/ListItems.js"></script>
-    <script src="../js/ListFunc/ListItemsDAO.js"></script>
-    
+    <script src="../js/ListCat/initCompare.js"></script>
+    <!-- <script src="../js/ListCat/adminCatList.js"></script> -->
+    <!--<script src="../js/ListFunc/ListItems.js"></script>
+    <script src="../js/ListFunc/ListItemsDAO.js"></script> -->
+
 
     <script>
         $("#AdminDrop").change(function (event) {

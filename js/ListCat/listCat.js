@@ -13,7 +13,7 @@ function getAllCategories(callBack) {
         for (i = 0; i < len; i++) {
             listOfCategories[i] = results[i];
         }
-        setDatabaseName('dbCat', ['users', 'items', 'categories', 'subcategories ', 'events', 'watchlist']);
+        setDatabaseName('dbCat', ['users', 'items', 'categories', 'subcategories', 'events']);
         setCurrObjectStoreName('subcategories');
         // need to get all the subcats and items before building the html
         startDB(function () {
@@ -36,7 +36,7 @@ function getAllSubcategories(callBack) {
         }
 
         console.log("getAllSubcategories.length:" + listOfSubcategories.length);
-        setDatabaseName('dbCat', ['users', 'items', 'categories', 'subcategories ', 'events', 'watchlist']);
+        setDatabaseName('dbCat', ['users', 'items', 'categories', 'subcategories', 'events']);
         setCurrObjectStoreName('items');
         startDB(function () {
             getAllItems(callBack);
@@ -154,7 +154,7 @@ function generateItemHTML(item) {
     //admin controls, only available on crud page
     html += "       <div class='adminView'>";
     html += "           <a href='#' class='deleteActionItem'>Delete</a><br/>";
-    html += "           <a href='#' class='updateActionItem'>Update</a>";
+    html += "           <a href='#' class='updateActionItem'>Update</a><br/>";
     html += "       </div>";
     //checkbox to add to compare div
     html += "       <div class='checkbox'><input class='cellChkbox' type='checkbox' name='compare' value='Add to Compare' id='compareCheckBox_" + itemId + "'/><label for='compareCheckBox_" + itemId + "'> Add to compare</label></div>";

@@ -18,17 +18,12 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
     <!-- bootstrap js link -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-    <!-- google map api and jquery links -->
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB6QCGqF325m9QTLFst-qHTbE1lUaePKHY"></script>
-    <script src="https://code.jquery.com/jquery-3.2.1.js"
-        integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE=" crossorigin="anonymous">
-        </script>
     <!-- indexeddb wrapper and main javascript file links -->
     <script src="../js/main.js"></script>
     <script src="../js/lib/indexeddb.js"></script>
 
     <!--title of site-->
-    <title>Catalogue Website Update Map Marker</title>
+    <title>Catalogue Website Update Category</title>
 
 </head>
 
@@ -101,31 +96,25 @@
     </div>
 
     <div class="title">
-        <h1>Update Map</h1>
+        <h1>Update Category</h1>
     </div>
 
-    <div id="UpdateMarkerFunc" class="container">
-        <form id="formUpdateMarker">
-            <h3 id="markerID">Store ID</h3>
-            <label> Store Name </label> <br />
-            <input type="text" class="form-control text" id="txtMarkerName" name="markerName" placeholder="Enter Store" required="required"> <br/>
-            <label> Latitude </label> <br />
-            <input type="text" class="form-control text" id="txtLatitude" name="markerLat" placeholder="Latitude" required="required"> <br/>
-            <label> Longitude </label> <br />
-            <input type="text" class="form-control text" id="txtLongitude" name="markerLong" placeholder="Longitude" required="required"> <br/>
-            <input type="submit" class="btn btn-primary" id="btnUpdateMarker" value="Update" style="display: inline-block;">
+    <div id="UpdateCatFunc" class="container">
+        <form id="formUpdateCategory">
+            <h3 id="catID">Category ID</h3>
+            <label> Category Name </label> <br />
+            <input type="text" class="form-control text" id="txtSubcatName" name="catName" placeholder="Enter Category" required="required"> <br /> <br />
+
+            <label> Description </label> <br />
+            <input type="text" class="form-control text" id="txtCatDesc" name="catDesc" placeholder="Description" required="required"> <br /> <br />
+
+            <input type="submit" class="btn btn-primary" id="btnUpdateCategory" value="Update">
 
         </form>
-        <div id="mapInput" style="width: 750px; height: 450px; display: inline-block;"><br/>
-        </div>
     </div>
 
-    
-
-    <script src="../Map/EventList/EventList.js"></script>
-    <script src="../Map/EventList/EventListDAO.js"></script>
-    <script src="../js/UpdateFunc/updateMap.js"></script>
-    <script src="../js/UpdateFunc/updateMapDAO.js"></script>
+    <script src="../js/UpdateFunc/updateCat.js"></script>
+    <script src="../js/UpdateFunc/updateCatDAO.js"></script>
 
 </body>
 

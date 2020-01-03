@@ -88,6 +88,11 @@ a:hover {
     border-radius: 5px;
 }
 
+a:hover.dropdown-item {
+    background-color: #ccc;
+    border-radius: 3px;
+}
+
 /* accordian style */
 .accordion {
     background-color: #eee;
@@ -112,7 +117,8 @@ a:hover {
 }
 
 .panel {
-    padding: 0 18px;
+    margin: 5px;
+    padding: 0 10px;
     display: none;
     background-color: white;
     overflow: hidden;
@@ -170,6 +176,7 @@ a:hover {
 .btn-primary {
     float: left;
     margin: 15px;
+    margin-left: 0px;
 }
 
 .form-control.text {

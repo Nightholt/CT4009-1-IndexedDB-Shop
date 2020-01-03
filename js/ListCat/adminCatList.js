@@ -1,4 +1,4 @@
-setDatabaseName('dbCat', ['users', 'items', 'categories', 'events']);
+setDatabaseName('dbCat', ['users', 'items', 'categories', 'subcategories', 'events']);
 setCurrObjectStoreName('categories');
 startDB(function() {
     //showAllCategories();

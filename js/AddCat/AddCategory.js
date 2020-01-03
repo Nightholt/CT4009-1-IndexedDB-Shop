@@ -3,7 +3,7 @@ $('#formAddCat').submit(function(event) { //function fires when form is submitte
     console.log("formAddCat submit:");
 
     //sets correct db and store of categories
-    setDatabaseName('dbCat', ['users', 'items', 'categories', 'subcategories ', 'events', 'watchlist']);
+    setDatabaseName('dbCat', ['users', 'items', 'categories', 'subcategories', 'events']);
     setCurrObjectStoreName('categories');
     startDB(function() {
         saveCatData();
