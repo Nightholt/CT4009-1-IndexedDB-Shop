@@ -238,6 +238,13 @@ function buyClick() {
     html += "<a href='../../Search/results.html'></a>";
 }
 
+function getIdFromSplit(element) {
+    var idArray = element.split("_");
+    var first = idArray[0];
+    var id = parseInt(idArray[1]);
+    return id;
+}
+
 var isChecked = 0;
 
 $(document).on("change", "input[class='watchChkbox']", function () {
@@ -252,8 +259,7 @@ $(document).on("change", "input[class='watchChkbox']", function () {
 
     var idArray = $(this).parent().attr('id').split("_");
     var parentId = idArray[0];
-    var watchItemID = parseInt(idArray[1]);
-
+    var watchItemID = getIdFromSplit($(this).parent().attr('id'));
 
     if ($(this).prop("checked")) {
         if (parentId.indexOf("watchItem") !== -1) {
