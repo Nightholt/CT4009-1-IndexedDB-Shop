@@ -62,6 +62,13 @@ function getAllItems(callBack) {
     });
 }
 
+function populateAllItemsArray() {
+    setDatabaseName('dbCat', ['users', 'items', 'categories', 'subcategories ', 'events', 'watchlist']);
+    setCurrObjectStoreName('items');
+    startDB(function () {        
+        getAllItems();
+    }); // async func
+}
 
 //pulls all previous functions together to build html
 function FormatCategoriesAndItemsAsHtml() {
@@ -251,11 +258,7 @@ $(document).on("change", "input[class='watchChkbox']", function () {
     // var chkBoxId = this.id;
     // var idArray = chkBoxId.split("_");
     // var itemId = idArray[1];
-    setDatabaseName('dbCat', ['users', 'items', 'categories', 'subcategories ', 'events', 'watchlist']);
-    setCurrObjectStoreName('items');
-    startDB(function () {
-        getAllItems();
-    }); // async func
+    populateAllItemsArray();
 
     var idArray = $(this).parent().attr('id').split("_");
     var parentId = idArray[0];
@@ -280,14 +283,12 @@ $(document).on("change", "input[class='watchChkbox']", function () {
 function AddtoWatchlist(watchItemID) {
     setDatabaseName('dbCat', ['users', 'items', 'categories', 'subcategories ', 'events', 'watchlist']);
     setCurrObjectStoreName('items');
-    startDB(function () {
-        //selectOne(itemId, updateWatchItemData);
+    startDB(function () {        
         selectOne(watchItemID, function (result) {
-            console.log("AddtoWatchlist result: " + result.itemName);
-            //data = result;
+            console.log("AddtoWatchlist result: " + result.itemName);            
             saveWatchlistData(result);
             alert("Item has been successfully saved to watchlist");
-            //location.reload();
+            location.reload();
         });
     });
 }
