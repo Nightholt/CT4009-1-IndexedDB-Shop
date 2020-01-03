@@ -147,7 +147,7 @@ function FormatCategoriesAndItemsAsHtml() {
             for (i = 0; i < listOfSubcategories.length; i++) {
                 var subCatId = listOfSubcategories[i];
                 if (subCatId.categoryid === id) {
-                    deleteItemsBySubCategory(subCatId.id);                    
+                    deleteItemsBySubCategory(subCatId.id);
                     deleteById("subcategories", subCatId.id);
                 }
             }
@@ -179,7 +179,7 @@ function FormatCategoriesAndItemsAsHtml() {
             if (item.subcategoryid === subcategoryId) {
                 deleteById("items", item.id);
             }
-        }            
+        }
     }
 
     function deleteById(storename, id) {
@@ -218,14 +218,14 @@ function generateItemHTML(item) {
     html += "       <div id='watchItem_" + itemId + "' class='checkbox'><input class='watchChkbox' type='checkbox' name='watch' value='Add to Watchlist' id='watchCheckBox_" + itemId + "'/><label for='watchCheckBox_" + itemId + "'> Add to watchlist</label></div>";
     html += "       <div class='buy'><button id='buy' class='btn btn-success' value='Buy'>Buy</button></div>";
     html += "   </div>";
-    
-    $('.updateActionItem').click(function () {
-    var itemID = parseInt($(this).parent().attr('id'));
-    window.open("../Update/Update.html?itemID=" + itemID, "_self");
 
-    return false;
+    $('.updateActionItem').click(function () {
+        var itemID = parseInt($(this).parent().attr('id'));
+        window.open("../Update/Update.html?itemID=" + itemID, "_self");
+
+        return false;
     });
-    
+
     return html;
 }
 
@@ -238,54 +238,50 @@ function buyClick() {
     html += "<a href='../../Search/results.html'></a>";
 }
 
-
-
-
-
-
-
-
-
 var isChecked = 0;
 
 $(document).on("change", "input[class='watchChkbox']", function () {
     // var chkBoxId = this.id;
     // var idArray = chkBoxId.split("_");
     // var itemId = idArray[1];
-    getAllItems();
-    
+    setDatabaseName('dbCat', ['users', 'items', 'categories', 'subcategories ', 'events', 'watchlist']);
+    setCurrObjectStoreName('items');
+    startDB(function () {
+        getAllItems();
+    }); // async func
+
     var idArray = $(this).parent().attr('id').split("_");
     var parentId = idArray[0];
     var watchItemID = parseInt(idArray[1]);
-    
+
 
     if ($(this).prop("checked")) {
         if (parentId.indexOf("watchItem") !== -1) {
             console.log("on change: watchItemID: " + $('#watchItem_'));
             console.log("AddtoWatchlist fired")
-        AddtoWatchlist(watchItemID);
+            AddtoWatchlist(watchItemID);
         }
     }
     return;
-    
+
     // try {
     //     AddtoWatchlist();
     // } catch (err) {
     //     console.log("error: " + err);
     // }
 });
-    
+
 function AddtoWatchlist(watchItemID) {
     setDatabaseName('dbCat', ['users', 'items', 'categories', 'subcategories ', 'events', 'watchlist']);
     setCurrObjectStoreName('items');
-    startDB(function() {
+    startDB(function () {
         //selectOne(itemId, updateWatchItemData);
         selectOne(watchItemID, function (result) {
-            console.log("WatchItemName: " + watchItemID.itemName);
-            data = result;
-            saveWatchlistData();
+            console.log("AddtoWatchlist result: " + result.itemName);
+            //data = result;
+            saveWatchlistData(result);
             alert("Item has been successfully saved to watchlist");
-            location.reload();
+            //location.reload();
         });
     });
 }
@@ -293,32 +289,27 @@ function AddtoWatchlist(watchItemID) {
 var newWatchItemID = 0;
 
 //saves form data into categories table
-function saveWatchlistData() {
+function saveWatchlistData(itemData) {
     setDatabaseName('dbCat', ['users', 'items', 'categories', 'subcategories ', 'events', 'watchlist']);
     setCurrObjectStoreName('watchlist');
-    startDB(function() {
-        var itemName = watchItemID.itemName;
-        var itemDesc = watchItemID.itemDesc;
-        var itemPrice = watchItemID.itemPrice;
-        var itemSubcategory = watchItemID.itemSubcategory;;
-
+    startDB(function () {
         //format of table
         var data = {
-            'itemName': itemName,
-            'itemDesc': itemDesc,
-            'itemPrice': itemPrice,
-            'itemSubcategory': itemSubcategory,
+            'itemName': itemData.itemName,
+            'itemDesc': itemData.itemDesc,
+            'itemPrice': itemData.itemPrice,
+            'itemSubcategory': itemData.itemSubcategory
         };
 
         //saves new category in db
-        insertOne(data, function(lastID) {
+        insertOne(data, function (lastID) {
             event.preventDefault();
             console.log("saveWatchlistData lastID:" + lastID);
             return false;
         });
     });
 }
-    
+
 
 
 
@@ -343,7 +334,7 @@ function saveWatchlistData() {
 //     setCurrObjectStoreName('items');
 
 //     console.log("THIRD updateWatchItemData item: " + result);
-    
+
 //     startDB(function () {
 //         result.itemWatchlist = 1; //parseInt(isChecked);
 
