@@ -243,7 +243,7 @@ $(document).on("change", "input[class='watchChkbox']", function () {
     // var chkBoxId = this.id;
     // var idArray = chkBoxId.split("_");
     // var itemId = idArray[1];
-    getAllSubcategories();
+    getAllItems();
     
     var idArray = $(this).parent().attr('id').split("_");
     var parentId = idArray[0];
@@ -268,7 +268,7 @@ $(document).on("change", "input[class='watchChkbox']", function () {
     
 function AddtoWatchlist(watchItemID) {
     setDatabaseName('dbCat', ['users', 'items', 'categories', 'subcategories ', 'events', 'watchlist']);
-    setCurrObjectStoreName('items');
+    setCurrObjectStoreName('watchlist');
     startDB(function() {
         //selectOne(itemId, updateWatchItemData);
         selectOne(watchItemID, function (result) {
@@ -286,7 +286,7 @@ var newWatchItemID = 0;
 //saves form data into categories table
 function saveWatchlistData() {
     setDatabaseName('dbCat', ['users', 'items', 'categories', 'subcategories ', 'events', 'watchlist']);
-    setCurrObjectStoreName('watchlist');
+    setCurrObjectStoreName('items');
     startDB(function() {
         var itemName = data.itemName;
         var itemDesc = data.itemDesc;
