@@ -203,9 +203,7 @@
                 <!--placeholder for Google Map, javascript loads map-->
                 <div id="mapInput" style="width: 750px; height: 450px;"></div><br />
                 <input type="submit" class="btn btn-primary" id="btnSubmit">
-
-                <script src="../Map/InsertEvent.js"></script>
-                <script src="../Map/InsertEventDAO.js"></script>
+                
             </form>
         </div>
     </div>
@@ -215,7 +213,7 @@
     </div>
 
     <!-- displays category list to delete/update -->
-    <button class="accordion">Update & Delete Categories</button>
+    <button class="accordion">Update & Delete Categories with Subcategories and Items</button>
     <div class="panel">
         <div id="divCatList" class="container">
             <h2>Category List</h2>
@@ -223,12 +221,12 @@
     </div>
 
     <!-- displays item list to delete/update -->
-    <button class="accordion">Update & Delete Items</button>
+    <!-- <button class="accordion">Update & Delete Items</button>
     <div class="panel">
         <div id="divItemList" class="container">
             <h2> Item List </h2>
         </div>
-    </div>
+    </div> -->
 
 
 
@@ -237,6 +235,9 @@
         <!-- displays map marker list to delete/update -->
         <div id="markerList" class="container">
             <h2>Store Markers List</h2>
+        </div>
+        <div id="mapView" style="width: 750px; height: 450px;">
+            
         </div>
     </div>
 
@@ -247,6 +248,10 @@
     <script src="../js/AddFunc/AddItemDAO.js"></script>
     <script src="../js/ListCat/listCat.js"></script>
     <script src="../js/ListCat/initCompare.js"></script>
+    <script src="../Map/InsertEvent.js"></script>
+    <script src="../Map/InsertEventDAO.js"></script>
+    <script src="../Map/EventList/EventList.js"></script>
+    <script src="../Map/EventList/EventListDAO.js"></script>
     <!-- <script src="../js/ListCat/adminCatList.js"></script> -->
     <!--<script src="../js/ListFunc/ListItems.js"></script>
     <script src="../js/ListFunc/ListItemsDAO.js"></script> -->

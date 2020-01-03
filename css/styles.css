@@ -192,3 +192,8 @@ a:hover.dropdown-item {
     margin: 25px;
     /* float: left; */
 }
+
+.btn.btn-danger,.btn.btn-info {
+    padding: 4px;
+}
+

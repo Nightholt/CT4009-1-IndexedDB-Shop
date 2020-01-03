@@ -59,13 +59,13 @@ function showAllMarkers() {
         //new div is created for each item in the events table in loop
         for (i = 0; i < len; i++) {
             var marker_id = results[i].id;
-            html += '<div id="' + marker_id + '">';
-            html += '<h3>' + results[i].eventName + '</h3>';
-            html += '<h5>' + results[i].eventLat + '</h5>';
-            html += '<h5>' + results[i].eventLng + '</h5>'
-            html += '<a href="#" class="mapActionDelete">Delete</a><br/>'; //delete function
-            html += '<a href="#" class="mapActionUpdate">Update</a>'; //update function
-            html += '</div>';
+            html += "<div id='" + marker_id + "'>";
+            html += '<h3>' + results[i].eventName + "</h3>";
+            html += "<h5>" + results[i].eventLat + "</h5>";
+            html += "<h5>" + results[i].eventLng + "</h5>";
+            html += "<button type='button' class='btn btn-danger mapActionDelete'>Delete</button><br/>"; //delete function
+            html += "<button type='button' class='btn btn-info mapActionUpdate'>Update</button><br/>"; //update function
+            html += "</div>";
         }
 
         $('#markerList').html(html); //div that the newly created divs will go into

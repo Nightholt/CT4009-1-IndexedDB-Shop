@@ -14,7 +14,7 @@ function initialise() {
     };
 
     //creates map in div placeholder
-    myMap = new google.maps.Map(document.getElementById("mapInput"), mapOptions);
+    myMap = new google.maps.Map(document.getElementById("mapView"), mapOptions);
     console.log("initialise called")
 
     //retrieve saved event list from indexeddb dbCat

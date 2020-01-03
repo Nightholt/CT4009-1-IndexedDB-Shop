@@ -76,8 +76,8 @@ function FormatCategoriesAndItemsAsHtml() {
         html += "   <h1>" + listOfCategories[i].name + "</h1>";
         html += "   <h6>" + listOfCategories[i].catDesc + "</h6>";
         html += "   <div class='adminView'>";
-        html += "       <a href='#' class='deleteAction'>Delete</a><br/>";
-        html += "       <a href='#' class='updateAction'>Update</a>";
+        html += "       <button type='button' class='btn btn-danger deleteAction'>Delete</button><br/>";
+        html += "       <button type='button' class='btn btn-info updateAction'>Update</button><br/>";
         html += "   </div>";
         // build html
         var k = 0;
@@ -92,8 +92,8 @@ function FormatCategoriesAndItemsAsHtml() {
                 html += "       <h1>" + listOfSubcategories[k].subcatName + "</h1>";
                 html += "       <h6>" + listOfSubcategories[k].subcatDesc + "</h6>";
                 html += "       <div class='adminView'>";
-                html += "           <a href='#' class='deleteActionSubcat'>Delete</a><br/>";
-                html += "           <a href='#' class='updateActionSubcat'>Update</a>";
+                html += "           <button type='button' class='btn btn-danger deleteActionSubcat'>Delete</button><br/>";
+                html += "           <button type='button' class='btn btn-info updateActionSubcat'>Update</button><br/>";
                 html += "       </div>";
                 var j = 0;
                 var lenItems = listOfItems.length;
@@ -123,6 +123,7 @@ function FormatCategoriesAndItemsAsHtml() {
     if (adminCheck === true) {
         $('.adminView').show(); 
         $('.checkbox').hide();
+        $('.buy').hide();
     }
     else {
         return;
@@ -140,6 +141,19 @@ function FormatCategoriesAndItemsAsHtml() {
         })
         return false;
     });
+
+    $('.deleteActionItem').click(function () {
+        var itemID = parseInt($(this).parent().attr('id'));
+        if (!confirm("Are you sure you want to delete this Category with its items?")){
+            return;
+        };
+
+        deleteOne(itemID, function () {
+            alert("Category " + itemID + " was deleted successfully");
+            location.reload();
+        })
+        return false;
+    });
 }
 
 function generateItemHTML(item) {
@@ -153,14 +167,14 @@ function generateItemHTML(item) {
     html += "       </div>";
     //admin controls, only available on crud page
     html += "       <div class='adminView'>";
-    html += "           <a href='#' class='deleteActionItem'>Delete</a><br/>";
-    html += "           <a href='#' class='updateActionItem'>Update</a><br/>";
+    html += "           <button type='button' class='btn btn-danger deleteActionItem'>Delete</button><br/>";
+    html += "           <button type='button' class='btn btn-info updateActionItem'>Update</button><br/>";
     html += "       </div>";
     //checkbox to add to compare div
     html += "       <div class='checkbox'><input class='cellChkbox' type='checkbox' name='compare' value='Add to Compare' id='compareCheckBox_" + itemId + "'/><label for='compareCheckBox_" + itemId + "'> Add to compare</label></div>";
     //checkbox to add to watchlist
     html += "       <div class='checkbox'><input class='watchChkbox' type='checkbox' name='watch' value='Add to Watchlist' id='watchCheckBox_" + itemId + "'/><label for='watchCheckBox_" + itemId + "'> Add to watchlist</label></div>";
-    html += "       <button id='buy' class='btn btn-success' value='Buy'>Buy</button>";
+    html += "       <div class='buy'><button id='buy' class='btn btn-success' value='Buy'>Buy</button></div>";
     html += "   </div>";
     return html;
 }
