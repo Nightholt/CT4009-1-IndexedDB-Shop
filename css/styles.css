@@ -198,3 +198,8 @@ a:hover.dropdown-item {
 #divCompare,#divCompareList {
     display: inline-block
 }
+
+#watchItem {
+    float: left;
+    padding: 20px;
+}

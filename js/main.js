@@ -113,7 +113,7 @@ $(document).ready(function () {
                 url = "../Login/crud.html"
             } else if (validUser.role === "public") {
                 //redirect to public page where watchlist and account functions are found
-                url = "../Login/myaccount.html"
+                url = "../WatchList/watch.html"
             }
 
             //var value = "websiteusercookie_" + formUsername;// + Date.parse(new Date());

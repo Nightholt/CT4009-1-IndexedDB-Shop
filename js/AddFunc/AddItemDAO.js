@@ -4,7 +4,6 @@ function saveItemData() {
     var itemDesc = $('#txtDesc').val();
     var itemPrice = $('#intPrice').val();
     var itemSubcategory = $('#AdminDrop').val();
-    var itemWatchlist = 0;
     
     console.log("saveItemData itemSubcategory: "+ itemSubcategory);
 
@@ -14,7 +13,6 @@ function saveItemData() {
         'itemDesc': itemDesc,
         'itemPrice': itemPrice,
         'itemSubcategory': itemSubcategory,
-        'itemWatchlist': itemWatchlist
     };
 
     //image upload input

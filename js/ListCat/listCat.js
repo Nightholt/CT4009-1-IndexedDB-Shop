@@ -303,7 +303,8 @@ function saveWatchlistData(itemData) {
             'itemName': itemData.itemName,
             'itemDesc': itemData.itemDesc,
             'itemPrice': itemData.itemPrice,
-            'itemSubcategory': itemData.itemSubcategory
+            'itemSubcategory': itemData.itemSubcategory,
+            'itemImage': itemData.itemImage
         };
 
         //saves new category in db
@@ -314,43 +315,3 @@ function saveWatchlistData(itemData) {
         });
     });
 }
-
-
-
-
-
-// function getItemWatchListValue(itemId) {
-//     setDatabaseName('dbCat', ['users', 'items', 'categories', 'subcategories ', 'events', 'watchlist']);
-//     setCurrObjectStoreName('items');
-//     startDB(function () {
-//         selectOne(itemId, updateWatchItemData);
-//         // selectOne(itemId, function (result) {
-//         //     console.log("SECOND updateWatchItemData item: " + result.itemName);
-//         //     console.log("SECOND updateWatchItemData item: " + result.itemWatchlist);
-//         //     dataBlob = result;
-//         // });
-//         //callback();
-//         // alert("Item has been successfully added to watchlist");            
-//     });
-// }
-
-// function updateWatchItemData(result) {
-//     setDatabaseName('dbCat', ['users', 'items', 'categories', 'subcategories ', 'events', 'watchlist']);
-//     setCurrObjectStoreName('items');
-
-//     console.log("THIRD updateWatchItemData item: " + result);
-
-//     startDB(function () {
-//         result.itemWatchlist = 1; //parseInt(isChecked);
-
-//         updateOne(result, function (lastID) {
-//             event.preventDefault();
-//             return false;
-//         });
-//     });
-// }
-
-
-// function errorCallback(err) {
-//     console.log("FIRING errorCallback: " + err);
-// }
