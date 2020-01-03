@@ -2,9 +2,12 @@ function showAllEvents() {
     //call indexeddb function to fetch all data from events obj store
     selectAll(function(results) {
         console.log(results.length);
+        console.log(results.length);
+        console.log(results.length);
+
         //iterating all the data
         for(i=0; i<results.length; i++) {
-            //date, latitude and longitude of specific event
+            //name, latitude and longitude of specific event
             var eventName = results[i].eventName;
             var eventLat = results[i].eventLat;
             var eventLng = results[i].eventLng;
@@ -16,10 +19,20 @@ function showAllEvents() {
                 map: myMap,
                 position: markerLatLng
             });
+            // markerUpdate = new google.maps.Marker({
+            //     map: myMapUpdate,
+            //     position: markerLatLng
+            // });
             var infowindow = new google.maps.InfoWindow();
-            //set event date as content of the info window
+            //set event name as content of the info window
             infowindow.setContent(eventName);
             infowindow.open(myMap, marker);
+
+            // var infowindowUpdate = new google.maps.InfoWindow();
+            // //set event name as content of the info window
+            // infowindowUpdate.setContent(eventName);
+            // infowindowUpdate.open(myMapUpdate, markerUpdate);
+
 
         }
     });

@@ -13,15 +13,21 @@ function initialise() {
     };
 
     //creates map in div placeholder
-    myMap = new google.maps.Map(document.getElementById('mapInput'), mapOptions);
+    //myMap = new google.maps.Map(document.getElementById('mapInput'), mapOptions);
+    myMapUpdate = new google.maps.Map(document.getElementById('mapInput'), mapOptions);
 
     //create draggable marker icon in map
-    marker = new google.maps.Marker({
-        map: myMap,
+    // marker = new google.maps.Marker({
+    //     map: myMap,
+    //     position: mapCenter,
+    //     draggable: true
+    // });
+
+    markerUpdate = new google.maps.Marker({
+        map: myMapUpdate,
         position: mapCenter,
         draggable: true
     });
-
 }
 
 //addDomListener triggered when html page loaded
@@ -36,18 +42,29 @@ $('#formInsertEvent').submit(function() {
     setDatabaseName('dbCat', ['users', 'items', 'categories', 'subcategories', 'events']);
     setCurrObjectStoreName('events');
     startDB(function() {
-        insertEvent(marker);
+        //insertEvent(marker);
+        insertEvent(markerUpdate);
         alert("New location successfully added");
+        //loadMarkerValues();
         location.reload();
-    })
-})
 
-//set db table to get data from for showAllMarkers func
-setDatabaseName('dbCat', ['users', 'items', 'categories', 'subcategories', 'events']);
-setCurrObjectStoreName('events');
-startDB(function() {
-    showAllMarkers();
+    });
 });
+
+// function loadMarkerValues() {
+//     //set db table to get data from for showAllMarkers func
+//     setDatabaseName('dbCat', ['users', 'items', 'categories', 'subcategories', 'events']);
+//     setCurrObjectStoreName('events');
+//     startDB(function() {
+//         showAllMarkers();
+//     });
+// }
+
+setDatabaseName('dbCat', ['users', 'items', 'categories', 'subcategories', 'events']);
+    setCurrObjectStoreName('events');
+    startDB(function() {
+        showAllMarkers();
+    });
 
 function showAllMarkers() {
     selectAll(function (results) {

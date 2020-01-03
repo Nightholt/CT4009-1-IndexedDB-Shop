@@ -4,7 +4,9 @@ var mapCenter = new google.maps.LatLng(51.8979988098144, -2.0838599205017);
 var geocoder = new google.maps.Geocoder();
 //InfoWindow displays content in a popup above map
 var InfoWindow = new google.maps.InfoWindow();
-var myMap
+var InfoWindowUpdate = new google.maps.InfoWindow();
+var myMap;
+var myMapUpdate;
 
 function initialise() {
     //initial map properties
@@ -15,7 +17,8 @@ function initialise() {
 
     //creates map in div placeholder
     myMap = new google.maps.Map(document.getElementById("mapView"), mapOptions);
-    console.log("initialise called")
+    console.log("initialise called");
+    //myMapUpdate = new google.maps.Map(document.getElementById("mapUpdate"), mapOptions);
 
     //retrieve saved event list from indexeddb dbCat
     //$('#formInsertEvent').submit(function () {

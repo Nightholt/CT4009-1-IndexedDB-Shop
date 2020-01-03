@@ -17,3 +17,23 @@ function insertEvent(marker) {
         return false;
     })
 }
+
+function insertEvent(markerUpdate) {
+    //get event data user input
+    var eventName = $('#txtEvent').val();
+    //get lat and long of current marker position
+    var eventLat = markerUpdate.getPosition().lat();
+    var eventLng = markerUpdate.getPosition().lng();
+
+    //create object combining inputs
+    var data = {
+        'eventName' : eventName,
+        'eventLat' : eventLat,
+        'eventLng' : eventLng
+    }
+
+    //insert data into indexeddb dbCat
+    insertOne(data, function() {
+        return false;
+    })
+}
