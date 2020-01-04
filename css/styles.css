@@ -167,7 +167,6 @@ a:hover.dropdown-item {
 }
 
 .display {
-    /* display: inline-block; */
     float: left;
 }
 
@@ -188,7 +187,6 @@ a:hover.dropdown-item {
 
 #divCatList.container {
     margin: 25px;
-    /* float: left; */
 }
 
 .btn.btn-danger,.btn.btn-info {
