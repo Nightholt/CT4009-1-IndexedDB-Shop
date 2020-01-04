@@ -28,12 +28,17 @@ function showAllMarkers() {
         //function to delete entry in table
         $('.mapActionDelete').click(function () {
             var markerID = parseInt($(this).parent().attr('id'));
-
-            deleteOne(markerID, function () {
-                alert("Store marker " + markerID + " was deleted successfully");
-                location.reload();
-            })
-            return false;
+            console.log("markerID: " + markerID)
+            setDatabaseName('dbCat', ['users', 'items', 'categories', 'subcategories ', 'events', 'watchlist']);
+            setCurrObjectStoreName('events');
+            startDB(function() {
+                deleteOne(markerID, function () {
+                    alert("Store marker " + markerID + " was deleted successfully");
+                    location.reload();
+                })
+                return false;
+            });
+            
         });
 
         //function to update entry
