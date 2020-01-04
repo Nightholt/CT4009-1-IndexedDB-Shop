@@ -1,4 +1,5 @@
-var acc = document.getElementsByClassName("accordion");
+//accordion js to make divs open and close on click
+var acc = document.getElementsByClassName("accordion"); 
     var i;
 
     for (i = 0; i < acc.length; i++) {

@@ -195,8 +195,9 @@ a:hover.dropdown-item {
     padding: 4px;
 }
 
-#divCompare,#divCompareList {
-    display: inline-block
+#divCompare,#divCompareList.container {
+    display: inline-block;
+    width: 100%;
 }
 
 #watchItem {

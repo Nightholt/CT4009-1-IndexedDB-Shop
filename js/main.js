@@ -1,9 +1,9 @@
-//var dbName = "";
+
 //Global variables
 const loginAdminCookieName = "elephant";
 const loginCookieDays = 1;
 
-
+//build db tables
 const events = [
 
 ];
@@ -46,51 +46,44 @@ $(document).ready(function () {
     // initialise the UI
     init();
 
-    // what page are we on?
+    //displays page url in console
     var url = window.location.href;
     console.log("you are on the " + url + "page");
 
     listCategories(displayCategoriesMenu);
 
-    // if (url.indexOf("home") !== -1) {
-    //     handleHomePageDisplay();
-    // }
     if (url.indexOf("catTemplate") !== -1) {
         console.log("**********url: " + url);
         listCategories(displayCategories);
     }
 
-
-    listDepartments(displayDepartments);
+    //functions to show categories from db in selections
+    listDepartments(displayDepartments); 
     listSubDepts(displaySubDepts);
 
-
-
-    $("#loginToggle").click(function () {
+    //login field drops down when clicked, off by default
+    $("#loginToggle").click(function () { 
         $("#login").toggle();
     });
 
-
+    //login func fired when form submitted
     $("#btnSubmitLogin").click(function (event) {
-        //event.preventDefault();
-        console.log("btnSubmitLogin was fired");
-
         setDatabaseName('dbCat', ['users', 'items', 'categories', 'subcategories ', 'events', 'watchlist']);
         setCurrObjectStoreName('users');
         startDB(function () {
             getAllUsers();
-        }); // async func
+        });
 
     });
 
-
+    //func to validate login credentials
     function getAllUsers() {
         var isValidUser = false;
         var validUser;
         selectAll(function (results) {
             var len = results.length;
             var i;
-            for (i = 0; i < len; i++) {// loop over the users
+            for (i = 0; i < len; i++) { // loop over the users
                 let dbUser = results[i];
                 isValidUser = ValidateUser(dbUser);
                 if (isValidUser) {
@@ -101,12 +94,8 @@ $(document).ready(function () {
 
             if (!isValidUser) {
                 alert("Please login with valid credentials.");
-                // hide logout button 
                 return;
             }
-
-            //TODO update user field in db : isloggedin as true
-            //TODO add logout button and "show" 
 
             if (validUser.role === "administrator") {
                 //redirect to admin page where add/edit/delete functions are found 
@@ -115,19 +104,15 @@ $(document).ready(function () {
                 //redirect to public page where watchlist and account functions are found
                 url = "../WatchList/watch.html"
             }
-
-            //var value = "websiteusercookie_" + formUsername;// + Date.parse(new Date());
-            //createCookie(loginAdminCookieName, value, loginCookieDays); // needs tweaking see it's error
             
-            console.log("would have redirected to window.location.href" + url);
             window.location.href = url;
         });
 
     }
 
+    //logic to check credentials are correct
     function ValidateUser(dbUser) {
 
-        console.log("ValidateUser was fired1");
         // get form data
         var redirectUrl = "";
         let formUsername = $("#email").val();
@@ -158,53 +143,17 @@ $(document).ready(function () {
         }
     }
 
-
-
-
-    // $("#btnListItems").click(function () {
-    //     listItems(DisplayItems);
-    // });
-
-    // $("#btnListUsers").click(function () {
-    //     listUsers(DisplayUsers);
-    // });
-
-    // $("#btnLogin").click(function () {
-    //     var loginState = $("#btnLogin").val();
-    //     if (loginState === "Log Out"){
-    //         // kill the admin cookie
-    //         $("#btnLogin").val("Log In");
-    //     }
-
-    // });
-
-
-
-    let adminIsLoggedIn = IsAdminLoggedIn();
-    if (adminIsLoggedIn) {
-        // $("#btnListItems").show();
-        // $("#btnListUsers").show();
-    }
-
+    //displays categories in nav dropdown when clicked
     $(".liCat a").click(function (e) {
         e.preventDefault();
         var txt = $(this).text();
         console.log("click event: " + txt);
 
-        // logic 
-        // go off to the db with a category id eg 1
-        // query the db
-        // return the category object 
-        // push the info of the category object name, image and desc into the div
-
         DisplayCategoryInDiv($(this).id);
     });
-
-
 });
 
-
-
+//gets categories from db to display in div
 function DisplayCategoryInDiv(catId) {
 
     setDatabaseName('dbCat', ['users', 'items', 'categories', 'subcategories ', 'events', 'watchlist']);
@@ -226,33 +175,25 @@ function init() {
 
     initDB();
 
-    // $("#btnListItems").hide();
-    // $("#btnListUsers").hide();
-    // $("#btnLogin").show();
-    // // if cookie has not expired then : 
-    // $("#btnLogin").val("Log In");
-
     //hides login form on page load
     $("#login").hide();
 
 }
 
 function initDB() {
-
+    
+    //open database
     setDatabaseName('dbCat', ['users', 'items', 'categories', 'subcategories', 'events', 'watchlist']);
-    // Let us open our database
-    // checks user's browser for indexeddb support
+    //checks user's browser for indexeddb support
     window.indexedDB = window.indexedDB || window.mozIndexedDB || window.webkitIndexedDB || window.msIndexedDB;
-    // DON'T use "var indexedDB = ..." if you're not in a function.
-    // Moreover, you may need references to some window.IDB* objects:
-    window.IDBTransaction = window.IDBTransaction || window.webkitIDBTransaction || window.msIDBTransaction || { READ_WRITE: "readwrite" }; // This line should only be needed if it is needed to support the object's constants for older browsers
+    //This line should only be needed if it is needed to support the object's constants for older browsers
+    window.IDBTransaction = window.IDBTransaction || window.webkitIDBTransaction || window.msIDBTransaction || { READ_WRITE: "readwrite" };
     window.IDBKeyRange = window.IDBKeyRange || window.webkitIDBKeyRange || window.msIDBKeyRange;
-    // if browser has no support message will display in console
+    //if browser has no support message will display in console
     if (!window.indexedDB) {
-        console.log("Your browser doesn't support a stable version of IndexedDB. Such and such feature will not be available.");
+        console.log("Your browser doesn't support a stable version of IndexedDB. Several features will not be available.");
     }
     //connect to the db
-    //let db1;
     let request = window.indexedDB.open(databaseName, 2);
 
     // handle any connection error
@@ -285,7 +226,7 @@ function initDB() {
 
         let objStoreWatchlist = db.createObjectStore("watchlist", { keyPath: "id", autoIncrement: true });
 
-        // Because the "names" object store has the key generator, the key for the name value is generated automatically.
+        //key values generated automatically.
 
         users.forEach(function (user) {
             objStoreUsers.add(user);
@@ -312,14 +253,11 @@ function initDB() {
         });
 
         db.onerror = function (event) {
-            // Generic error handler for all errors targeted at this database's requests
+            // Generic error handler for all errors targeted at db's requests
             console.error("Database error: " + event.target.error + ", " + event.target.errorCode);
         };
-
     };
-
 }
-
 
 function listItems(callBack) {
     // new call from the page so need to get a connection to the DB
@@ -350,16 +288,16 @@ function listItems(callBack) {
     };
 }
 
-
+//callback to func to display cats in div
 function listCategories(callBack) {
-    // new call from the page so need to get a connection to the DB
+    // new call from the page so need to get a connection to db
     var request = window.indexedDB.open("dbCat", 2);
     request.onerror = function (event) {
         alert("Unable to retrieve data from the database at this time, please try later. 261");
         console.log("error 262")
     };
 
-    // connection was successful
+    //connection was successful
     request.onsuccess = function (event) {
         let db1 = event.target.result;
         console.log("success")
@@ -371,18 +309,16 @@ function listCategories(callBack) {
             var cursor = event.target.result;
 
             if (cursor) {
-                //console.log(storeName + ":key id: " + cursor.key + " Parent category name:" + cursor.value.name + ", parentcategory:" + cursor.value.parentcategory);
-
                 callBack(cursor.key, cursor.value.name, cursor.value.parentcategory);
-
                 cursor.continue();
             } else {
-                // console.log("No more entries!");
+                //console.log("No more entries");
             }
         };
     };
 }
 
+//callback to func to display cats in selection
 function listDepartments(callBack) {
     // new call from the page so need to get a connection to the DB
     var request = window.indexedDB.open("dbCat", 2);
@@ -412,13 +348,14 @@ function listDepartments(callBack) {
 
                 cursor.continue();
             } else {
-                // console.log("No more entries");                
+                //console.log("No more entries");                
             }
 
         };
     };
 }
 
+//callback to func to display subcats in selection
 function listSubDepts(callBack) {
     // new call from the page so need to get a connection to the DB
     var request = window.indexedDB.open("dbCat", 2);
@@ -448,13 +385,14 @@ function listSubDepts(callBack) {
 
                 cursor.continue();
             } else {
-                // console.log("No more entries");                
+                //console.log("No more entries");                
             }
 
         };
     };
 }
 
+//adds cat into dropdown div with link to specific cat
 function displayCategoriesMenu(id, name, parentcategory) {
     var css = "";
     if (parentcategory > 0) {
@@ -466,6 +404,7 @@ function displayCategoriesMenu(id, name, parentcategory) {
     $("#dropdown").append(link);
 }
 
+//displays cat in dropdown div
 function displayCategories(id, name, parentcategory) {
     var css = "";
     if (parentcategory > 0) {
@@ -478,6 +417,7 @@ function displayCategories(id, name, parentcategory) {
     $("#categoryPageCategoriesList").append(link);
 }
 
+//adds cat to option selection
 function displayDepartments(id, name, parentcategory) {
     var css = "";
     if (parentcategory > 0) {
@@ -489,6 +429,7 @@ function displayDepartments(id, name, parentcategory) {
     $("#AdminDrop").append(option);
 }
 
+//adds subcat to subcat option selection
 function displaySubDepts(id, name, parentcategory) {
     var css = "";
     if (parentcategory > 0) {
@@ -500,6 +441,7 @@ function displaySubDepts(id, name, parentcategory) {
     $("#AdminDrop1").append(option);
 }
 
+//cookie function - not used
 function IsAdminLoggedIn() {
     //check cookie and return t/f
     let adminCookie = true;
@@ -509,33 +451,3 @@ function IsAdminLoggedIn() {
     }
     return adminCookie; // test default to true
 }
-
-
-/* todo:
-DONE list items
-DONE list users
-DONE list categories
-DONE list subcategories - in the categories list
-login
-DONE display login form
-DONE create login function - check entered details against the database
-DONE display error if the password if wrong
- and create admin cookie if logged in
- OR record logged-in in the database - better?
-
-only show add new buttons for admin login
-create CRUD page:
-DONE add new item
-DONE add new category
-DONE delete old items?
-DONE update existing item ?
-DONE Fix list items functions
-
-
-DONE New Category makes new div in cat template page
-DONE add new subcategory
-DONE Display items in category page
-Add items to a watchlist
-DONE delete old categories/subcats
-login cookies
-*/

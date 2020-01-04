@@ -62,7 +62,23 @@ function getAllItems(callBack) {
     });
 }
 
-function populateAllItemsArray() {
+function populateAllCategoriesArray() { //func to get category values without invoking callbacks
+setDatabaseName('dbCat', ['users', 'items', 'categories', 'subcategories ', 'events', 'watchlist']);
+    setCurrObjectStoreName('categories');
+    startDB(function () {        
+        getAllCategories();
+    }); // async func
+}
+
+function populateAllSubcatsArray() { //get subcat values without callbacks
+    setDatabaseName('dbCat', ['users', 'items', 'categories', 'subcategories ', 'events', 'watchlist']);
+    setCurrObjectStoreName('subcategories');
+    startDB(function () {        
+        getAllSubcategories();
+    }); // async func
+}
+
+function populateAllItemsArray() { //get item values without callbacks
     setDatabaseName('dbCat', ['users', 'items', 'categories', 'subcategories ', 'events', 'watchlist']);
     setCurrObjectStoreName('items');
     startDB(function () {        
@@ -136,17 +152,18 @@ function FormatCategoriesAndItemsAsHtml() {
         return;
     }
 
-    //func to delete child elements
+    //func to delete all child elements of category
     $('.deleteAction').click(function () {
 
         getAllSubcategories();// cascade build all 3 arrays
 
-        var idArray = $(this).parent().attr('id').split("_"); //gets array of categories
+        //gets array of categories
+        var idArray = $(this).parent().attr('id').split("_"); 
         var parentId = idArray[0];
         var id = parseInt(idArray[1]);
 
         var storename = "";
-        if (parentId.indexOf("adminCellCategory") !== -1) {
+        if (parentId.indexOf("adminCellCategory") !== -1) { //deletes category and cascades to invoke subcat and item deletes
             storename = "categories";
             if (!confirm("Are you sure you want to delete this category?\nWARNING: ALL related subcategories AND their related items will also be deleted?")) {
                 return;
@@ -162,7 +179,7 @@ function FormatCategoriesAndItemsAsHtml() {
             deleteById(storename, id);
         }
 
-        if (parentId.indexOf("adminCellSubCategory") !== -1) {
+        if (parentId.indexOf("adminCellSubCategory") !== -1) {  //check to delete subcategory
             storename = "subcategories";
             if (!confirm("Are you sure you want to delete this subcategory\nWARNING: ALL related items will also be deleted?")) {
                 return;
@@ -171,7 +188,7 @@ function FormatCategoriesAndItemsAsHtml() {
             deleteById(storename, id);
         }
 
-        if (parentId.indexOf("adminCellItem") !== -1) {
+        if (parentId.indexOf("adminCellItem") !== -1) { //check to see which items are in subcategory to be deleted
             storename = "items";
             if (!confirm("Are you sure you want to delete this item?")) {
                 return;
@@ -181,7 +198,7 @@ function FormatCategoriesAndItemsAsHtml() {
         return false;
     });
 
-    function deleteItemsBySubCategory(subcategoryId) {
+    function deleteItemsBySubCategory(subcategoryId) { //deletes subcategory along with child items
         for (i = 0; i < listOfItems.length; i++) {
             var item = listOfItems[i];
             if (item.subcategoryid === subcategoryId) {
@@ -190,9 +207,9 @@ function FormatCategoriesAndItemsAsHtml() {
         }
     }
 
+    //func to delete by store name rather than setting db store each time
     function deleteById(storename, id) {
         console.log("deleteAction: storename: " + storename);
-
         setDatabaseName('dbCat', ['users', 'items', 'categories', 'subcategories ', 'events', 'watchlist']);
         setCurrObjectStoreName(storename);
         startDB(function () {
@@ -202,10 +219,48 @@ function FormatCategoriesAndItemsAsHtml() {
             });
         }); // async func
     }
+
+    $('.updateAction').click(function () { //redirects to category update page with id
+        populateAllCategoriesArray();
+        var idArray = $(this).parent().attr('id').split("_");
+        var parentId = idArray[0];
+        var updateCatID = getIdFromSplit($(this).parent().attr('id'));
+    
+        window.open("../Update/updateCat.html?catID=" + updateCatID, "_self");
+    
+        return false;
+    });
+
+    $('.updateActionSubcat').click(function () { //redirects to subcat update page with id
+        populateAllSubcatsArray();
+        var idArray = $(this).parent().attr('id').split("_");
+        var parentId = idArray[0];
+        var updateSubcatID = getIdFromSplit($(this).parent().attr('id'));
+    
+        window.open("../Update/updateSubcat.html?subcatID=" + updateSubcatID, "_self");
+    
+        return false;
+    });
+
+    $('.updateActionItem').click(function () { //redirects to item update page with id
+        populateAllItemsArray();
+        var idArray = $(this).parent().attr('id').split("_");
+        var parentId = idArray[0];
+        var updateItemID = getIdFromSplit($(this).parent().attr('id'));
+    
+        window.open("../Update/Update.html?itemID=" + updateItemID, "_self");
+    
+        return false;
+    });
+
+    $(".buy").click(function () { //redirects to under construction page when buy button clicked
+        window.open('../Search/results.html');
+    
+        return false;
+    })
 }
 
-
-
+//builds div for item to be placed in under subcat
 function generateItemHTML(item) {
     var itemId = item.id;
     var html = "<div class='indentItems'>";
@@ -224,26 +279,13 @@ function generateItemHTML(item) {
     html += "       <div class='checkbox'><input class='cellChkbox' type='checkbox' name='compare' value='Add to Compare' id='compareCheckBox_" + itemId + "'/><label for='compareCheckBox_" + itemId + "'> Add to compare</label></div>";
     //checkbox to add to watchlist
     html += "       <div id='watchItem_" + itemId + "' class='checkbox'><input class='watchChkbox' type='checkbox' name='watch' value='Add to Watchlist' id='watchCheckBox_" + itemId + "'/><label for='watchCheckBox_" + itemId + "'> Add to watchlist</label></div>";
-    html += "       <div class='buy'><button id='buy' class='btn btn-success' value='Buy'>Buy</button></div>";
+    html += "       <div class='buyItem'><button id='buy' class='btn btn-success buy' value='Buy'>Buy</button></div>";
     html += "   </div>";
-    
-    
     
     return html;
 }
 
-$('.updateActionItem').click(function () { //redirects to update page with item id
-    var itemID = itemId;
-    window.open("../Update/Update.html?itemID=" + itemID, "_self");
-
-    return false;
-    });
-
-$("#buy").click(function () { //redirects to under construction page when buy button clicked
-    window.open('../../Search/results.html');
-})
-
-
+//func to separate number and string values in id
 function getIdFromSplit(element) {
     var idArray = element.split("_");
     var first = idArray[0];
@@ -251,13 +293,10 @@ function getIdFromSplit(element) {
     return id;
 }
 
-var isChecked = 0;
-//watchlist func
+//watchlist
 $(document).on("change", "input[class='watchChkbox']", function () {
-    // var chkBoxId = this.id;
-    // var idArray = chkBoxId.split("_");
-    // var itemId = idArray[1];
-    populateAllItemsArray();
+    
+    populateAllItemsArray();//grabs items array
 
     var idArray = $(this).parent().attr('id').split("_");
     var parentId = idArray[0];
@@ -272,20 +311,16 @@ $(document).on("change", "input[class='watchChkbox']", function () {
     }
     return;
 
-    // try {
-    //     AddtoWatchlist();
-    // } catch (err) {
-    //     console.log("error: " + err);
-    // }
 });
 
+//add to watchlist function
 function AddtoWatchlist(watchItemID) {
     setDatabaseName('dbCat', ['users', 'items', 'categories', 'subcategories ', 'events', 'watchlist']);
     setCurrObjectStoreName('items');
     startDB(function () {        
-        selectOne(watchItemID, function (result) {
+        selectOne(watchItemID, function (result) { //selects item with matching id
             console.log("AddtoWatchlist result: " + result.itemName);            
-            saveWatchlistData(result);
+            saveWatchlistData(result); //saves item data to entry in watchlist table
             alert("Item has been successfully saved to watchlist");
             location.reload();
         });
@@ -308,7 +343,7 @@ function saveWatchlistData(itemData) {
             'itemImage': itemData.itemImage
         };
 
-        //saves new category in db
+        //saves new item in watchlist table
         insertOne(data, function (lastID) {
             event.preventDefault();
             console.log("saveWatchlistData lastID:" + lastID);
