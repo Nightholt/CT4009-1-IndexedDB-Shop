@@ -140,6 +140,11 @@ a:hover.dropdown-item {
     border-color: rgb(0, 0, 0);
 }
 
+#markerList {
+    float: left;
+    margin: 10px;
+}
+
 .leftCell {
     max-width: 200px;
 }
@@ -193,6 +198,7 @@ a:hover.dropdown-item {
 
 #divCatList.container {
     margin: 25px;
+    float: left;
 }
 
 .btn.btn-danger,.btn.btn-info {
