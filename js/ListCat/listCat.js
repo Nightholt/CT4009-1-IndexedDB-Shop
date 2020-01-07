@@ -22,8 +22,6 @@ function getAllCategories(callBack) {
     });
 }
 
-//getAllCategories().getAllSubcategories().getAllItems(callBack)
-
 //retrieve all values from subcategories table in db
 //items need to be obtained before html can be built
 function getAllSubcategories(callBack) {
