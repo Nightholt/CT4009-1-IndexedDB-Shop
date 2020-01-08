@@ -327,7 +327,7 @@ function AddtoWatchlist(watchItemID) {
 
 var newWatchItemID = 0;
 
-//saves form data into categories table
+//saves id's data into watchlist table
 function saveWatchlistData(itemData) {
     setDatabaseName('dbCat', ['users', 'items', 'categories', 'subcategories ', 'events', 'watchlist']);
     setCurrObjectStoreName('watchlist');
