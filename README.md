@@ -1,2 +1,1 @@
-# CT4009-2019-20-001-s1906563-13-Jan-2020
-CT4009 2019-20 001 s1906563 13 Jan 2020
+First university website created for an e-commerce shop using JavaScript and IndexedDB in order to become better acquainted with Web Development.
